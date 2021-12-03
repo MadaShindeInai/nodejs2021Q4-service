@@ -1,6 +1,9 @@
+const fs = require('fs');
+
 const getAll = async () => {
-  // TODO: mock implementation. should be replaced during task development
-  return [];
+  const data = await fs.readFileSync('data.json');
+  const { users } = JSON.parse(data);
+  return users;
 };
 
 module.exports = { getAll };
