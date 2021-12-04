@@ -1,10 +1,9 @@
 const typeString = { type: 'string' };
-const typeNumber = { type: 'number' };
 
 const user = {
   type: 'object',
   properties: {
-    id: typeNumber,
+    id: typeString,
     name: typeString,
     login: typeString,
   },

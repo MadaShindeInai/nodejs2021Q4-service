@@ -14,4 +14,9 @@ const getUser = async (req, reply) => {
   return reply.send(User.toResponse(user));
 };
 
-module.exports = { getAllUsers, getUser };
+const addUser = async (req, reply) => {
+  await usersRepo.addUser(req.body);
+  return reply.status(201).send('User added');
+};
+
+module.exports = { getAllUsers, getUser, addUser };

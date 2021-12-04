@@ -1,9 +1,90 @@
 {
-  "users": [{
-    "id": "1",
-    "name": "Leanne Graham",
-    "login": "Bret",
-    "password": "123456"}],
-  "boards":[],
-  "tasks": []
+	"users": [
+		{
+			"id": "15c133a3-96d9-4534-bdcc-3061d769b421",
+			"name": "allan",
+			"login": "allan",
+			"password": "allan"
+		},
+		{
+			"id": "5ae7e4d9-adfa-4aed-9cb7-0d11cd5e63ef",
+			"name": "allan",
+			"login": "allan",
+			"password": "allan"
+		},
+		{
+			"id": "fb1cee4e-85c6-40cf-ac43-308a31ffecc8",
+			"name": "allan",
+			"login": "allan",
+			"password": "allan"
+		},
+		{
+			"id": "59e479d0-71df-40dc-85b2-227d59e2b160",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "05281ab2-adfd-4614-ae72-6f163e54ea12",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "d8f99edd-1a36-4649-ab9c-d7729d8b1f6b",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "0f559898-80aa-46cd-9ac0-efc33a427599",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "e7c7591d-af94-42ee-bed7-c5365fd4d3f1",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "d6357749-1130-45e5-b74f-c182043ad947",
+			"name": "allan",
+			"login": "allan",
+			"password": "allan"
+		},
+		{
+			"id": "dac926ed-88fe-4be3-bf12-e450c858d834",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "bf064816-e914-459e-bfb2-36a4417d024c",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "272167f2-2417-4db4-b06e-4487019102a6",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "f1befa1b-992d-49bf-9ad5-2179f3c69bf8",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "355b6937-ab1d-499c-9c26-df90cd77788a",
+			"name": "TEST_USER",
+			"login": "test_user",
+			"password": "T35t_P@55w0rd"
+		}
+	],
+	"boards": [],
+	"tasks": []
 }
