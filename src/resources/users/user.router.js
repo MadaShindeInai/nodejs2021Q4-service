@@ -1,11 +1,18 @@
-const User = require('./user.model');
-const usersService = require('./user.service');
+const { getAllUsersSchema, getUserSchema } = require('./schemas');
+const { getAllUsers, getUser } = require('./user.service');
+
+const getAllUsersOpts = {
+  schema: getAllUsersSchema,
+  handler: getAllUsers,
+};
+const getUserOpts = {
+  schema: getUserSchema,
+  handler: getUser,
+};
 
 const usersRoutes = (fastify, options, done) => {
-  fastify.get('/users', async (req, reply) => {
-    const users = await usersService.getAll();
-    reply.send(users.map(User.toResponse));
-  });
+  fastify.get('/users', getAllUsersOpts);
+  fastify.get('/users/:userId', getUserOpts);
   done();
 };
 

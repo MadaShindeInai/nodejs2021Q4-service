@@ -1,6 +1,6 @@
 {
   "users": [{
-    "id": 1,
+    "id": "1",
     "name": "Leanne Graham",
     "login": "Bret",
     "password": "123456"}],
