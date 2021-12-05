@@ -1,4 +1,3 @@
-const { validate } = require('uuid');
 const { addToDB, getDataFromDb } = require('../utils');
 const Board = require('./board.model');
 const Column = require('../columns/column.model');
@@ -10,7 +9,7 @@ const getAllBoards = async () => {
 
 const getBoard = async (id) => {
   const users = await getAllBoards();
-  return users.find((user) => user.id === id);
+  return users.find((board) => board.id === id);
 };
 
 const addBoard = async ({ title, columns }) => {
@@ -28,21 +27,17 @@ const updateBoard = async (id, body) => {
   const boardToUpdateIdx = parsedData.boards.findIndex(
     (board) => board.id === id
   );
+
   if (boardToUpdateIdx === -1) {
     return false;
   }
-  const updatedColumns = body.columns.map(({ id: colId, ...rest }) => {
-    if (validate(colId)) {
-      return new Column({ id: colId, ...rest });
-    }
-    return new Column(rest);
-  });
 
   const updatedBoard = {
     ...parsedData.boards.at(boardToUpdateIdx),
     title: body.title,
-    columns: updatedColumns,
+    columns: body.columns,
   };
+
   parsedData.boards.splice(boardToUpdateIdx, 1, updatedBoard);
 
   addToDB(parsedData);

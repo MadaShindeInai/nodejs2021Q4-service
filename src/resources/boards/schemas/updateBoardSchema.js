@@ -1,14 +1,14 @@
 const { typeString, boardBody, boardRes } = require('./elementSchemas');
 
-const updateUserSchema = {
+const updateBoardSchema = {
   body: boardBody,
   params: {
-    userId: typeString,
+    boardId: typeString,
   },
-  tags: ['User'],
+  tags: ['Board'],
   response: {
     200: boardRes,
   },
 };
 
-module.exports = updateUserSchema;
+module.exports = updateBoardSchema;
