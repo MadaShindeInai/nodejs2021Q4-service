@@ -2,7 +2,6 @@ const typeString = { type: 'string' };
 
 const userNoPass = {
   type: 'object',
-  tags: ['User'],
   properties: {
     id: typeString,
     name: typeString,
