@@ -7,108 +7,110 @@
 			"password": "string"
 		},
 		{
-			"id": "ce6c397e-5917-4b62-8277-9c78ce8a80bf",
+			"id": "16a0294c-614f-474d-a7ef-3893550829de",
 			"name": "TEST_USER",
 			"login": "test_user",
 			"password": "T35t_P@55w0rd"
 		},
 		{
-			"id": "820bfce2-669e-42e2-a32e-e3a0d4854a12",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "81ae8e9e-6efa-4b17-afe4-c07f8d862316",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "af7dd8e5-b179-40c9-b8d1-5e6b62824b5e",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "3210a71c-4d8b-4eed-942e-9c1ee86fb6ef",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "649773ee-3721-4860-93b9-3ddeb7097459",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "ac07df80-fc99-4a0f-bf35-42cf6b2cd781",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "6e5c7f2b-7441-4fa9-8636-da48a759c152",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "83c27527-b03d-4495-8e5b-6a8c9648dcc9",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "7725bc95-f20e-43cf-9655-05455214c16f",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "f30ffe5a-ae8e-419c-89af-0b47a62eb9b9",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "7b33a5af-a0cd-4b4c-83c5-48e7e7a517dd",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "833f47e8-c203-49d5-854e-9452725eb66a",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "8e61c629-e138-44a5-bd51-38da87ad2823",
-			"name": "string",
-			"login": "string",
-			"password": "string"
-		},
-		{
-			"id": "b06b7e78-be85-431f-9308-8a660242117e",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "dac4d6fd-0b77-413b-8fd3-214d3831b883",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "e2c5db98-87f9-4939-8b9e-3086730f96e9",
+			"id": "63a339ee-4cad-4beb-9390-c5bbe274e832",
 			"name": "TEST_USER",
 			"login": "test_user",
 			"password": "T35t_P@55w0rd"
 		}
 	],
-	"boards": [],
+	"boards": [
+		{
+			"id": "0a9d49da-4216-489e-bf9c-1a91d7a337b8",
+			"title": "Autotest board",
+			"columns": [
+				{
+					"id": "cc8b08cf-0ed3-43d2-bbad-885b26a687c5",
+					"title": "Backlog",
+					"order": 1
+				},
+				{
+					"id": "112dc59d-c305-48d5-b05d-a25484f1cdbc",
+					"title": "Sprint",
+					"order": 2
+				}
+			]
+		},
+		{
+			"id": "bb2d1110-bca1-412b-a687-7f9dfaabe7f6",
+			"title": "string",
+			"columns": [
+				{
+					"id": "951210b0-7dcb-4f36-92c2-5ff555ff0018",
+					"title": "string",
+					"order": 0
+				}
+			]
+		},
+		{
+			"id": "063840b2-2697-445c-bdc0-59b921fd0a52",
+			"title": "Autotest board",
+			"columns": [
+				{
+					"id": "294801c8-03d1-428d-be75-76a58bf197e1",
+					"title": "Backlog",
+					"order": 1
+				},
+				{
+					"id": "9dbe69a7-5ff2-4042-a7d8-0124a1fd7c75",
+					"title": "Sprint",
+					"order": 2
+				}
+			]
+		},
+		{
+			"id": "47781f77-677b-4931-ab3a-60333f70b8d7",
+			"title": "Autotest board",
+			"columns": [
+				{
+					"id": "1f43ab8a-cf25-4f74-b944-e796d82f260f",
+					"title": "Backlog",
+					"order": 1
+				},
+				{
+					"id": "2626d277-4a3e-47a7-b858-d923c7be352c",
+					"title": "Sprint",
+					"order": 2
+				}
+			]
+		},
+		{
+			"id": "e3bfb988-953b-40d7-baf4-f87011afe0a2",
+			"title": "Autotest board",
+			"columns": [
+				{
+					"id": "5f28a772-2cb6-4f34-8c7d-6150cb0afe98",
+					"title": "Backlog",
+					"order": 1
+				},
+				{
+					"id": "6028f5aa-29ce-4c8b-9efe-6011c67965b2",
+					"title": "Sprint",
+					"order": 2
+				}
+			]
+		},
+		{
+			"id": "ad523cac-1e0f-431d-92f8-4a28f3b008bf",
+			"title": "Autotest board",
+			"columns": [
+				{
+					"id": "110012f7-a565-469f-a247-d779f84f2fc9",
+					"title": "Backlog",
+					"order": 1
+				},
+				{
+					"id": "e91d43c2-29e9-4dfb-b0cc-75092ea33d27",
+					"title": "Sprint",
+					"order": 2
+				}
+			]
+		}
+	],
 	"tasks": []
 }
