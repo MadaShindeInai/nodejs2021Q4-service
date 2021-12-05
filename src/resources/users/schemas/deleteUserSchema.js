@@ -1,11 +1,12 @@
 const { typeString } = require('./elementSchemas');
 
-const deletePostSchema = {
+const deleteUserSchema = {
   params: {
-    id: { type: 'string' },
+    userId: typeString,
   },
+  tags: ['User'],
   response: {
     204: typeString,
   },
 };
-module.exports = deletePostSchema;
+module.exports = deleteUserSchema;

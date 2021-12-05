@@ -5,6 +5,7 @@ const updateUserSchema = {
   params: {
     userId: typeString,
   },
+  tags: ['User'],
   response: {
     200: userNoPass,
   },

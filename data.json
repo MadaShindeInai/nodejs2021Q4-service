@@ -2,9 +2,9 @@
 	"users": [
 		{
 			"id": "664eca89-15fa-4a60-b297-56d2c02e998e",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
+			"name": "string",
+			"login": "string",
+			"password": "string"
 		},
 		{
 			"id": "ce6c397e-5917-4b62-8277-9c78ce8a80bf",
@@ -83,6 +83,12 @@
 			"name": "TEST_USER",
 			"login": "test_user",
 			"password": "T35t_P@55w0rd"
+		},
+		{
+			"id": "8e61c629-e138-44a5-bd51-38da87ad2823",
+			"name": "string",
+			"login": "string",
+			"password": "string"
 		}
 	],
 	"boards": [],
