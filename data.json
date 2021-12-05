@@ -7,37 +7,7 @@
 			"password": "T35t_P@55w0rd"
 		},
 		{
-			"id": "63a339ee-4cad-4beb-9390-c5bbe274e832",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "28e8a560-3c30-4fea-b7c5-74ded941f3ff",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "4baeaf12-c228-4925-8810-e0416aaa70a6",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "2de7d29e-8125-4f7f-b380-1dda6d00f8f9",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "3ed74f16-f009-4c1f-be4f-47c3f4b41f3f",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "ebf7e125-815b-44bd-b7c0-e45ed3f7989d",
+			"id": "301f3bb0-9710-41c6-bd56-ab2245ca6fe6",
 			"name": "TEST_USER",
 			"login": "test_user",
 			"password": "T35t_P@55w0rd"
@@ -46,47 +16,26 @@
 	"boards": [
 		{
 			"id": "c269b5f5-4018-42bb-8967-fad471f3678f",
-			"title": "Autotest board",
+			"title": "string",
 			"columns": [
 				{
-					"id": "37989a0c-05f3-4fbe-a716-d2374bda7ece",
-					"title": "Backlog",
-					"order": 1
-				},
-				{
-					"id": "91a15851-e578-4bd7-aba0-6f425422609b",
-					"title": "Sprint",
-					"order": 2
+					"id": "6cbde9f0-57e0-458f-9918-4f1be47afe67",
+					"title": "syring",
+					"order": 0
 				}
 			]
 		},
 		{
-			"id": "59ecdf88-a564-49c3-b8bf-082ac9898fe2",
+			"id": "7d5bbbe2-94a6-48e9-a0ad-2786845a1210",
 			"title": "Autotest board",
 			"columns": [
 				{
-					"id": "62baad08-c8c4-4a9d-885d-f28119dc2bc3",
+					"id": "7d5c949b-6995-461e-98c2-8c0f8f06d2e7",
 					"title": "Backlog",
 					"order": 1
 				},
 				{
-					"id": "8ce7cd59-aabf-4142-bf42-e48a95b9c5b6",
-					"title": "Sprint",
-					"order": 2
-				}
-			]
-		},
-		{
-			"id": "791d366f-30e4-44b4-8c37-b7b891d92fd6",
-			"title": "Autotest board",
-			"columns": [
-				{
-					"id": "368e17b7-490c-416a-a0fd-d51e6380255d",
-					"title": "Backlog",
-					"order": 1
-				},
-				{
-					"id": "6005ff9c-7a1e-4c22-9087-14023ce0473f",
+					"id": "19c0cf20-f998-4045-88fc-2cdec240dae3",
 					"title": "Sprint",
 					"order": 2
 				}
