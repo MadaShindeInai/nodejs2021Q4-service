@@ -1,13 +1,13 @@
-const { typeString, userNoId, userNoPass } = require('./elementSchemas');
+const { typeString, boardBody, boardRes } = require('./elementSchemas');
 
 const updateUserSchema = {
-  body: userNoId,
+  body: boardBody,
   params: {
     userId: typeString,
   },
   tags: ['User'],
   response: {
-    200: userNoPass,
+    200: boardRes,
   },
 };
 

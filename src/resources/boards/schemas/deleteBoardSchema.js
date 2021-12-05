@@ -2,9 +2,9 @@ const { typeString } = require('./elementSchemas');
 
 const deleteUserSchema = {
   params: {
-    userId: typeString,
+    boardId: typeString,
   },
-  tags: ['User'],
+  tags: ['Board'],
   response: {
     204: typeString,
   },

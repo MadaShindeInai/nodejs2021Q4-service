@@ -22,29 +22,38 @@ const addBoard = async ({ title, columns }) => {
   return newBoard;
 };
 
-// const updateUser = async (id, body) => {
-//   const parsedData = await getDataFromDb();
-//   const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
-//   if (userToUpdateIdx === -1) {
-//     return false;
-//   }
-//   const updatedUser = { ...parsedData.users.at(userToUpdateIdx), ...body };
-//   parsedData.users.splice(userToUpdateIdx, 1, updatedUser);
+const updateBoard = async (id, body) => {
+  const parsedData = await getDataFromDb();
+  const boardToUpdateIdx = parsedData.boards.findIndex(
+    (board) => board.id === id
+  );
+  if (boardToUpdateIdx === -1) {
+    return false;
+  }
+  const updatedColumns = body.columns.map((column) => new Column(column));
+  const updatedBoard = {
+    ...parsedData.boards.at(boardToUpdateIdx),
+    title: body.title,
+    columns: updatedColumns,
+  };
+  parsedData.boards.splice(boardToUpdateIdx, 1, updatedBoard);
 
-//   addToDB(parsedData);
-//   return updatedUser;
-// };
+  addToDB(parsedData);
+  return updatedBoard;
+};
 
-// const deleteUser = async (id) => {
-//   const parsedData = await getDataFromDb();
-//   const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
-//   if (userToDeleteIdx === -1) {
-//     return false;
-//   }
-//   parsedData.users.splice(userToDeleteIdx, 1);
+const deleteBoard = async (id) => {
+  const parsedData = await getDataFromDb();
+  const boardToDeleteIdx = parsedData.boards.findIndex(
+    (board) => board.id === id
+  );
+  if (boardToDeleteIdx === -1) {
+    return false;
+  }
+  parsedData.boards.splice(boardToDeleteIdx, 1);
 
-//   addToDB(parsedData);
-//   return true;
-// };
+  addToDB(parsedData);
+  return true;
+};
 
-module.exports = { getAllBoards, addBoard, getBoard };
+module.exports = { getAllBoards, addBoard, getBoard, deleteBoard, updateBoard };
