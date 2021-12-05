@@ -1,6 +1,6 @@
 const typeString = { type: 'string' };
 
-const user = {
+const userNoPass = {
   type: 'object',
   properties: {
     id: typeString,
@@ -9,4 +9,14 @@ const user = {
   },
 };
 
-module.exports = { user, typeString };
+const userNoId = {
+  type: 'object',
+  required: ['name', 'login', 'password'],
+  properties: {
+    name: typeString,
+    login: typeString,
+    password: typeString,
+  },
+};
+
+module.exports = { userNoPass, typeString, userNoId };

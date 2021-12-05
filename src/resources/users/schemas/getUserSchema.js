@@ -1,11 +1,11 @@
-const { user, typeString } = require('./elementSchemas');
+const { userNoPass, typeString } = require('./elementSchemas');
 
 const getUserSchema = {
   params: {
     userId: typeString,
   },
   response: {
-    200: user,
+    200: userNoPass,
   },
 };
 

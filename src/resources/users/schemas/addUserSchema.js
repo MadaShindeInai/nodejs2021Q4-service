@@ -1,17 +1,9 @@
-const { typeString } = require('./elementSchemas');
+const { userNoId, userNoPass } = require('./elementSchemas');
 
 const addUserSchema = {
-  body: {
-    type: 'object',
-    required: ['name', 'login', 'password'],
-    properties: {
-      name: typeString, // recall we created typeString earlier
-      login: typeString,
-      password: typeString,
-    },
-  },
+  body: userNoId,
   response: {
-    201: typeString,
+    201: userNoPass,
   },
 };
 

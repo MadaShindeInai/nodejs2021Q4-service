@@ -1,10 +1,23 @@
 const fs = require('fs');
 const User = require('./user.model');
 
-const getAll = async () => {
+const addToDB = (data) => {
+  fs.writeFile('./data.json', JSON.stringify(data, null, '\t'), (err) => {
+    if (err) {
+      return { message: 'could not persist data!' };
+    }
+    return { message: 'user added successfully!' };
+  });
+};
+
+const getDataFromDb = async () => {
   const data = await fs.readFileSync('data.json');
-  const { users } = JSON.parse(data);
-  return users;
+  return JSON.parse(data);
+};
+
+const getAll = async () => {
+  const parsedData = await getDataFromDb();
+  return parsedData.users;
 };
 
 const getUser = async (id) => {
@@ -13,16 +26,37 @@ const getUser = async (id) => {
 };
 
 const addUser = async (body) => {
-  const data = await fs.readFileSync('data.json');
-  const parsedData = JSON.parse(data);
-  parsedData.users.push(new User(body));
+  const parsedData = await getDataFromDb();
+  const newUser = new User(body);
+  parsedData.users.push(newUser);
 
-  fs.writeFile('./data.json', JSON.stringify(parsedData, null, '\t'), (err) => {
-    if (err) {
-      return { message: 'could not persist data!' };
-    }
-    return { message: 'user added successfully!' };
-  });
+  addToDB(parsedData);
+  return newUser;
 };
 
-module.exports = { getAll, getUser, addUser };
+const updateUser = async (id, body) => {
+  const parsedData = await getDataFromDb();
+  const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
+  if (userToUpdateIdx === -1) {
+    return false;
+  }
+  const updatedUser = { ...parsedData.users.at(userToUpdateIdx), ...body };
+  parsedData.users.splice(userToUpdateIdx, 1, updatedUser);
+
+  addToDB(parsedData);
+  return updatedUser;
+};
+
+const deleteUser = async (id) => {
+  const parsedData = await getDataFromDb();
+  const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
+  if (userToDeleteIdx === -1) {
+    return false;
+  }
+  parsedData.users.splice(userToDeleteIdx, 1);
+
+  addToDB(parsedData);
+  return true;
+};
+
+module.exports = { getAll, getUser, addUser, updateUser, deleteUser };

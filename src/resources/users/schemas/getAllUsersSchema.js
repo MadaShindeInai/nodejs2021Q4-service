@@ -1,10 +1,10 @@
-const { user } = require('./elementSchemas');
+const { userNoPass } = require('./elementSchemas');
 
 const getAllUsersSchema = {
   response: {
     200: {
       type: 'array',
-      items: user,
+      items: userNoPass,
     },
   },
 };
