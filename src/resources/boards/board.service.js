@@ -21,7 +21,6 @@ const getBoard = async (req, reply) => {
 
 const addBoard = async (req, reply) => {
   const newBoard = await boardsRepo.addBoard(req.body);
-
   return reply.status(201).send(newBoard);
 };
 

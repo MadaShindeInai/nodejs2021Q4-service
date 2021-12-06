@@ -20,7 +20,6 @@ const boardRes = {
 const boardBody = {
   type: 'object',
   properties: {
-    id: typeString,
     title: typeString,
     columns: {
       type: 'array',

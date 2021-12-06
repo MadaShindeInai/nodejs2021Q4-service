@@ -20,7 +20,6 @@ const getBoardSchema = {
 
 const addBoardSchema = {
   body: boardBody,
-  tags: ['Board'],
   response: {
     201: boardRes,
   },

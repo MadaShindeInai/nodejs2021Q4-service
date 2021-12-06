@@ -1,46 +1,5 @@
 {
-	"users": [
-		{
-			"id": "16a0294c-614f-474d-a7ef-3893550829de",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		},
-		{
-			"id": "301f3bb0-9710-41c6-bd56-ab2245ca6fe6",
-			"name": "TEST_USER",
-			"login": "test_user",
-			"password": "T35t_P@55w0rd"
-		}
-	],
-	"boards": [
-		{
-			"id": "c269b5f5-4018-42bb-8967-fad471f3678f",
-			"title": "string",
-			"columns": [
-				{
-					"id": "6cbde9f0-57e0-458f-9918-4f1be47afe67",
-					"title": "syring",
-					"order": 0
-				}
-			]
-		},
-		{
-			"id": "7d5bbbe2-94a6-48e9-a0ad-2786845a1210",
-			"title": "Autotest board",
-			"columns": [
-				{
-					"id": "7d5c949b-6995-461e-98c2-8c0f8f06d2e7",
-					"title": "Backlog",
-					"order": 1
-				},
-				{
-					"id": "19c0cf20-f998-4045-88fc-2cdec240dae3",
-					"title": "Sprint",
-					"order": 2
-				}
-			]
-		}
-	],
+	"users": [],
+	"boards": [],
 	"tasks": []
 }
