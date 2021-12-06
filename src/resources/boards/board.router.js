@@ -1,13 +1,13 @@
 const {
   getAllBoardsSchema,
-  // getBoardSchema,
+  getBoardSchema,
   // addBoardSchema,
   // updateBoardSchema,
   // deleteBoardSchema,
 } = require('./schemas');
 const {
   getAllBoards,
-  // getBoard,
+  getBoard,
   // addBoard,
   // updateBoard,
   // deleteBoard,
@@ -18,10 +18,10 @@ const getAllBoardsOpts = {
   handler: getAllBoards,
 };
 
-// const getBoardOpts = {
-//   schema: getBoardSchema,
-//   handler: getBoard,
-// };
+const getBoardOpts = {
+  schema: getBoardSchema,
+  handler: getBoard,
+};
 
 // const addBoardOpts = {
 //   schema: addBoardSchema,
@@ -40,7 +40,7 @@ const getAllBoardsOpts = {
 
 const boardRoutes = (fastify, options, done) => {
   fastify.get('/boards', getAllBoardsOpts);
-  // fastify.get('/boards/:boardId', getBoardOpts);
+  fastify.get('/boards/:boardId', getBoardOpts);
   // fastify.post('/boards', addBoardOpts);
   // fastify.put('/boards/:boardId', updateBoardOpts);
   // fastify.delete('/boards/:boardId', deleteBoardOpts);

@@ -8,8 +8,8 @@ const getAllBoards = async () => {
 };
 
 const getBoard = async (id) => {
-  const users = await getAllBoards();
-  return users.find((board) => board.id === id);
+  const boards = await getAllBoards();
+  return boards.find((board) => board.id === id);
 };
 
 const addBoard = async ({ title, columns }) => {
