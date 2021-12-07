@@ -7,7 +7,7 @@ class Task {
     order = '1',
     description = 'lol kek cheburek',
     userId = null,
-    boardId = null,
+    boardId,
     columnId = null,
   } = {}) {
     this.id = id;

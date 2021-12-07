@@ -1,34 +1,28 @@
-const { validate } = require('uuid');
 const tasksRepo = require('./task.memory.repository');
+const { validateUUID } = require('../utils');
 
 const getTasksByBoardId = async (req, reply) => {
-  if (!validate(req.params.boardId)) {
-    return reply
-      .status(400)
-      .send(new Error(`${req.params.boardId} is not uuid`));
-  }
+  validateUUID(reply, req.params.boardId);
   const tasks = await tasksRepo.getTasksByBoardId(req.params.boardId);
-  return reply.send(tasks);
+  reply.send(tasks);
 };
 
-// const getUser = async (req, reply) => {
-//   if (!validate(req.params.userId)) {
-//     return reply
-//       .status(400)
-//       .send(new Error(`${req.params.userId} is not uuid`));
-//   }
-//   const user = await usersRepo.getUser(req.params.userId);
-//   if (!user) {
-//     return reply.status(404).send(new Error('User not found'));
-//   }
-//   return reply.send(User.toResponse(user));
-// };
+const addTask = async (req, reply) => {
+  validateUUID(reply, req.params.boardId);
+  const newTask = await tasksRepo.addTask(req.body);
+  reply.status(201).send(newTask);
+};
 
-// const addUser = async (req, reply) => {
-//   const newUser = await usersRepo.addUser(req.body);
-
-//   return reply.status(201).send(User.toResponse(newUser));
-// };
+const getTaskByBoardAndTaskId = async (req, reply) => {
+  const { boardId, taskId } = req.params;
+  validateUUID(reply, boardId);
+  validateUUID(reply, taskId);
+  const task = await tasksRepo.getTaskByBoardAndTaskId(boardId, taskId);
+  if (!task) {
+    reply.status(404).send(new Error('User not found'));
+  }
+  reply.send(task);
+};
 
 // const updateUser = async (req, reply) => {
 //   if (!validate(req.params.userId)) {
@@ -56,4 +50,4 @@ const getTasksByBoardId = async (req, reply) => {
 //   return reply.status(204).send();
 // };
 
-module.exports = { getTasksByBoardId };
+module.exports = { getTasksByBoardId, addTask, getTaskByBoardAndTaskId };

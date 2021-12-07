@@ -1,17 +1,29 @@
 const typeString = { type: 'string' };
+const typeNumber = { type: 'string' };
 const typeStringOrNull = { type: ['string', 'null'] };
 
-const taskShape = {
+const taskRes = {
   type: 'object',
   properties: {
     id: typeString,
     title: typeString,
-    order: typeString,
+    order: typeNumber,
     description: typeString,
     userId: typeStringOrNull,
-    boardId: typeStringOrNull,
+    boardId: typeString,
+    columnId: typeStringOrNull,
+  },
+};
+const taskBody = {
+  type: 'object',
+  properties: {
+    title: typeString,
+    order: typeNumber,
+    description: typeString,
+    userId: typeStringOrNull,
+    boardId: typeString,
     columnId: typeStringOrNull,
   },
 };
 
-module.exports = { taskShape, typeString };
+module.exports = { taskBody, taskRes, typeString };

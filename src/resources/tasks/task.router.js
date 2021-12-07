@@ -1,14 +1,14 @@
 const {
   getTasksByBoardIdSchema,
-  // getUserSchema,
-  // addUserSchema,
+  getTaskByBoardAndTaskIdSchema,
+  addTaskSchema,
   // updateUserSchema,
   // deleteUserSchema,
 } = require('./schemas');
 const {
   getTasksByBoardId,
-  // getUser,
-  // addUser,
+  getTaskByBoardAndTaskId,
+  addTask,
   // updateUser,
   // deleteUser,
 } = require('./task.service');
@@ -18,15 +18,15 @@ const getTasksByBoardIdOpts = {
   handler: getTasksByBoardId,
 };
 
-// const getUserOpts = {
-//   schema: getUserSchema,
-//   handler: getUser,
-// };
+const getTaskByBoardAndTaskIdOpts = {
+  schema: getTaskByBoardAndTaskIdSchema,
+  handler: getTaskByBoardAndTaskId,
+};
 
-// const addUserOpts = {
-//   schema: addUserSchema,
-//   handler: addUser,
-// };
+const addTaskOpts = {
+  schema: addTaskSchema,
+  handler: addTask,
+};
 
 // const updateUserOpts = {
 //   schema: updateUserSchema,
@@ -38,13 +38,13 @@ const getTasksByBoardIdOpts = {
 //   handler: deleteUser,
 // };
 
-const usersRoutes = (fastify, options, done) => {
+const tasksRoutes = (fastify, options, done) => {
   fastify.get('/boards/:boardId/tasks', getTasksByBoardIdOpts);
-  // fastify.get('/boards/:boardId/tasks/:taskId', getTaskOpts);
-  // fastify.post('/boards/:boardId/tasks', addTaskOpts);
+  fastify.get('/boards/:boardId/tasks/:taskId', getTaskByBoardAndTaskIdOpts);
+  fastify.post('/boards/:boardId/tasks', addTaskOpts);
   // fastify.put('/boards/:boardId/tasks/:taskId', updateTaskOpts);
   // fastify.delete('/boards/:boardId/tasks/:taskId', deleteTaskOpts);
   done();
 };
 
-module.exports = usersRoutes;
+module.exports = tasksRoutes;

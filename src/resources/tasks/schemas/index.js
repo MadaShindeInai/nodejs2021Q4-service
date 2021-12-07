@@ -1,13 +1,38 @@
-const getAllTasksSchema = require('./getAllTasksSchema');
-const getUserSchema = require('./getTaskSchema');
-const addUserSchema = require('./addTaskSchema');
-const updateUserSchema = require('./updateTaskSchema');
-const deleteUserSchema = require('./deleteTaskSchema');
+const { taskBody, taskRes, typeString } = require('./elementSchemas');
+
+const getTasksByBoardIdSchema = {
+  params: {
+    boardId: typeString,
+  },
+  response: {
+    200: {
+      type: 'array',
+      items: taskRes,
+    },
+  },
+};
+
+const getTaskByBoardAndTaskIdSchema = {
+  params: {
+    boardId: typeString,
+    taskId: typeString,
+  },
+  response: {
+    200: taskRes,
+  },
+};
+const addTaskSchema = {
+  params: {
+    boardId: typeString,
+  },
+  body: taskBody,
+  response: {
+    201: taskRes,
+  },
+};
 
 module.exports = {
-  getAllTasksSchema,
-  getUserSchema,
-  addUserSchema,
-  updateUserSchema,
-  deleteUserSchema,
+  getTasksByBoardIdSchema,
+  addTaskSchema,
+  getTaskByBoardAndTaskIdSchema,
 };

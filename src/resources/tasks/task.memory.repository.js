@@ -1,23 +1,26 @@
-const { getDataFromDb } = require('../utils');
+const { getDataFromDb, addToDB } = require('../utils');
+const Task = require('./task.model');
 
 const getTasksByBoardId = async (boardId) => {
   const parsedData = await getDataFromDb();
   return parsedData.tasks.filter((task) => task.boardId === boardId);
 };
 
-// const getUser = async (id) => {
-//   const users = await getAll();
-//   return users.find((user) => user.id === id);
-// };
+const getTaskByBoardAndTaskId = async (boardId, taskId) => {
+  const parsedData = await getDataFromDb();
+  return parsedData.tasks.find(
+    (task) => task.id === taskId && task.boardId === boardId
+  );
+};
 
-// const addUser = async (body) => {
-//   const parsedData = await getDataFromDb();
-//   const newUser = new User(body);
-//   parsedData.users.push(newUser);
+const addTask = async (body) => {
+  const parsedData = await getDataFromDb();
+  const newTask = new Task(body);
+  parsedData.tasks.push(newTask);
 
-//   addToDB(parsedData);
-//   return newUser;
-// };
+  addToDB(parsedData);
+  return newTask;
+};
 
 // const updateUser = async (id, body) => {
 //   const parsedData = await getDataFromDb();
@@ -44,4 +47,4 @@ const getTasksByBoardId = async (boardId) => {
 //   return true;
 // };
 
-module.exports = { getTasksByBoardId };
+module.exports = { getTasksByBoardId, addTask, getTaskByBoardAndTaskId };

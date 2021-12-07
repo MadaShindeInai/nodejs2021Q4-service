@@ -2,15 +2,15 @@ const {
   getAllBoardsSchema,
   getBoardSchema,
   addBoardSchema,
-  // updateBoardSchema,
-  // deleteBoardSchema,
+  updateBoardSchema,
+  deleteBoardSchema,
 } = require('./schemas');
 const {
   getAllBoards,
   getBoard,
   addBoard,
-  // updateBoard,
-  // deleteBoard,
+  updateBoard,
+  deleteBoard,
 } = require('./board.service');
 
 const getAllBoardsOpts = {
@@ -28,22 +28,22 @@ const addBoardOpts = {
   handler: addBoard,
 };
 
-// const updateBoardOpts = {
-//   schema: updateBoardSchema,
-//   handler: updateBoard,
-// };
+const updateBoardOpts = {
+  schema: updateBoardSchema,
+  handler: updateBoard,
+};
 
-// const deleteBoardOpts = {
-//   schema: deleteBoardSchema,
-//   handler: deleteBoard,
-// };
+const deleteBoardOpts = {
+  schema: deleteBoardSchema,
+  handler: deleteBoard,
+};
 
 const boardRoutes = (fastify, options, done) => {
   fastify.get('/boards', getAllBoardsOpts);
   fastify.get('/boards/:boardId', getBoardOpts);
   fastify.post('/boards', addBoardOpts);
-  // fastify.put('/boards/:boardId', updateBoardOpts);
-  // fastify.delete('/boards/:boardId', deleteBoardOpts);
+  fastify.put('/boards/:boardId', updateBoardOpts);
+  fastify.delete('/boards/:boardId', deleteBoardOpts);
   done();
 };
 
