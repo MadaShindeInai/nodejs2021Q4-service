@@ -39,8 +39,16 @@ const deleteUser = async (id) => {
   if (userToDeleteIdx === -1) {
     return false;
   }
-  parsedData.users.splice(userToDeleteIdx, 1);
 
+  const tasksWithRemovedUser = parsedData.tasks.map((task) => {
+    if (task.userId === id) {
+      return { ...task, userId: null };
+    }
+    return task;
+  });
+
+  parsedData.tasks = tasksWithRemovedUser;
+  parsedData.users.splice(userToDeleteIdx, 1);
   await addToDB(parsedData);
   return true;
 };

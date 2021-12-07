@@ -51,8 +51,12 @@ const deleteBoard = async (boardId) => {
   if (boardToDeleteIdx === -1) {
     return false;
   }
-  parsedData.boards.splice(boardToDeleteIdx, 1);
+  const tasksFilteredByBoardId = parsedData.tasks.filter(
+    (task) => task.boardId !== boardId
+  );
 
+  parsedData.tasks = tasksFilteredByBoardId;
+  parsedData.boards.splice(boardToDeleteIdx, 1);
   await addToDB(parsedData);
   return false;
 };
