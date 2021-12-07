@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-const addToDB = (data) => {
-  fs.writeFile('./data.json', JSON.stringify(data, null, '\t'), (err) => {
+const addToDB = async (data) => {
+  await fs.writeFile('./data.json', JSON.stringify(data, null, '\t'), (err) => {
     if (err) {
-      return { message: 'could not persist data!' };
+      process.stderr.write(`Can't write to data.json`);
     }
-    return { message: 'user added successfully!' };
+    process.stdin.write(`Successfully edited`);
   });
 };
 

@@ -18,7 +18,7 @@ const addTask = async (body) => {
   const newTask = new Task(body);
   parsedData.tasks.push(newTask);
 
-  addToDB(parsedData);
+  await addToDB(parsedData);
   return newTask;
 };
 
@@ -33,7 +33,7 @@ const updateTask = async (boardId, taskId, body) => {
   const updatedTask = { ...parsedData.users.at(taskToUpdateIdx), ...body };
   parsedData.tasks.splice(taskToUpdateIdx, 1, updatedTask);
 
-  addToDB(parsedData);
+  await addToDB(parsedData);
   return updatedTask;
 };
 
@@ -47,7 +47,7 @@ const deleteTask = async (boardId, taskId) => {
   }
   parsedData.tasks.splice(taskToDeleteIdx, 1);
 
-  addToDB(parsedData);
+  await addToDB(parsedData);
   return true;
 };
 

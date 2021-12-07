@@ -18,7 +18,7 @@ const addBoard = async ({ title, columns }) => {
   const newBoard = new Board({ title, columns: newColumns });
   parsedData.boards.push(newBoard);
 
-  addToDB(parsedData);
+  await addToDB(parsedData);
   return newBoard;
 };
 
@@ -39,7 +39,7 @@ const updateBoard = async (boardId, body) => {
 
   parsedData.boards.splice(boardToUpdateIdx, 1, updatedBoard);
 
-  addToDB(parsedData);
+  await addToDB(parsedData);
   return updatedBoard;
 };
 
@@ -53,8 +53,8 @@ const deleteBoard = async (boardId) => {
   }
   parsedData.boards.splice(boardToDeleteIdx, 1);
 
-  addToDB(parsedData);
-  return true;
+  await addToDB(parsedData);
+  return false;
 };
 
 module.exports = { getAllBoards, addBoard, getBoard, deleteBoard, updateBoard };
