@@ -1,18 +1,11 @@
-const fs = require('fs');
+// const fs = require('fs');
+let data = require('../../data');
 
-const addToDB = async (data) => {
-  await fs.writeFile('./data.json', JSON.stringify(data, null, '\t'), (err) => {
-    if (err) {
-      process.stderr.write(`Can't write to data.json`);
-    }
-    process.stdin.write(`Successfully edited`);
-  });
+const addToDB = (newData) => {
+  data = newData;
 };
 
-const getDataFromDb = async () => {
-  const data = await fs.readFileSync('data.json');
-  return JSON.parse(data);
-};
+const getDataFromDb = () => data;
 
 module.exports = {
   addToDB,
