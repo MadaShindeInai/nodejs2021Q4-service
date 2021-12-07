@@ -30,10 +30,7 @@ const updateBoard = async (req, reply) => {
 };
 
 const deleteBoard = async (req, reply) => {
-  const isBoardDeleted = await boardsRepo.deleteBoard(req.params.boardId);
-  if (!isBoardDeleted) {
-    reply.status(404).send(new Error('Board not found'));
-  }
+  await boardsRepo.deleteBoard(req.params.boardId);
   reply.status(204).send();
 };
 
