@@ -6,7 +6,7 @@ const getTasksByBoardId = async (req, reply) => {
 };
 
 const addTask = async (req, reply) => {
-  const newTask = await tasksRepo.addTask(req.body);
+  const newTask = await tasksRepo.addTask(req.body, req.params.boardId);
   reply.status(201).send(newTask);
 };
 

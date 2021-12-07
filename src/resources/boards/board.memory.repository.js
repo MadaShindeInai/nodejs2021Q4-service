@@ -18,7 +18,7 @@ const addBoard = async ({ title, columns }) => {
   const newBoard = new Board({ title, columns: newColumns });
   parsedData.boards.push(newBoard);
 
-  await addToDB(parsedData);
+  addToDB(parsedData);
   return newBoard;
 };
 
@@ -39,7 +39,7 @@ const updateBoard = async (boardId, body) => {
 
   parsedData.boards.splice(boardToUpdateIdx, 1, updatedBoard);
 
-  await addToDB(parsedData);
+  addToDB(parsedData);
   return updatedBoard;
 };
 
@@ -57,7 +57,7 @@ const deleteBoard = async (boardId) => {
 
   parsedData.tasks = tasksFilteredByBoardId;
   parsedData.boards.splice(boardToDeleteIdx, 1);
-  await addToDB(parsedData);
+  addToDB(parsedData);
   return false;
 };
 

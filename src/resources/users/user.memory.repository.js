@@ -16,7 +16,7 @@ const addUser = async (body) => {
   const newUser = new User(body);
   parsedData.users.push(newUser);
 
-  await addToDB(parsedData);
+  addToDB(parsedData);
   return newUser;
 };
 
@@ -29,7 +29,7 @@ const updateUser = async (id, body) => {
   const updatedUser = { ...parsedData.users.at(userToUpdateIdx), ...body };
   parsedData.users.splice(userToUpdateIdx, 1, updatedUser);
 
-  await addToDB(parsedData);
+  addToDB(parsedData);
   return updatedUser;
 };
 
@@ -49,7 +49,7 @@ const deleteUser = async (id) => {
 
   parsedData.tasks = tasksWithRemovedUser;
   parsedData.users.splice(userToDeleteIdx, 1);
-  await addToDB(parsedData);
+  addToDB(parsedData);
   return true;
 };
 
