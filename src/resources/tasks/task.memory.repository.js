@@ -22,29 +22,39 @@ const addTask = async (body) => {
   return newTask;
 };
 
-// const updateUser = async (id, body) => {
-//   const parsedData = await getDataFromDb();
-//   const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
-//   if (userToUpdateIdx === -1) {
-//     return false;
-//   }
-//   const updatedUser = { ...parsedData.users.at(userToUpdateIdx), ...body };
-//   parsedData.users.splice(userToUpdateIdx, 1, updatedUser);
+const updateTask = async (boardId, taskId, body) => {
+  const parsedData = await getDataFromDb();
+  const taskToUpdateIdx = parsedData.tasks.findIndex(
+    (task) => task.id === taskId && task.boardId === boardId
+  );
+  if (taskToUpdateIdx === -1) {
+    return false;
+  }
+  const updatedTask = { ...parsedData.users.at(taskToUpdateIdx), ...body };
+  parsedData.tasks.splice(taskToUpdateIdx, 1, updatedTask);
 
-//   addToDB(parsedData);
-//   return updatedUser;
-// };
+  addToDB(parsedData);
+  return updatedTask;
+};
 
-// const deleteUser = async (id) => {
-//   const parsedData = await getDataFromDb();
-//   const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
-//   if (userToDeleteIdx === -1) {
-//     return false;
-//   }
-//   parsedData.users.splice(userToDeleteIdx, 1);
+const deleteTask = async (boardId, taskId) => {
+  const parsedData = await getDataFromDb();
+  const taskToDeleteIdx = parsedData.tasks.findIndex(
+    (task) => task.id === taskId && task.boardId === boardId
+  );
+  if (taskToDeleteIdx === -1) {
+    return false;
+  }
+  parsedData.tasks.splice(taskToDeleteIdx, 1);
 
-//   addToDB(parsedData);
-//   return true;
-// };
+  addToDB(parsedData);
+  return true;
+};
 
-module.exports = { getTasksByBoardId, addTask, getTaskByBoardAndTaskId };
+module.exports = {
+  getTasksByBoardId,
+  addTask,
+  getTaskByBoardAndTaskId,
+  deleteTask,
+  updateTask,
+};
