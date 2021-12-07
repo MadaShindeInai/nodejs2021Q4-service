@@ -1,16 +1,15 @@
-const typeString = { type: 'string' };
-const typeNumber = { type: 'number' };
+const { typeString, typeStringUUID, typeNumber } = require('../../constants');
 
 const columnRes = {
   type: 'object',
   properties: {
-    id: typeString,
+    id: typeStringUUID,
     title: typeString,
     order: typeNumber,
   },
 };
 
-const firstBoardsColumn = {
+const columnBody = {
   type: 'object',
   properties: {
     title: typeString,
@@ -20,5 +19,5 @@ const firstBoardsColumn = {
 
 module.exports = {
   columnRes,
-  firstBoardsColumn,
+  columnBody,
 };

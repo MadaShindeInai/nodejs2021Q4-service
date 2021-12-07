@@ -23,18 +23,18 @@ const updateTask = async (req, reply) => {
   const { boardId, taskId } = req.params;
   const updatedTask = await tasksRepo.updateTask(boardId, taskId, req.body);
   if (!updatedTask) {
-    return reply.status(404).send(new Error('Task not found'));
+    reply.status(404).send(new Error('Task not found'));
   }
-  return reply.status(200).send(updatedTask);
+  reply.status(200).send(updatedTask);
 };
 
 const deleteTask = async (req, reply) => {
   const { boardId, taskId } = req.params;
   const isTaskDeleted = await tasksRepo.deleteTask(boardId, taskId);
   if (!isTaskDeleted) {
-    return reply.status(404).send(new Error('Task not found'));
+    reply.status(404).send(new Error('Task not found'));
   }
-  return reply.status(204).send();
+  reply.status(204).send();
 };
 
 module.exports = {

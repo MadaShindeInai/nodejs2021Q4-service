@@ -1,4 +1,5 @@
-const { boardBody, boardRes, typeString } = require('./elementSchemas');
+const { boardBody, boardRes } = require('./elementSchemas');
+const { typeStringUUID, res204 } = require('../../constants');
 
 const getAllBoardsSchema = {
   response: {
@@ -11,7 +12,7 @@ const getAllBoardsSchema = {
 
 const getBoardSchema = {
   params: {
-    boardId: typeString,
+    boardId: typeStringUUID,
   },
   response: {
     200: boardRes,
@@ -26,11 +27,10 @@ const addBoardSchema = {
 };
 
 const updateBoardSchema = {
-  body: boardBody,
   params: {
-    boardId: typeString,
+    boardId: typeStringUUID,
   },
-  tags: ['Board'],
+  body: boardBody,
   response: {
     200: boardRes,
   },
@@ -38,11 +38,10 @@ const updateBoardSchema = {
 
 const deleteBoardSchema = {
   params: {
-    boardId: typeString,
+    boardId: typeStringUUID,
   },
-  tags: ['Board'],
   response: {
-    204: typeString,
+    204: res204,
   },
 };
 
