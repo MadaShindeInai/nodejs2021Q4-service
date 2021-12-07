@@ -13,7 +13,7 @@ const taskRes = {
     order: typeNumber,
     description: typeString,
     userId: typeStringUUIDOrNull,
-    boardId: typeString,
+    boardId: typeStringUUIDOrNull,
     columnId: typeStringUUIDOrNull,
   },
 };
@@ -24,7 +24,7 @@ const taskBody = {
     order: typeNumber,
     description: typeString,
     userId: typeStringUUIDOrNull,
-    boardId: typeStringUUID,
+    boardId: typeStringUUIDOrNull,
     columnId: typeStringUUIDOrNull,
   },
 };
