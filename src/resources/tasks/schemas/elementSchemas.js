@@ -1,17 +1,32 @@
-const typeString = { type: 'string' };
-const typeStringOrNull = { type: ['string', 'null'] };
+const {
+  typeString,
+  typeStringUUID,
+  typeNumber,
+  typeStringUUIDOrNull,
+} = require('../../constants');
 
-const taskShape = {
+const taskRes = {
   type: 'object',
   properties: {
-    id: typeString,
+    id: typeStringUUID,
     title: typeString,
-    order: typeString,
+    order: typeNumber,
     description: typeString,
-    userId: typeStringOrNull,
-    boardId: typeStringOrNull,
-    columnId: typeStringOrNull,
+    userId: typeStringUUIDOrNull,
+    boardId: typeStringUUIDOrNull,
+    columnId: typeStringUUIDOrNull,
+  },
+};
+const taskBody = {
+  type: 'object',
+  properties: {
+    title: typeString,
+    order: typeNumber,
+    description: typeString,
+    userId: typeStringUUIDOrNull,
+    boardId: typeStringUUIDOrNull,
+    columnId: typeStringUUIDOrNull,
   },
 };
 
-module.exports = { taskShape, typeString };
+module.exports = { taskBody, taskRes };

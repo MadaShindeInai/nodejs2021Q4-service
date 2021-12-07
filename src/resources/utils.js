@@ -1,18 +1,10 @@
-const fs = require('fs');
+let data = require('../../data');
 
-const addToDB = (data) => {
-  fs.writeFile('./data.json', JSON.stringify(data, null, '\t'), (err) => {
-    if (err) {
-      return { message: 'could not persist data!' };
-    }
-    return { message: 'user added successfully!' };
-  });
+const addToDB = (newData) => {
+  data = newData;
 };
 
-const getDataFromDb = async () => {
-  const data = await fs.readFileSync('data.json');
-  return JSON.parse(data);
-};
+const getDataFromDb = () => data;
 
 module.exports = {
   addToDB,

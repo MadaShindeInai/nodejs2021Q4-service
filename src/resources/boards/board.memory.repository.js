@@ -7,9 +7,9 @@ const getAllBoards = async () => {
   return parsedData.boards;
 };
 
-const getBoard = async (id) => {
-  const users = await getAllBoards();
-  return users.find((board) => board.id === id);
+const getBoard = async (boardId) => {
+  const boards = await getAllBoards();
+  return boards.find((board) => board.id === boardId);
 };
 
 const addBoard = async ({ title, columns }) => {
@@ -22,12 +22,11 @@ const addBoard = async ({ title, columns }) => {
   return newBoard;
 };
 
-const updateBoard = async (id, body) => {
+const updateBoard = async (boardId, body) => {
   const parsedData = await getDataFromDb();
   const boardToUpdateIdx = parsedData.boards.findIndex(
-    (board) => board.id === id
+    (board) => board.id === boardId
   );
-
   if (boardToUpdateIdx === -1) {
     return false;
   }
@@ -44,18 +43,22 @@ const updateBoard = async (id, body) => {
   return updatedBoard;
 };
 
-const deleteBoard = async (id) => {
+const deleteBoard = async (boardId) => {
   const parsedData = await getDataFromDb();
   const boardToDeleteIdx = parsedData.boards.findIndex(
-    (board) => board.id === id
+    (board) => board.id === boardId
   );
   if (boardToDeleteIdx === -1) {
     return false;
   }
-  parsedData.boards.splice(boardToDeleteIdx, 1);
+  const tasksFilteredByBoardId = parsedData.tasks.filter(
+    (task) => task.boardId !== boardId
+  );
 
+  parsedData.tasks = tasksFilteredByBoardId;
+  parsedData.boards.splice(boardToDeleteIdx, 1);
   addToDB(parsedData);
-  return true;
+  return false;
 };
 
 module.exports = { getAllBoards, addBoard, getBoard, deleteBoard, updateBoard };

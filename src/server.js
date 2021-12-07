@@ -1,8 +1,9 @@
-const fastify = require('fastify')();
+const fastify = require('fastify')({ logger: true });
 const path = require('path');
 const { PORT } = require('./common/config');
 const users = require('./resources/users/user.router');
 const boards = require('./resources/boards/board.router');
+const tasks = require('./resources/tasks/task.router');
 
 fastify.register(require('fastify-swagger'), {
   mode: 'static',
@@ -20,6 +21,7 @@ fastify.ready((err) => {
 
 fastify.register(users);
 fastify.register(boards);
+fastify.register(tasks);
 
 const startServer = async () => {
   try {

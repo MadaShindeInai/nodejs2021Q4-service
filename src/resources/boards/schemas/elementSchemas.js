@@ -1,14 +1,13 @@
 const {
   columnRes,
-  firstBoardsColumn,
+  columnBody,
 } = require('../../columns/schemas/elementSchemas');
-
-const typeString = { type: 'string' };
+const { typeString, typeStringUUID } = require('../../constants');
 
 const boardRes = {
   type: 'object',
   properties: {
-    id: typeString,
+    id: typeStringUUID,
     title: typeString,
     columns: {
       type: 'array',
@@ -20,11 +19,10 @@ const boardRes = {
 const boardBody = {
   type: 'object',
   properties: {
-    id: typeString,
     title: typeString,
     columns: {
       type: 'array',
-      items: firstBoardsColumn,
+      items: columnBody,
     },
   },
 };

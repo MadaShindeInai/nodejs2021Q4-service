@@ -1,59 +1,46 @@
-const { validate } = require('uuid');
 const tasksRepo = require('./task.memory.repository');
 
 const getTasksByBoardId = async (req, reply) => {
-  if (!validate(req.params.boardId)) {
-    return reply
-      .status(400)
-      .send(new Error(`${req.params.boardId} is not uuid`));
-  }
   const tasks = await tasksRepo.getTasksByBoardId(req.params.boardId);
-  return reply.send(tasks);
+  reply.send(tasks);
 };
 
-// const getUser = async (req, reply) => {
-//   if (!validate(req.params.userId)) {
-//     return reply
-//       .status(400)
-//       .send(new Error(`${req.params.userId} is not uuid`));
-//   }
-//   const user = await usersRepo.getUser(req.params.userId);
-//   if (!user) {
-//     return reply.status(404).send(new Error('User not found'));
-//   }
-//   return reply.send(User.toResponse(user));
-// };
+const addTask = async (req, reply) => {
+  const newTask = await tasksRepo.addTask(req.body, req.params.boardId);
+  reply.status(201).send(newTask);
+};
 
-// const addUser = async (req, reply) => {
-//   const newUser = await usersRepo.addUser(req.body);
+const getTaskByBoardAndTaskId = async (req, reply) => {
+  const { boardId, taskId } = req.params;
+  const task = await tasksRepo.getTaskByBoardAndTaskId(boardId, taskId);
+  if (!task) {
+    reply.status(404).send(new Error('Task not found'));
+  }
+  reply.send(task);
+};
 
-//   return reply.status(201).send(User.toResponse(newUser));
-// };
+const updateTask = async (req, reply) => {
+  const { boardId, taskId } = req.params;
+  const updatedTask = await tasksRepo.updateTask(boardId, taskId, req.body);
+  if (!updatedTask) {
+    reply.status(404).send(new Error('Task not found'));
+  }
+  reply.status(200).send(updatedTask);
+};
 
-// const updateUser = async (req, reply) => {
-//   if (!validate(req.params.userId)) {
-//     return reply
-//       .status(400)
-//       .send(new Error(`${req.params.userId} is not uuid`));
-//   }
-//   const updatedUser = await usersRepo.updateUser(req.params.userId, req.body);
-//   if (!updatedUser) {
-//     return reply.status(404).send(new Error('User not found'));
-//   }
-//   return reply.status(200).send(User.toResponse(updatedUser));
-// };
+const deleteTask = async (req, reply) => {
+  const { boardId, taskId } = req.params;
+  const isTaskDeleted = await tasksRepo.deleteTask(boardId, taskId);
+  if (!isTaskDeleted) {
+    reply.status(404).send(new Error('Task not found'));
+  }
+  reply.status(204).send();
+};
 
-// const deleteUser = async (req, reply) => {
-//   if (!validate(req.params.userId)) {
-//     return reply
-//       .status(400)
-//       .send(new Error(`${req.params.userId} is not uuid`));
-//   }
-//   const updatedUser = await usersRepo.deleteUser(req.params.userId);
-//   if (!updatedUser) {
-//     return reply.status(404).send(new Error('User not found'));
-//   }
-//   return reply.status(204).send();
-// };
-
-module.exports = { getTasksByBoardId };
+module.exports = {
+  getTasksByBoardId,
+  addTask,
+  getTaskByBoardAndTaskId,
+  deleteTask,
+  updateTask,
+};

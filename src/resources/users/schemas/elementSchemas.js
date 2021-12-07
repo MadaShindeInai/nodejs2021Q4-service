@@ -1,9 +1,9 @@
-const typeString = { type: 'string' };
+const { typeString, typeStringUUID } = require('../../constants');
 
 const userNoPass = {
   type: 'object',
   properties: {
-    id: typeString,
+    id: typeStringUUID,
     name: typeString,
     login: typeString,
   },

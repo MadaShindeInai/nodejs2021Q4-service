@@ -1,16 +1,16 @@
 const {
   getTasksByBoardIdSchema,
-  // getUserSchema,
-  // addUserSchema,
-  // updateUserSchema,
-  // deleteUserSchema,
+  getTaskByBoardAndTaskIdSchema,
+  addTaskSchema,
+  updateTaskSchema,
+  deleteTaskSchema,
 } = require('./schemas');
 const {
   getTasksByBoardId,
-  // getUser,
-  // addUser,
-  // updateUser,
-  // deleteUser,
+  getTaskByBoardAndTaskId,
+  addTask,
+  updateTask,
+  deleteTask,
 } = require('./task.service');
 
 const getTasksByBoardIdOpts = {
@@ -18,33 +18,33 @@ const getTasksByBoardIdOpts = {
   handler: getTasksByBoardId,
 };
 
-// const getUserOpts = {
-//   schema: getUserSchema,
-//   handler: getUser,
-// };
+const getTaskByBoardAndTaskIdOpts = {
+  schema: getTaskByBoardAndTaskIdSchema,
+  handler: getTaskByBoardAndTaskId,
+};
 
-// const addUserOpts = {
-//   schema: addUserSchema,
-//   handler: addUser,
-// };
+const addTaskOpts = {
+  schema: addTaskSchema,
+  handler: addTask,
+};
 
-// const updateUserOpts = {
-//   schema: updateUserSchema,
-//   handler: updateUser,
-// };
+const updateTaskOpts = {
+  schema: updateTaskSchema,
+  handler: updateTask,
+};
 
-// const deleteUserOpts = {
-//   schema: deleteUserSchema,
-//   handler: deleteUser,
-// };
+const deleteTaskOpts = {
+  schema: deleteTaskSchema,
+  handler: deleteTask,
+};
 
-const usersRoutes = (fastify, options, done) => {
+const tasksRoutes = (fastify, options, done) => {
   fastify.get('/boards/:boardId/tasks', getTasksByBoardIdOpts);
-  // fastify.get('/boards/:boardId/tasks/:taskId', getTaskOpts);
-  // fastify.post('/boards/:boardId/tasks', addTaskOpts);
-  // fastify.put('/boards/:boardId/tasks/:taskId', updateTaskOpts);
-  // fastify.delete('/boards/:boardId/tasks/:taskId', deleteTaskOpts);
+  fastify.get('/boards/:boardId/tasks/:taskId', getTaskByBoardAndTaskIdOpts);
+  fastify.post('/boards/:boardId/tasks', addTaskOpts);
+  fastify.put('/boards/:boardId/tasks/:taskId', updateTaskOpts);
+  fastify.delete('/boards/:boardId/tasks/:taskId', deleteTaskOpts);
   done();
 };
 
-module.exports = usersRoutes;
+module.exports = tasksRoutes;
