@@ -1,19 +1,19 @@
 import { getDataFromDb, addToDB } from '../utils';
 import Task from './task.model';
 
-export const getTasksByBoardId = async (boardId) => {
+const getTasksByBoardId = async (boardId) => {
   const parsedData = await getDataFromDb();
   return parsedData.tasks.filter((task) => task.boardId === boardId);
 };
 
-export const getTaskByBoardAndTaskId = async (boardId, taskId) => {
+const getTaskByBoardAndTaskId = async (boardId, taskId) => {
   const parsedData = await getDataFromDb();
   return parsedData.tasks.find(
     (task) => task.id === taskId && task.boardId === boardId
   );
 };
 
-export const addTask = async (body, boardId) => {
+const addTask = async (body, boardId) => {
   const parsedData = await getDataFromDb();
   const newTask = new Task({ ...body, boardId });
   parsedData.tasks.push(newTask);
@@ -22,7 +22,7 @@ export const addTask = async (body, boardId) => {
   return newTask;
 };
 
-export const updateTask = async (boardId, taskId, body) => {
+const updateTask = async (boardId, taskId, body) => {
   const parsedData = await getDataFromDb();
   const taskToUpdateIdx = parsedData.tasks.findIndex(
     (task) => task.id === taskId && task.boardId === boardId
@@ -37,7 +37,7 @@ export const updateTask = async (boardId, taskId, body) => {
   return updatedTask;
 };
 
-export const deleteTask = async (boardId, taskId) => {
+const deleteTask = async (boardId, taskId) => {
   const parsedData = await getDataFromDb();
   const taskToDeleteIdx = parsedData.tasks.findIndex(
     (task) => task.id === taskId && task.boardId === boardId
@@ -49,4 +49,12 @@ export const deleteTask = async (boardId, taskId) => {
 
   addToDB(parsedData);
   return true;
+};
+
+export default {
+  deleteTask,
+  updateTask,
+  addTask,
+  getTaskByBoardAndTaskId,
+  getTasksByBoardId,
 };

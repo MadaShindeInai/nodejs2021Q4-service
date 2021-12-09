@@ -2,17 +2,17 @@ import { addToDB, getDataFromDb } from '../utils';
 import Board from './board.model';
 import Column from '../columns/column.model';
 
-export const getAllBoards = async () => {
+const getAllBoards = async () => {
   const parsedData = await getDataFromDb();
   return parsedData.boards;
 };
 
-export const getBoard = async (boardId) => {
+const getBoard = async (boardId) => {
   const boards = await getAllBoards();
   return boards.find((board) => board.id === boardId);
 };
 
-export const addBoard = async ({ title, columns }) => {
+const addBoard = async ({ title, columns }) => {
   const parsedData = await getDataFromDb();
   const newColumns = columns.map((column) => new Column(column));
   const newBoard = new Board({ title, columns: newColumns });
@@ -22,7 +22,7 @@ export const addBoard = async ({ title, columns }) => {
   return newBoard;
 };
 
-export const updateBoard = async (boardId, body) => {
+const updateBoard = async (boardId, body) => {
   const parsedData = await getDataFromDb();
   const boardToUpdateIdx = parsedData.boards.findIndex(
     (board) => board.id === boardId
@@ -43,7 +43,7 @@ export const updateBoard = async (boardId, body) => {
   return updatedBoard;
 };
 
-export const deleteBoard = async (boardId) => {
+const deleteBoard = async (boardId) => {
   const parsedData = await getDataFromDb();
   const boardToDeleteIdx = parsedData.boards.findIndex(
     (board) => board.id === boardId
@@ -60,3 +60,5 @@ export const deleteBoard = async (boardId) => {
   addToDB(parsedData);
   return false;
 };
+
+export default { getAllBoards, getBoard, addBoard, updateBoard, deleteBoard };

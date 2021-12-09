@@ -1,17 +1,17 @@
 import { addToDB, getDataFromDb } from '../utils';
 import User from './user.model';
 
-export const getAll = async () => {
+const getAll = async () => {
   const parsedData = await getDataFromDb();
   return parsedData.users;
 };
 
-export const getUser = async (id) => {
+const getUser = async (id) => {
   const users = await getAll();
   return users.find((user) => user.id === id);
 };
 
-export const addUser = async (body) => {
+const addUser = async (body) => {
   const parsedData = await getDataFromDb();
   const newUser = new User(body);
   parsedData.users.push(newUser);
@@ -20,7 +20,7 @@ export const addUser = async (body) => {
   return newUser;
 };
 
-export const updateUser = async (id, body) => {
+const updateUser = async (id, body) => {
   const parsedData = await getDataFromDb();
   const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToUpdateIdx === -1) {
@@ -33,7 +33,7 @@ export const updateUser = async (id, body) => {
   return updatedUser;
 };
 
-export const deleteUser = async (id) => {
+const deleteUser = async (id) => {
   const parsedData = await getDataFromDb();
   const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToDeleteIdx === -1) {
@@ -52,3 +52,5 @@ export const deleteUser = async (id) => {
   addToDB(parsedData);
   return true;
 };
+
+export default { getAll, deleteUser, getUser, addUser, updateUser };
