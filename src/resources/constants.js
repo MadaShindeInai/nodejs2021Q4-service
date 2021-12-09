@@ -1,16 +1,12 @@
-const typeString = { type: 'string' };
-const typeStringUUID = { type: 'string', format: 'uuid' };
-const typeNumber = { type: 'number' };
-const typeStringUUIDOrNull = { type: 'string', nullable: true, format: 'uuid' };
-const res204 = {
+export const typeString = { type: 'string' };
+export const typeStringUUID = { type: 'string', format: 'uuid' };
+export const typeNumber = { type: 'number' };
+export const typeStringUUIDOrNull = {
+  type: 'string',
+  nullable: true,
+  format: 'uuid',
+};
+export const res204 = {
   description: 'Removed',
   type: 'null',
-};
-
-module.exports = {
-  typeString,
-  typeStringUUID,
-  typeNumber,
-  typeStringUUIDOrNull,
-  res204,
 };

@@ -1,18 +1,18 @@
-const { addToDB, getDataFromDb } = require('../utils');
-const Board = require('./board.model');
-const Column = require('../columns/column.model');
+import { addToDB, getDataFromDb } from '../utils';
+import Board from './board.model';
+import Column from '../columns/column.model';
 
-const getAllBoards = async () => {
+export const getAllBoards = async () => {
   const parsedData = await getDataFromDb();
   return parsedData.boards;
 };
 
-const getBoard = async (boardId) => {
+export const getBoard = async (boardId) => {
   const boards = await getAllBoards();
   return boards.find((board) => board.id === boardId);
 };
 
-const addBoard = async ({ title, columns }) => {
+export const addBoard = async ({ title, columns }) => {
   const parsedData = await getDataFromDb();
   const newColumns = columns.map((column) => new Column(column));
   const newBoard = new Board({ title, columns: newColumns });
@@ -22,7 +22,7 @@ const addBoard = async ({ title, columns }) => {
   return newBoard;
 };
 
-const updateBoard = async (boardId, body) => {
+export const updateBoard = async (boardId, body) => {
   const parsedData = await getDataFromDb();
   const boardToUpdateIdx = parsedData.boards.findIndex(
     (board) => board.id === boardId
@@ -43,7 +43,7 @@ const updateBoard = async (boardId, body) => {
   return updatedBoard;
 };
 
-const deleteBoard = async (boardId) => {
+export const deleteBoard = async (boardId) => {
   const parsedData = await getDataFromDb();
   const boardToDeleteIdx = parsedData.boards.findIndex(
     (board) => board.id === boardId
@@ -60,5 +60,3 @@ const deleteBoard = async (boardId) => {
   addToDB(parsedData);
   return false;
 };
-
-module.exports = { getAllBoards, addBoard, getBoard, deleteBoard, updateBoard };

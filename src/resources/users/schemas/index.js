@@ -1,7 +1,7 @@
-const { userNoId, userNoPass } = require('./elementSchemas');
-const { typeStringUUID, res204 } = require('../../constants');
+import { userNoId, userNoPass } from './elementSchemas';
+import { typeStringUUID, res204 } from '../../constants';
 
-const getAllUsersSchema = {
+export const getAllUsersSchema = {
   response: {
     200: {
       type: 'array',
@@ -10,24 +10,23 @@ const getAllUsersSchema = {
   },
 };
 
-const getUserSchema = {
+export const getUserSchema = {
   params: {
     userId: typeStringUUID,
   },
-  tags: ['User'],
   response: {
     200: userNoPass,
   },
 };
 
-const addUserSchema = {
+export const addUserSchema = {
   body: userNoId,
   response: {
     201: userNoPass,
   },
 };
 
-const updateUserSchema = {
+export const updateUserSchema = {
   params: {
     userId: typeStringUUID,
   },
@@ -37,19 +36,11 @@ const updateUserSchema = {
   },
 };
 
-const deleteUserSchema = {
+export const deleteUserSchema = {
   params: {
     userId: typeStringUUID,
   },
   response: {
     204: res204,
   },
-};
-
-module.exports = {
-  getAllUsersSchema,
-  getUserSchema,
-  addUserSchema,
-  updateUserSchema,
-  deleteUserSchema,
 };

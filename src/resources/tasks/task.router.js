@@ -1,17 +1,17 @@
-const {
+import {
   getTasksByBoardIdSchema,
   getTaskByBoardAndTaskIdSchema,
   addTaskSchema,
   updateTaskSchema,
   deleteTaskSchema,
-} = require('./schemas');
-const {
+} from './schemas';
+import {
   getTasksByBoardId,
   getTaskByBoardAndTaskId,
   addTask,
   updateTask,
   deleteTask,
-} = require('./task.service');
+} from './task.service';
 
 const getTasksByBoardIdOpts = {
   schema: getTasksByBoardIdSchema,
@@ -47,4 +47,4 @@ const tasksRoutes = (fastify, options, done) => {
   done();
 };
 
-module.exports = tasksRoutes;
+export default tasksRoutes;

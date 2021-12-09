@@ -1,6 +1,6 @@
-const { typeString, typeStringUUID } = require('../../constants');
+import { typeString, typeStringUUID } from '../../constants';
 
-const userNoPass = {
+export const userNoPass = {
   type: 'object',
   properties: {
     id: typeStringUUID,
@@ -9,7 +9,7 @@ const userNoPass = {
   },
 };
 
-const userNoId = {
+export const userNoId = {
   type: 'object',
   required: ['name', 'login', 'password'],
   properties: {
@@ -18,5 +18,3 @@ const userNoId = {
     password: typeString,
   },
 };
-
-module.exports = { userNoPass, typeString, userNoId };

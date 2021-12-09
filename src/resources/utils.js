@@ -1,12 +1,11 @@
-let data = require('../../data');
+let data = {
+  users: [],
+  boards: [],
+  tasks: [],
+};
 
-const addToDB = (newData) => {
+export const addToDB = (newData) => {
   data = newData;
 };
 
-const getDataFromDb = () => data;
-
-module.exports = {
-  addToDB,
-  getDataFromDb,
-};
+export const getDataFromDb = () => data;

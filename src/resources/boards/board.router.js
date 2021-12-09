@@ -1,17 +1,17 @@
-const {
+import {
   getAllBoardsSchema,
   getBoardSchema,
   addBoardSchema,
   updateBoardSchema,
   deleteBoardSchema,
-} = require('./schemas');
-const {
+} from './schemas';
+import {
   getAllBoards,
   getBoard,
   addBoard,
   updateBoard,
   deleteBoard,
-} = require('./board.service');
+} from './board.service';
 
 const getAllBoardsOpts = {
   schema: getAllBoardsSchema,
@@ -47,4 +47,4 @@ const boardRoutes = (fastify, options, done) => {
   done();
 };
 
-module.exports = boardRoutes;
+export default boardRoutes;

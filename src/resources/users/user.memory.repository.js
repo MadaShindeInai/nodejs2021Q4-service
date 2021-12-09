@@ -1,17 +1,17 @@
-const { addToDB, getDataFromDb } = require('../utils');
-const User = require('./user.model');
+import { addToDB, getDataFromDb } from '../utils';
+import User from './user.model';
 
-const getAll = async () => {
+export const getAll = async () => {
   const parsedData = await getDataFromDb();
   return parsedData.users;
 };
 
-const getUser = async (id) => {
+export const getUser = async (id) => {
   const users = await getAll();
   return users.find((user) => user.id === id);
 };
 
-const addUser = async (body) => {
+export const addUser = async (body) => {
   const parsedData = await getDataFromDb();
   const newUser = new User(body);
   parsedData.users.push(newUser);
@@ -20,7 +20,7 @@ const addUser = async (body) => {
   return newUser;
 };
 
-const updateUser = async (id, body) => {
+export const updateUser = async (id, body) => {
   const parsedData = await getDataFromDb();
   const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToUpdateIdx === -1) {
@@ -33,7 +33,7 @@ const updateUser = async (id, body) => {
   return updatedUser;
 };
 
-const deleteUser = async (id) => {
+export const deleteUser = async (id) => {
   const parsedData = await getDataFromDb();
   const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToDeleteIdx === -1) {
@@ -52,5 +52,3 @@ const deleteUser = async (id) => {
   addToDB(parsedData);
   return true;
 };
-
-module.exports = { getAll, getUser, addUser, updateUser, deleteUser };

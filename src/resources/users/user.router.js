@@ -1,17 +1,17 @@
-const {
+import {
   getAllUsersSchema,
   getUserSchema,
   addUserSchema,
   updateUserSchema,
   deleteUserSchema,
-} = require('./schemas');
-const {
+} from './schemas';
+import {
   getAllUsers,
   getUser,
   addUser,
   updateUser,
   deleteUser,
-} = require('./user.service');
+} from './user.service';
 
 const getAllUsersOpts = {
   schema: getAllUsersSchema,
@@ -47,4 +47,4 @@ const usersRoutes = (fastify, options, done) => {
   done();
 };
 
-module.exports = usersRoutes;
+export default usersRoutes;
