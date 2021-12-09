@@ -10,7 +10,7 @@ import boards from './resources/boards/board.router';
 import tasks from './resources/tasks/task.router';
 
 const app: FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify();
-app.register(helmet);
+app.register(helmet, { contentSecurityPolicy: false });
 app.register(fastifyFormbody);
 
 // TODO: reslve problem with swagger
