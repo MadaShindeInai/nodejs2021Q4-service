@@ -3,13 +3,12 @@ import { Server, IncomingMessage, ServerResponse } from 'http';
 import helmet from 'fastify-helmet';
 import fastifySwagger from 'fastify-swagger';
 import fastifyFormbody from 'fastify-formbody';
-import path from 'path';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { PORT } from './common/config';
 import users from './resources/users/user.router.mjs';
 import boards from './resources/boards/board.router.mjs';
 import tasks from './resources/tasks/task.router.mjs';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
