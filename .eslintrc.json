@@ -9,12 +9,12 @@
     "settings": {
       "noInlineConfig": true,
       "node": {
-        "tryExtensions": [".js", ".ts", ".d.ts"],
+        "tryExtensions": [".js", ".ts",".mjs", ".d.ts"],
         "moduleDirectory": ["node_modules", "src/"]
       },
       "import/resolver": {
         "node": {
-          "extensions": [".js", ".ts", ".d.ts"],
+          "extensions": [".js", ".ts", ".d.ts", ".mjs"],
           "moduleDirectory": ["node_modules", "src/"],
           "typescript": {}
         },
