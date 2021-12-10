@@ -1,5 +1,5 @@
 import { addToDB, getDataFromDb } from '../utils';
-import User from './user.model';
+import User from './user.model.mjs';
 
 const getAll = async () => {
   const parsedData = await getDataFromDb();

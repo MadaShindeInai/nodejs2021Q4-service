@@ -1,4 +1,4 @@
-import { boardBody, boardRes } from './elementSchemas';
+import { boardBody, boardRes } from './elementSchemas.mjs';
 import { typeStringUUID, res204 } from '../../constants';
 
 export const getAllBoardsSchema = {

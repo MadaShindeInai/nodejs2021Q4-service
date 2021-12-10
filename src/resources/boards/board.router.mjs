@@ -4,14 +4,14 @@ import {
   addBoardSchema,
   updateBoardSchema,
   deleteBoardSchema,
-} from './schemas';
+} from './schemas/index.mjs';
 import {
   getAllBoards,
   getBoard,
   addBoard,
   updateBoard,
   deleteBoard,
-} from './board.service';
+} from './board.service.mjs';
 
 const getAllBoardsOpts = {
   schema: getAllBoardsSchema,

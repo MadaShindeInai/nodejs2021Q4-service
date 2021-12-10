@@ -4,14 +4,14 @@ import {
   addUserSchema,
   updateUserSchema,
   deleteUserSchema,
-} from './schemas';
+} from './schemas/index.mjs';
 import {
   getAllUsers,
   getUser,
   addUser,
   updateUser,
   deleteUser,
-} from './user.service';
+} from './user.service.mjs';
 
 const getAllUsersOpts = {
   schema: getAllUsersSchema,

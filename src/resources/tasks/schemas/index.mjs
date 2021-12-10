@@ -1,4 +1,4 @@
-import { taskBody, taskRes } from './elementSchemas';
+import { taskBody, taskRes } from './elementSchemas.mjs';
 import { res204, typeStringUUID } from '../../constants';
 
 export const getTasksByBoardIdSchema = {

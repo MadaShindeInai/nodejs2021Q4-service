@@ -5,9 +5,13 @@ import fastifySwagger from 'fastify-swagger';
 import fastifyFormbody from 'fastify-formbody';
 import path from 'path';
 import { PORT } from './common/config';
-import users from './resources/users/user.router';
-import boards from './resources/boards/board.router';
-import tasks from './resources/tasks/task.router';
+import users from './resources/users/user.router.mjs';
+import boards from './resources/boards/board.router.mjs';
+import tasks from './resources/tasks/task.router.mjs';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app: FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify();
 app.register(helmet, { contentSecurityPolicy: false });

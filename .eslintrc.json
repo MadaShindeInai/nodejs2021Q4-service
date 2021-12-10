@@ -6,23 +6,32 @@
       "jest": true,
       "node": true
     },
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaVersion": 2020,
-      "ecmaFeatures": {
-        "impliedStrict": true
+    "settings": {
+      "noInlineConfig": true,
+      "node": {
+        "tryExtensions": [".js", ".ts", ".d.ts"],
+        "moduleDirectory": ["node_modules", "src/"]
+      },
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".ts", ".d.ts"],
+          "moduleDirectory": ["node_modules", "src/"],
+          "typescript": {}
+        },
+        "typescript": {
+          "alwaysTryTypes": true,
+          "project": "."
+        }
       }
     },
-    "settings": {
-        "noInlineConfig": true
-      },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:node/recommended",
-        "prettier"
-    ],
     "parser": "@typescript-eslint/parser",
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:node/recommended",
+      "prettier"
+    ],
+    "parserOptions": { "ecmaVersion": 2018, "sourceType": "module" },
     "plugins": [
         "@typescript-eslint"
     ],

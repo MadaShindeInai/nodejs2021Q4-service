@@ -1,4 +1,4 @@
-import tasksRepo from './task.memory.repository';
+import tasksRepo from './task.memory.repository.mjs';
 
 export const getTasksByBoardId = async (req, reply) => {
   const tasks = await tasksRepo.getTasksByBoardId(req.params.boardId);

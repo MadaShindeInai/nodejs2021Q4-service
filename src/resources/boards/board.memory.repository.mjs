@@ -1,6 +1,6 @@
 import { addToDB, getDataFromDb } from '../utils';
-import Board from './board.model';
-import Column from '../columns/column.model';
+import Board from './board.model.mjs';
+import Column from '../columns/column.model.mjs';
 
 const getAllBoards = async () => {
   const parsedData = await getDataFromDb();

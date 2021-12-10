@@ -1,5 +1,5 @@
 import { getDataFromDb, addToDB } from '../utils';
-import Task from './task.model';
+import Task from './task.model.mjs';
 
 const getTasksByBoardId = async (boardId) => {
   const parsedData = await getDataFromDb();

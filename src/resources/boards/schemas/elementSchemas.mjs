@@ -1,4 +1,7 @@
-import { columnRes, columnBody } from '../../columns/schemas/elementSchemas';
+import {
+  columnRes,
+  columnBody,
+} from '../../columns/schemas/elementSchemas.mjs';
 import { typeString, typeStringUUID } from '../../constants';
 
 export const boardRes = {

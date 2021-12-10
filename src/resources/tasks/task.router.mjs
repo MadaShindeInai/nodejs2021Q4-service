@@ -4,14 +4,14 @@ import {
   addTaskSchema,
   updateTaskSchema,
   deleteTaskSchema,
-} from './schemas';
+} from './schemas/index.mjs';
 import {
   getTasksByBoardId,
   getTaskByBoardAndTaskId,
   addTask,
   updateTask,
   deleteTask,
-} from './task.service';
+} from './task.service.mjs';
 
 const getTasksByBoardIdOpts = {
   schema: getTasksByBoardIdSchema,

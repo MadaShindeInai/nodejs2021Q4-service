@@ -1,4 +1,4 @@
-import boardsRepo from './board.memory.repository';
+import boardsRepo from './board.memory.repository.mjs';
 
 export const getAllBoards = async (req, reply) => {
   const boards = await boardsRepo.getAllBoards();
