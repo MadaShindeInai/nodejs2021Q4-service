@@ -1,3 +1,4 @@
+import { FastifyPluginCallback } from 'fastify';
 import {
   getTasksByBoardIdSchema,
   getTaskByBoardAndTaskIdSchema,
@@ -11,7 +12,7 @@ import {
   addTask,
   updateTask,
   deleteTask,
-} from './task.service.mjs';
+} from './task.service';
 
 const getTasksByBoardIdOpts = {
   schema: getTasksByBoardIdSchema,
@@ -38,7 +39,7 @@ const deleteTaskOpts = {
   handler: deleteTask,
 };
 
-const tasksRoutes = (fastify, options, done) => {
+const tasksRoutes: FastifyPluginCallback = (fastify, _, done) => {
   fastify.get('/boards/:boardId/tasks', getTasksByBoardIdOpts);
   fastify.get('/boards/:boardId/tasks/:taskId', getTaskByBoardAndTaskIdOpts);
   fastify.post('/boards/:boardId/tasks', addTaskOpts);

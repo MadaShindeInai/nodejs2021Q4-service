@@ -6,12 +6,12 @@ const getAll = async () => {
   return parsedData.users;
 };
 
-const getUser = async (id) => {
+const getUser = async (id: string) => {
   const users = await getAll();
   return users.find((user) => user.id === id);
 };
 
-const addUser = async (body) => {
+const addUser = async (body: User) => {
   const parsedData = await getDataFromDb();
   const newUser = new User(body);
   parsedData.users.push(newUser);
@@ -20,7 +20,7 @@ const addUser = async (body) => {
   return newUser;
 };
 
-const updateUser = async (id, body) => {
+const updateUser = async (id: string, body: User) => {
   const parsedData = await getDataFromDb();
   const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToUpdateIdx === -1) {
@@ -33,7 +33,7 @@ const updateUser = async (id, body) => {
   return updatedUser;
 };
 
-const deleteUser = async (id) => {
+const deleteUser = async (id: string) => {
   const parsedData = await getDataFromDb();
   const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToDeleteIdx === -1) {

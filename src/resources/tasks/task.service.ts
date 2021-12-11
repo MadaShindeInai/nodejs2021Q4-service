@@ -1,16 +1,32 @@
-import tasksRepo from './task.memory.repository.mjs';
+import { FastifyRequest, FastifyReply } from 'fastify';
+import tasksRepo from './task.memory.repository';
+import Task from './task.model';
 
-export const getTasksByBoardId = async (req, reply) => {
+type TaskRequest = FastifyRequest<{
+  Body: Task;
+  Params: {
+    boardId: string;
+    taskId: string;
+  };
+}>;
+
+export const getTasksByBoardId = async (
+  req: TaskRequest,
+  reply: FastifyReply
+) => {
   const tasks = await tasksRepo.getTasksByBoardId(req.params.boardId);
   reply.send(tasks);
 };
 
-export const addTask = async (req, reply) => {
+export const addTask = async (req: TaskRequest, reply: FastifyReply) => {
   const newTask = await tasksRepo.addTask(req.body, req.params.boardId);
   reply.status(201).send(newTask);
 };
 
-export const getTaskByBoardAndTaskId = async (req, reply) => {
+export const getTaskByBoardAndTaskId = async (
+  req: TaskRequest,
+  reply: FastifyReply
+) => {
   const { boardId, taskId } = req.params;
   const task = await tasksRepo.getTaskByBoardAndTaskId(boardId, taskId);
   if (!task) {
@@ -19,7 +35,7 @@ export const getTaskByBoardAndTaskId = async (req, reply) => {
   reply.send(task);
 };
 
-export const updateTask = async (req, reply) => {
+export const updateTask = async (req: TaskRequest, reply: FastifyReply) => {
   const { boardId, taskId } = req.params;
   const updatedTask = await tasksRepo.updateTask(boardId, taskId, req.body);
   if (!updatedTask) {
@@ -28,7 +44,7 @@ export const updateTask = async (req, reply) => {
   reply.status(200).send(updatedTask);
 };
 
-export const deleteTask = async (req, reply) => {
+export const deleteTask = async (req: TaskRequest, reply: FastifyReply) => {
   const { boardId, taskId } = req.params;
   const isTaskDeleted = await tasksRepo.deleteTask(boardId, taskId);
   if (!isTaskDeleted) {

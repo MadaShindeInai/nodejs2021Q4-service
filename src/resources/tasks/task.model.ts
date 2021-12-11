@@ -23,7 +23,7 @@ class Task {
     userId = null,
     boardId = null,
     columnId = null,
-  } = {}) {
+  }: Task) {
     this.id = id;
     this.title = title;
     this.order = order;

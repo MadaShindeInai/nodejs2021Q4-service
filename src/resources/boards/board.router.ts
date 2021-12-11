@@ -14,12 +14,6 @@ import {
   deleteBoard,
 } from './board.service';
 
-// interface requestGeneric extends RequestGenericInterface {
-//   Querystring: {
-//     boardId: string;
-//   };
-// }
-
 const getAllBoardsOpts = {
   method: 'GET',
   url: '/boards',

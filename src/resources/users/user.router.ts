@@ -1,3 +1,4 @@
+import { FastifyPluginCallback } from 'fastify';
 import {
   getAllUsersSchema,
   getUserSchema,
@@ -11,7 +12,7 @@ import {
   addUser,
   updateUser,
   deleteUser,
-} from './user.service.mjs';
+} from './user.service';
 
 const getAllUsersOpts = {
   schema: getAllUsersSchema,
@@ -38,7 +39,7 @@ const deleteUserOpts = {
   handler: deleteUser,
 };
 
-const usersRoutes = (fastify, options, done) => {
+const usersRoutes: FastifyPluginCallback = (fastify, _, done) => {
   fastify.get('/users', getAllUsersOpts);
   fastify.get('/users/:userId', getUserOpts);
   fastify.post('/users', addUserOpts);

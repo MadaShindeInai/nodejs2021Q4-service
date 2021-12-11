@@ -6,9 +6,9 @@ import fastifyFormbody from 'fastify-formbody';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { PORT } from './common/config';
-import users from './resources/users/user.router.mjs';
+import users from './resources/users/user.router';
 import boards from './resources/boards/board.router';
-import tasks from './resources/tasks/task.router.mjs';
+import tasks from './resources/tasks/task.router';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
