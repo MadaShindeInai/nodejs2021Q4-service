@@ -1,6 +1,6 @@
-import Board from '../resources/boards/board.model.mjs';
-import Task from '../resources/tasks/task.model.mjs';
-import User from '../resources/users/user.model.mjs';
+import Board from '../resources/boards/board.model';
+import Task from '../resources/tasks/task.model';
+import User from '../resources/users/user.model';
 
 export type DB = {
   users: User[];

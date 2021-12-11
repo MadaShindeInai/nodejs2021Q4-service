@@ -20,9 +20,10 @@ npm install
 ```
 
 ## Running application
-
+Once the application is installed, you can run it by executing the following commands in different terminals:
 ```
-npm start
+npx tsc -w
+npm run start
 ```
 
 After starting the app on port 4000 you can open

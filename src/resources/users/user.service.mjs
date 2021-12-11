@@ -1,5 +1,5 @@
 import usersRepo from './user.memory.repository.mjs';
-import User from './user.model.mjs';
+import User from './user.model';
 
 export const getAllUsers = async (req, reply) => {
   const users = await usersRepo.getAll();
