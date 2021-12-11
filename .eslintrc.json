@@ -29,15 +29,16 @@
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:node/recommended",
+      "airbnb-base",
       "plugin:import/errors",
       "plugin:import/warnings",
       "plugin:import/typescript",
-      "airbnb-base",
       "prettier"
     ],
     "parserOptions": { "ecmaVersion": 2018, "sourceType": "module", "project": "./tsconfig.json" },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "import"
     ],
     "rules": {
       "import/extensions": "off",
