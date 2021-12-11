@@ -32,7 +32,7 @@
       "airbnb-base",
       "prettier"
     ],
-    "parserOptions": { "ecmaVersion": 2018, "sourceType": "module" },
+    "parserOptions": { "ecmaVersion": 2018, "sourceType": "module", "project": "./tsconfig.json" },
     "plugins": [
         "@typescript-eslint"
     ],
