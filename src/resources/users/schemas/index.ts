@@ -1,4 +1,4 @@
-import { userNoId, userNoPass } from './elementSchemas.mjs';
+import { userNoId, userNoPass } from './elementSchemas';
 import { typeStringUUID, res204 } from '../../constants';
 
 export const getAllUsersSchema = {

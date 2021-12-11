@@ -4,7 +4,7 @@ import {
   addTaskSchema,
   updateTaskSchema,
   deleteTaskSchema,
-} from './schemas/index.mjs';
+} from './schemas';
 import {
   getTasksByBoardId,
   getTaskByBoardAndTaskId,

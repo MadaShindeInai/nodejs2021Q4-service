@@ -4,7 +4,7 @@ import {
   addUserSchema,
   updateUserSchema,
   deleteUserSchema,
-} from './schemas/index.mjs';
+} from './schemas';
 import {
   getAllUsers,
   getUser,

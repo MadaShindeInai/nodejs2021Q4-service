@@ -1,4 +1,4 @@
-import { boardBody, boardRes } from './elementSchemas.mjs';
+import { boardBody, boardRes } from './elementSchemas';
 import { typeStringUUID, res204 } from '../../constants';
 
 export const getAllBoardsSchema = {
@@ -14,6 +14,7 @@ export const getBoardSchema = {
   params: {
     boardId: typeStringUUID,
   },
+  required: ['boardId'],
   response: {
     200: boardRes,
   },

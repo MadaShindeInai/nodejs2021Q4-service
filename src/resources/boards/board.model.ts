@@ -2,13 +2,13 @@ import { v4 as uuidv4 } from 'uuid';
 import Column from '../columns/column.model';
 
 class Board {
-  id: string;
+  id?: string;
 
   title: string;
 
   columns: Column[];
 
-  constructor({ id = uuidv4(), title = 'Board1', columns = [] } = {}) {
+  constructor({ id = uuidv4(), title = 'Board1', columns }: Board) {
     this.id = id;
     this.title = title;
     this.columns = columns;

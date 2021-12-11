@@ -7,12 +7,12 @@ const getAllBoards = async () => {
   return parsedData.boards;
 };
 
-const getBoard = async (boardId) => {
+const getBoard = async (boardId: Board['id']) => {
   const boards = await getAllBoards();
   return boards.find((board) => board.id === boardId);
 };
 
-const addBoard = async ({ title, columns }) => {
+const addBoard = async ({ title, columns }: Board) => {
   const parsedData = await getDataFromDb();
   const newColumns = columns.map((column) => new Column(column));
   const newBoard = new Board({ title, columns: newColumns });
@@ -22,7 +22,7 @@ const addBoard = async ({ title, columns }) => {
   return newBoard;
 };
 
-const updateBoard = async (boardId, body) => {
+const updateBoard = async (boardId: Board['id'], body: Board) => {
   const parsedData = await getDataFromDb();
   const boardToUpdateIdx = parsedData.boards.findIndex(
     (board) => board.id === boardId
@@ -43,7 +43,7 @@ const updateBoard = async (boardId, body) => {
   return updatedBoard;
 };
 
-const deleteBoard = async (boardId) => {
+const deleteBoard = async (boardId: Board['id']) => {
   const parsedData = await getDataFromDb();
   const boardToDeleteIdx = parsedData.boards.findIndex(
     (board) => board.id === boardId
