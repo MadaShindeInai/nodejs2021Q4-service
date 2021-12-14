@@ -1,6 +1,34 @@
+const fastify = require('fastify')({ logger: true });
+const path = require('path');
 const { PORT } = require('./common/config');
-const app = require('./app');
+const users = require('./resources/users/user.router');
+const boards = require('./resources/boards/board.router');
+const tasks = require('./resources/tasks/task.router');
 
-app.listen(PORT, () =>
-  console.log(`App is running on http://localhost:${PORT}`)
-);
+fastify.register(require('fastify-swagger'), {
+  mode: 'static',
+  specification: {
+    path: path.join(__dirname, '../doc/api.yaml'),
+  },
+  exposeRoute: true,
+  routePrefix: '/doc',
+});
+
+fastify.ready((err) => {
+  if (err) throw err;
+  fastify.swagger();
+});
+
+fastify.register(users);
+fastify.register(boards);
+fastify.register(tasks);
+
+const startServer = async () => {
+  try {
+    await fastify.listen(PORT);
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+startServer();
