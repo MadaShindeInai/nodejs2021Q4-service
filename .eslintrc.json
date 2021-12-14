@@ -38,9 +38,11 @@
     "parserOptions": { "ecmaVersion": 2018, "sourceType": "module", "project": "./tsconfig.json" },
     "plugins": [
         "@typescript-eslint",
+        "eslint-plugin-tsdoc",
         "import"
     ],
     "rules": {
+      "tsdoc/syntax": "warn",
       "import/extensions": "off",
       "linebreak-style": "off",
       "node/no-unsupported-features/es-syntax": "off",

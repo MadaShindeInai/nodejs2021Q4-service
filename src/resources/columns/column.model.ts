@@ -1,5 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
+/**
+ * Column model
+ */
 class Column {
   id?: string;
 

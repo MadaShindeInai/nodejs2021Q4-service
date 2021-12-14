@@ -49,6 +49,12 @@ const deleteBoardOpts = {
   handler: deleteBoard,
 };
 
+/**
+ * Fastify plugin to register board routes
+ * @param fastify - fastify instance
+ * @param _ - not used (fastify options)
+ * @param done - callback
+ */
 const boardRoutes: FastifyPluginCallback = (fastify, _, done) => {
   fastify.get('/boards', getAllBoardsOpts);
   fastify.get('/boards/:boardId', getBoardOpts);

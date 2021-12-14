@@ -1,16 +1,30 @@
 import { addToDB, getDataFromDb } from '../utils';
 import User from './user.model';
 
+/**
+ * Get all users function
+ * @returns User[]
+ */
 const getAll = async () => {
   const parsedData = await getDataFromDb();
   return parsedData.users;
 };
 
+/**
+ * Get user by id function
+ * @param id - user id
+ * @returns User or undefined
+ */
 const getUser = async (id: string) => {
   const users = await getAll();
   return users.find((user) => user.id === id);
 };
 
+/**
+ * Add user function
+ * @param body - user object
+ * @returns new created user
+ */
 const addUser = async (body: User) => {
   const parsedData = await getDataFromDb();
   const newUser = new User(body);
@@ -20,6 +34,12 @@ const addUser = async (body: User) => {
   return newUser;
 };
 
+/**
+ * Update user function
+ * @param id - user id
+ * @param body - data to update user
+ * @returns false if user not found or updated user
+ */
 const updateUser = async (id: string, body: User) => {
   const parsedData = await getDataFromDb();
   const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
@@ -33,6 +53,11 @@ const updateUser = async (id: string, body: User) => {
   return updatedUser;
 };
 
+/**
+ * Delete user function
+ * @param id - user id
+ * @returns false if user not found or true if user deleted
+ */
 const deleteUser = async (id: string) => {
   const parsedData = await getDataFromDb();
   const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);

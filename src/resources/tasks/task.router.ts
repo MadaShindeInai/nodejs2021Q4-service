@@ -39,6 +39,12 @@ const deleteTaskOpts = {
   handler: deleteTask,
 };
 
+/**
+ * Fastify plugin for task routes
+ * @param fastify - fastify instance
+ * @param _ - not used (fastify options)
+ * @param done - callback
+ */
 const tasksRoutes: FastifyPluginCallback = (fastify, _, done) => {
   fastify.get('/boards/:boardId/tasks', getTasksByBoardIdOpts);
   fastify.get('/boards/:boardId/tasks/:taskId', getTaskByBoardAndTaskIdOpts);

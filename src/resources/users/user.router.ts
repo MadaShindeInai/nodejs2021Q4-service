@@ -39,6 +39,12 @@ const deleteUserOpts = {
   handler: deleteUser,
 };
 
+/**
+ * Fastify plugin for user routes
+ * @param fastify - fastify instance
+ * @param _ - not used (fastify options)
+ * @param done - callback function
+ */
 const usersRoutes: FastifyPluginCallback = (fastify, _, done) => {
   fastify.get('/users', getAllUsersOpts);
   fastify.get('/users/:userId', getUserOpts);

@@ -1,6 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import Column from '../columns/column.model';
 
+/**
+ * Board model
+ */
 class Board {
   id?: string;
 

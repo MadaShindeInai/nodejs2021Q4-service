@@ -1,11 +1,22 @@
 import { getDataFromDb, addToDB } from '../utils';
 import Task from './task.model';
 
+/**
+ * Get all tasks from a board by boardId
+ * @param boardId - board id
+ * @returns array of tasks from a board selected by boardId or empty array
+ */
 const getTasksByBoardId = async (boardId: string) => {
   const parsedData = await getDataFromDb();
   return parsedData.tasks.filter((task) => task.boardId === boardId);
 };
 
+/**
+ * Get task by taskId from a board selected by boardId
+ * @param boardId - board id
+ * @param taskId - task id
+ * @returns task from a board selected by boardId and taskId or undefined
+ */
 const getTaskByBoardAndTaskId = async (boardId: string, taskId: string) => {
   const parsedData = await getDataFromDb();
   return parsedData.tasks.find(
@@ -13,6 +24,12 @@ const getTaskByBoardAndTaskId = async (boardId: string, taskId: string) => {
   );
 };
 
+/**
+ * Add a task to a board selected by boardId
+ * @param body - task to add
+ * @param boardId - board id
+ * @returns created task
+ */
 const addTask = async (body: Task, boardId: string) => {
   const parsedData = await getDataFromDb();
   const newTask = new Task({ ...body, boardId });
@@ -22,6 +39,13 @@ const addTask = async (body: Task, boardId: string) => {
   return newTask;
 };
 
+/**
+ *
+ * @param boardId - board id
+ * @param taskId - task id
+ * @param body - data to update task
+ * @returns false if task not found or updated task
+ */
 const updateTask = async (boardId: string, taskId: string, body: Task) => {
   const parsedData = await getDataFromDb();
   const taskToUpdateIdx = parsedData.tasks.findIndex(
@@ -37,6 +61,12 @@ const updateTask = async (boardId: string, taskId: string, body: Task) => {
   return updatedTask;
 };
 
+/**
+ * Delete task by taskId from a board selected by boardId
+ * @param boardId - board id
+ * @param taskId - task id
+ * @returns false if task not found or true if task deleted
+ */
 const deleteTask = async (boardId: string, taskId: string) => {
   const parsedData = await getDataFromDb();
   const taskToDeleteIdx = parsedData.tasks.findIndex(

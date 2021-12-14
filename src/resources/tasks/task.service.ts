@@ -10,6 +10,11 @@ type TaskRequest = FastifyRequest<{
   };
 }>;
 
+/**
+ * Fastify middleware to get all tasks from a board by boardId
+ * @param req - fastify request
+ * @param reply - fastify reply
+ */
 export const getTasksByBoardId = async (
   req: TaskRequest,
   reply: FastifyReply
@@ -18,11 +23,21 @@ export const getTasksByBoardId = async (
   reply.send(tasks);
 };
 
+/**
+ * Fastify middleware add a task to a board
+ * @param req - fastify request
+ * @param reply - fastify reply
+ */
 export const addTask = async (req: TaskRequest, reply: FastifyReply) => {
   const newTask = await tasksRepo.addTask(req.body, req.params.boardId);
   reply.status(201).send(newTask);
 };
 
+/**
+ * Fastify middleware to get a task by boardId and taskId
+ * @param req - fastify request
+ * @param reply - fastify reply
+ */
 export const getTaskByBoardAndTaskId = async (
   req: TaskRequest,
   reply: FastifyReply
@@ -35,6 +50,11 @@ export const getTaskByBoardAndTaskId = async (
   reply.send(task);
 };
 
+/**
+ * Fastify middleware to update a task
+ * @param req - fastify request
+ * @param reply - fastify reply
+ */
 export const updateTask = async (req: TaskRequest, reply: FastifyReply) => {
   const { boardId, taskId } = req.params;
   const updatedTask = await tasksRepo.updateTask(boardId, taskId, req.body);
@@ -44,6 +64,11 @@ export const updateTask = async (req: TaskRequest, reply: FastifyReply) => {
   reply.status(200).send(updatedTask);
 };
 
+/**
+ * Fastify middleware to delete a task
+ * @param req - fastify request
+ * @param reply - fastify reply
+ */
 export const deleteTask = async (req: TaskRequest, reply: FastifyReply) => {
   const { boardId, taskId } = req.params;
   const isTaskDeleted = await tasksRepo.deleteTask(boardId, taskId);

@@ -1,5 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
+/**
+ * User model
+ */
 class User {
   id: string;
 
@@ -21,6 +24,11 @@ class User {
     this.password = password;
   }
 
+  /**
+   * Function to remove password from user data
+   * @param user - user object
+   * @returns user without password
+   */
   static toResponse(user: User) {
     const { id, name, login } = user;
     return { id, name, login };
