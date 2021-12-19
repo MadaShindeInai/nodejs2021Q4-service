@@ -29,7 +29,7 @@ class User {
    * @param user - user object
    * @returns user without password
    */
-  static toResponse(user: User): Partial<User> {
+  public static toResponse(user: User): Pick<User, 'id' | 'name' | 'login'> {
     const { id, name, login } = user;
     return { id, name, login };
   }
