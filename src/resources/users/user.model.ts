@@ -29,7 +29,7 @@ class User {
    * @param user - user object
    * @returns user without password
    */
-  public static toResponse(user: User): Pick<User, 'id' | 'name' | 'login'> {
+  public static toResponse(user: User): Omit<User, 'password'> {
     const { id, name, login } = user;
     return { id, name, login };
   }
