@@ -8,6 +8,12 @@ type BoardRequest = FastifyRequest<{
     boardId: string;
   };
 }>;
+type BoardCreate = FastifyRequest<{
+  Body: Omit<Board, 'id'>;
+  Params: {
+    boardId: string;
+  };
+}>;
 /**
  * Fastify middleware to get all boards from DB
  * @param _ - fastify request
@@ -36,7 +42,7 @@ export const getBoard = async (req: BoardRequest, reply: FastifyReply) => {
  * @param req - fastify request
  * @param reply - fastify reply
  */
-export const addBoard = async (req: BoardRequest, reply: FastifyReply) => {
+export const addBoard = async (req: BoardCreate, reply: FastifyReply) => {
   const newBoard = await boardsRepo.addBoard(req.body);
   reply.status(201).send(newBoard);
 };

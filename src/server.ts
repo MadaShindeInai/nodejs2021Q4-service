@@ -16,12 +16,11 @@ const app: FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify();
 app.register(helmet, { contentSecurityPolicy: false });
 app.register(fastifyFormbody);
 
-// TODO: reslve problem with swagger
 app.register(fastifySwagger, {
   mode: 'static',
   specification: {
     path: path.join(__dirname, '../doc/api.yaml'),
-    baseDir: '/src',
+    baseDir: path.join(__dirname, '../doc/'),
   },
   exposeRoute: true,
   routePrefix: '/doc',

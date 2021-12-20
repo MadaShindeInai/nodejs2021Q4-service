@@ -1,12 +1,13 @@
-import { getDataFromDb, addToDB } from '../utils';
+import Board from '../boards/board.model';
 import Task from './task.model';
+import { getDataFromDb, addToDB } from '../utils';
 
 /**
  * Get all tasks from a board by boardId
  * @param boardId - board id
  * @returns array of tasks from a board selected by boardId or empty array
  */
-const getTasksByBoardId = async (boardId: string) => {
+const getTasksByBoardId = async (boardId: Board['id']) => {
   const parsedData = await getDataFromDb();
   return parsedData.tasks.filter((task) => task.boardId === boardId);
 };
@@ -17,7 +18,10 @@ const getTasksByBoardId = async (boardId: string) => {
  * @param taskId - task id
  * @returns task from a board selected by boardId and taskId or undefined
  */
-const getTaskByBoardAndTaskId = async (boardId: string, taskId: string) => {
+const getTaskByBoardAndTaskId = async (
+  boardId: Board['id'],
+  taskId: Task['id']
+) => {
   const parsedData = await getDataFromDb();
   return parsedData.tasks.find(
     (task) => task.id === taskId && task.boardId === boardId
@@ -30,7 +34,7 @@ const getTaskByBoardAndTaskId = async (boardId: string, taskId: string) => {
  * @param boardId - board id
  * @returns created task
  */
-const addTask = async (body: Task, boardId: string) => {
+const addTask = async (body: Omit<Task, 'id'>, boardId: Board['id']) => {
   const parsedData = await getDataFromDb();
   const newTask = new Task({ ...body, boardId });
   parsedData.tasks.push(newTask);
@@ -46,7 +50,11 @@ const addTask = async (body: Task, boardId: string) => {
  * @param body - data to update task
  * @returns false if task not found or updated task
  */
-const updateTask = async (boardId: string, taskId: string, body: Task) => {
+const updateTask = async (
+  boardId: Board['id'],
+  taskId: Task['id'],
+  body: Task
+) => {
   const parsedData = await getDataFromDb();
   const taskToUpdateIdx = parsedData.tasks.findIndex(
     (task) => task.id === taskId && task.boardId === boardId
@@ -67,7 +75,7 @@ const updateTask = async (boardId: string, taskId: string, body: Task) => {
  * @param taskId - task id
  * @returns false if task not found or true if task deleted
  */
-const deleteTask = async (boardId: string, taskId: string) => {
+const deleteTask = async (boardId: Board['id'], taskId: Task['id']) => {
   const parsedData = await getDataFromDb();
   const taskToDeleteIdx = parsedData.tasks.findIndex(
     (task) => task.id === taskId && task.boardId === boardId

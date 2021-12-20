@@ -9,6 +9,13 @@ type TaskRequest = FastifyRequest<{
     taskId: string;
   };
 }>;
+type TaskCreate = FastifyRequest<{
+  Body: Omit<Task, 'id'>;
+  Params: {
+    boardId: string;
+    taskId: string;
+  };
+}>;
 
 /**
  * Fastify middleware to get all tasks from a board by boardId
@@ -28,7 +35,7 @@ export const getTasksByBoardId = async (
  * @param req - fastify request
  * @param reply - fastify reply
  */
-export const addTask = async (req: TaskRequest, reply: FastifyReply) => {
+export const addTask = async (req: TaskCreate, reply: FastifyReply) => {
   const newTask = await tasksRepo.addTask(req.body, req.params.boardId);
   reply.status(201).send(newTask);
 };

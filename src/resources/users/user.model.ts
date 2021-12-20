@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
  * User model
  */
 class User {
-  id: string;
+  readonly id: string;
 
   name: string;
 
@@ -13,12 +13,11 @@ class User {
   password: string;
 
   constructor({
-    id = uuidv4(),
     name = 'USER',
     login = 'user',
     password = 'P@55w0rd',
-  }: User) {
-    this.id = id;
+  }: Omit<User, 'id'>) {
+    this.id = uuidv4();
     this.name = name;
     this.login = login;
     this.password = password;

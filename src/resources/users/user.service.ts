@@ -8,13 +8,19 @@ type UserRequest = FastifyRequest<{
     userId: string;
   };
 }>;
+type UserCreate = FastifyRequest<{
+  Body: Omit<User, 'id'>;
+  Params: {
+    userId: string;
+  };
+}>;
 
 /**
  * Fastify middleware to get all users
- * @param req - fastify request
+ * @param _ - fastify request
  * @param reply - fastify reply
  */
-export const getAllUsers = async (req: UserRequest, reply: FastifyReply) => {
+export const getAllUsers = async (_: UserRequest, reply: FastifyReply) => {
   const users = await usersRepo.getAll();
   reply.send(users.map(User.toResponse));
 };
@@ -38,7 +44,7 @@ export const getUser = async (req: UserRequest, reply: FastifyReply) => {
  * @param req - fastify request
  * @param reply - fastify reply
  */
-export const addUser = async (req: UserRequest, reply: FastifyReply) => {
+export const addUser = async (req: UserCreate, reply: FastifyReply) => {
   const newUser = await usersRepo.addUser(req.body);
   reply.status(201).send(User.toResponse(newUser));
 };

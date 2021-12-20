@@ -5,14 +5,14 @@ import Column from '../columns/column.model';
  * Board model
  */
 class Board {
-  id?: string;
+  readonly id: string;
 
   title: string;
 
   columns: Column[];
 
-  constructor({ id = uuidv4(), title = 'Board1', columns }: Board) {
-    this.id = id;
+  constructor({ title = 'Board1', columns }: Omit<Board, 'id'>) {
+    this.id = uuidv4();
     this.title = title;
     this.columns = columns;
   }
