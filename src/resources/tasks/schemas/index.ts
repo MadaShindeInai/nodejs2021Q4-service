@@ -1,7 +1,7 @@
-const { taskBody, taskRes } = require('./elementSchemas');
-const { res204, typeStringUUID } = require('../../constants');
+import { taskBody, taskRes } from './elementSchemas';
+import { res204, typeStringUUID } from '../../constants';
 
-const getTasksByBoardIdSchema = {
+export const getTasksByBoardIdSchema = {
   params: {
     boardId: typeStringUUID,
   },
@@ -13,7 +13,7 @@ const getTasksByBoardIdSchema = {
   },
 };
 
-const getTaskByBoardAndTaskIdSchema = {
+export const getTaskByBoardAndTaskIdSchema = {
   params: {
     boardId: typeStringUUID,
     taskId: typeStringUUID,
@@ -23,7 +23,7 @@ const getTaskByBoardAndTaskIdSchema = {
   },
 };
 
-const addTaskSchema = {
+export const addTaskSchema = {
   params: {
     boardId: typeStringUUID,
   },
@@ -33,7 +33,7 @@ const addTaskSchema = {
   },
 };
 
-const updateTaskSchema = {
+export const updateTaskSchema = {
   params: {
     boardId: typeStringUUID,
     taskId: typeStringUUID,
@@ -44,7 +44,7 @@ const updateTaskSchema = {
   },
 };
 
-const deleteTaskSchema = {
+export const deleteTaskSchema = {
   params: {
     boardId: typeStringUUID,
     taskId: typeStringUUID,
@@ -52,12 +52,4 @@ const deleteTaskSchema = {
   response: {
     204: res204,
   },
-};
-
-module.exports = {
-  getTasksByBoardIdSchema,
-  addTaskSchema,
-  getTaskByBoardAndTaskIdSchema,
-  deleteTaskSchema,
-  updateTaskSchema,
 };

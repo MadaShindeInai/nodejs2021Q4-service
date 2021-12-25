@@ -1,10 +1,7 @@
-const {
-  columnRes,
-  columnBody,
-} = require('../../columns/schemas/elementSchemas');
-const { typeString, typeStringUUID } = require('../../constants');
+import { columnRes, columnBody } from '../../columns/schemas/elementSchemas';
+import { typeString, typeStringUUID } from '../../constants';
 
-const boardRes = {
+export const boardRes = {
   type: 'object',
   properties: {
     id: typeStringUUID,
@@ -16,7 +13,7 @@ const boardRes = {
   },
 };
 
-const boardBody = {
+export const boardBody = {
   type: 'object',
   properties: {
     title: typeString,
@@ -26,5 +23,3 @@ const boardBody = {
     },
   },
 };
-
-module.exports = { boardRes, typeString, boardBody };

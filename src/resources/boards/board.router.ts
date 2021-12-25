@@ -1,44 +1,61 @@
-const {
+import { FastifyPluginCallback } from 'fastify';
+import {
   getAllBoardsSchema,
   getBoardSchema,
   addBoardSchema,
   updateBoardSchema,
   deleteBoardSchema,
-} = require('./schemas');
-const {
+} from './schemas';
+import {
   getAllBoards,
   getBoard,
   addBoard,
   updateBoard,
   deleteBoard,
-} = require('./board.service');
+} from './board.service';
 
 const getAllBoardsOpts = {
+  method: 'GET',
+  url: '/boards',
   schema: getAllBoardsSchema,
   handler: getAllBoards,
 };
 
 const getBoardOpts = {
+  method: 'GET',
+  url: '/boards/:boardId',
   schema: getBoardSchema,
   handler: getBoard,
 };
 
 const addBoardOpts = {
+  method: 'POST',
+  url: '/boards',
   schema: addBoardSchema,
   handler: addBoard,
 };
 
 const updateBoardOpts = {
+  method: 'PUT',
+  url: '/boards/:boardId',
   schema: updateBoardSchema,
   handler: updateBoard,
 };
 
 const deleteBoardOpts = {
+  method: 'DELETE',
+  url: '/boards/:boardId',
   schema: deleteBoardSchema,
   handler: deleteBoard,
 };
 
-const boardRoutes = (fastify, options, done) => {
+/**
+ * Fastify plugin to register board routes
+ * @param fastify - fastify instance
+ * @param _ - not used (fastify options)
+ * @param done - callback
+ */
+const boardRoutes: FastifyPluginCallback = (fastify, _, done) => {
   fastify.get('/boards', getAllBoardsOpts);
   fastify.get('/boards/:boardId', getBoardOpts);
   fastify.post('/boards', addBoardOpts);
@@ -47,4 +64,4 @@ const boardRoutes = (fastify, options, done) => {
   done();
 };
 
-module.exports = boardRoutes;
+export default boardRoutes;

@@ -1,17 +1,18 @@
-const {
+import { FastifyPluginCallback } from 'fastify';
+import {
   getTasksByBoardIdSchema,
   getTaskByBoardAndTaskIdSchema,
   addTaskSchema,
   updateTaskSchema,
   deleteTaskSchema,
-} = require('./schemas');
-const {
+} from './schemas';
+import {
   getTasksByBoardId,
   getTaskByBoardAndTaskId,
   addTask,
   updateTask,
   deleteTask,
-} = require('./task.service');
+} from './task.service';
 
 const getTasksByBoardIdOpts = {
   schema: getTasksByBoardIdSchema,
@@ -38,7 +39,13 @@ const deleteTaskOpts = {
   handler: deleteTask,
 };
 
-const tasksRoutes = (fastify, options, done) => {
+/**
+ * Fastify plugin for task routes
+ * @param fastify - fastify instance
+ * @param _ - not used (fastify options)
+ * @param done - callback
+ */
+const tasksRoutes: FastifyPluginCallback = (fastify, _, done) => {
   fastify.get('/boards/:boardId/tasks', getTasksByBoardIdOpts);
   fastify.get('/boards/:boardId/tasks/:taskId', getTaskByBoardAndTaskIdOpts);
   fastify.post('/boards/:boardId/tasks', addTaskOpts);
@@ -47,4 +54,4 @@ const tasksRoutes = (fastify, options, done) => {
   done();
 };
 
-module.exports = tasksRoutes;
+export default tasksRoutes;

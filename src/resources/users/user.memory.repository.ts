@@ -1,17 +1,31 @@
-const { addToDB, getDataFromDb } = require('../utils');
-const User = require('./user.model');
+import { addToDB, getDataFromDb } from '../utils';
+import User from './user.model';
 
+/**
+ * Get all users function
+ * @returns User[]
+ */
 const getAll = async () => {
   const parsedData = await getDataFromDb();
   return parsedData.users;
 };
 
-const getUser = async (id) => {
+/**
+ * Get user by id function
+ * @param id - user id
+ * @returns User or undefined
+ */
+const getUser = async (id: string) => {
   const users = await getAll();
   return users.find((user) => user.id === id);
 };
 
-const addUser = async (body) => {
+/**
+ * Add user function
+ * @param body - user object
+ * @returns new created user
+ */
+const addUser = async (body: User) => {
   const parsedData = await getDataFromDb();
   const newUser = new User(body);
   parsedData.users.push(newUser);
@@ -20,7 +34,13 @@ const addUser = async (body) => {
   return newUser;
 };
 
-const updateUser = async (id, body) => {
+/**
+ * Update user function
+ * @param id - user id
+ * @param body - data to update user
+ * @returns false if user not found or updated user
+ */
+const updateUser = async (id: string, body: User) => {
   const parsedData = await getDataFromDb();
   const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToUpdateIdx === -1) {
@@ -33,7 +53,12 @@ const updateUser = async (id, body) => {
   return updatedUser;
 };
 
-const deleteUser = async (id) => {
+/**
+ * Delete user function
+ * @param id - user id
+ * @returns false if user not found or true if user deleted
+ */
+const deleteUser = async (id: string) => {
   const parsedData = await getDataFromDb();
   const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToDeleteIdx === -1) {
@@ -53,4 +78,4 @@ const deleteUser = async (id) => {
   return true;
 };
 
-module.exports = { getAll, getUser, addUser, updateUser, deleteUser };
+export default { getAll, deleteUser, getUser, addUser, updateUser };

@@ -1,6 +1,6 @@
-const { typeString, typeStringUUID, typeNumber } = require('../../constants');
+import { typeString, typeStringUUID, typeNumber } from '../../constants';
 
-const columnRes = {
+export const columnRes = {
   type: 'object',
   properties: {
     id: typeStringUUID,
@@ -9,15 +9,10 @@ const columnRes = {
   },
 };
 
-const columnBody = {
+export const columnBody = {
   type: 'object',
   properties: {
     title: typeString,
     order: typeNumber,
   },
-};
-
-module.exports = {
-  columnRes,
-  columnBody,
 };

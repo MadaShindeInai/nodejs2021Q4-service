@@ -1,7 +1,7 @@
-const { boardBody, boardRes } = require('./elementSchemas');
-const { typeStringUUID, res204 } = require('../../constants');
+import { boardBody, boardRes } from './elementSchemas';
+import { typeStringUUID, res204 } from '../../constants';
 
-const getAllBoardsSchema = {
+export const getAllBoardsSchema = {
   response: {
     200: {
       type: 'array',
@@ -10,23 +10,24 @@ const getAllBoardsSchema = {
   },
 };
 
-const getBoardSchema = {
+export const getBoardSchema = {
   params: {
     boardId: typeStringUUID,
   },
+  required: ['boardId'],
   response: {
     200: boardRes,
   },
 };
 
-const addBoardSchema = {
+export const addBoardSchema = {
   body: boardBody,
   response: {
     201: boardRes,
   },
 };
 
-const updateBoardSchema = {
+export const updateBoardSchema = {
   params: {
     boardId: typeStringUUID,
   },
@@ -36,19 +37,11 @@ const updateBoardSchema = {
   },
 };
 
-const deleteBoardSchema = {
+export const deleteBoardSchema = {
   params: {
     boardId: typeStringUUID,
   },
   response: {
     204: res204,
   },
-};
-
-module.exports = {
-  getAllBoardsSchema,
-  getBoardSchema,
-  addBoardSchema,
-  updateBoardSchema,
-  deleteBoardSchema,
 };

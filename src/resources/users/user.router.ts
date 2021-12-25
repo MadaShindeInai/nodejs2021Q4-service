@@ -1,17 +1,18 @@
-const {
+import { FastifyPluginCallback } from 'fastify';
+import {
   getAllUsersSchema,
   getUserSchema,
   addUserSchema,
   updateUserSchema,
   deleteUserSchema,
-} = require('./schemas');
-const {
+} from './schemas';
+import {
   getAllUsers,
   getUser,
   addUser,
   updateUser,
   deleteUser,
-} = require('./user.service');
+} from './user.service';
 
 const getAllUsersOpts = {
   schema: getAllUsersSchema,
@@ -38,7 +39,13 @@ const deleteUserOpts = {
   handler: deleteUser,
 };
 
-const usersRoutes = (fastify, options, done) => {
+/**
+ * Fastify plugin for user routes
+ * @param fastify - fastify instance
+ * @param _ - not used (fastify options)
+ * @param done - callback function
+ */
+const usersRoutes: FastifyPluginCallback = (fastify, _, done) => {
   fastify.get('/users', getAllUsersOpts);
   fastify.get('/users/:userId', getUserOpts);
   fastify.post('/users', addUserOpts);
@@ -47,4 +54,4 @@ const usersRoutes = (fastify, options, done) => {
   done();
 };
 
-module.exports = usersRoutes;
+export default usersRoutes;
