@@ -20,7 +20,7 @@ type UserCreate = FastifyRequest<{
  * @param _ - fastify request
  * @param reply - fastify reply
  */
-export const getAllUsers = async (_: UserRequest, reply: FastifyReply) => {
+export const getAllUsers = async (req: UserRequest, reply: FastifyReply) => {
   const users = await usersRepo.getAll();
   reply.send(users.map(User.toResponse));
 };
