@@ -3,7 +3,7 @@ import { FastifyApp } from '../types';
 export class Logger {
   readonly app: FastifyApp;
 
-  constructor({ app }: Omit<Logger, 'info' | 'error'>) {
+  constructor({ app }: Pick<Logger, 'app'>) {
     this.app = app;
     this.app.addHook('preHandler', (req, _, done) => {
       if (req.body) {
