@@ -17,6 +17,7 @@ export const { NODE_ENV } = process.env;
 export const { MONGO_CONNECTION_STRING } = process.env;
 export const { JWT_SECRET_KEY } = process.env;
 export const AUTH_MODE = process.env.AUTH_MODE === 'true';
+const { LOG_LEVEL } = process.env;
 
 export const loggingConfig = {
   file: path.join(__dirname, '../../logs.log'),
@@ -24,6 +25,7 @@ export const loggingConfig = {
     translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
     colorize: false,
   },
+  level: LOG_LEVEL,
   serializers: {
     res(reply: FastifyReply) {
       // The default

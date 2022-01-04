@@ -1,0 +1,4 @@
+[2022-01-04 16:48:46.015] ERROR (52046 on 82-214-136-122.itsa.net.pl): listen EADDRINUSE: address already in use 127.0.0.1:4000
+[2022-01-04 16:49:43.187] INFO (52136 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
+[2022-01-04 16:50:01.204] INFO (52170 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
+[2022-01-04 17:09:23.088] ERROR (52694 on 82-214-136-122.itsa.net.pl): listen EADDRINUSE: address already in use 127.0.0.1:4000
