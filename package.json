@@ -10,7 +10,6 @@
   "main": "src/server.js",
   "scripts": {
     "start": "tsc && nodemon --es-module-specifier-resolution=node dist/server.js",
-    "dev": "nodemon --es-module-specifier-resolution=node dist/server.js",
     "build": "tsc",
     "lint": "eslint --ext .mjs,.ts --fix src/",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
