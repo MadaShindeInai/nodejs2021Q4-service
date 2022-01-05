@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
  * Task model
  */
 class Task {
-  id: string;
+  readonly id: string;
 
   title: string;
 
@@ -19,15 +19,14 @@ class Task {
   columnId: string | null;
 
   constructor({
-    id = uuidv4(),
     title = 'New Task',
     order = 1,
     description = 'lol kek cheburek',
     userId = null,
     boardId = null,
     columnId = null,
-  }: Task) {
-    this.id = id;
+  }: Omit<Task, 'id'>) {
+    this.id = uuidv4();
     this.title = title;
     this.order = order;
     this.description = description;

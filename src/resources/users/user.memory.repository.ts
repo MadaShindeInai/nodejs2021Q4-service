@@ -15,7 +15,7 @@ const getAll = async () => {
  * @param id - user id
  * @returns User or undefined
  */
-const getUser = async (id: string) => {
+const getUser = async (id: User['id']) => {
   const users = await getAll();
   return users.find((user) => user.id === id);
 };
@@ -25,7 +25,7 @@ const getUser = async (id: string) => {
  * @param body - user object
  * @returns new created user
  */
-const addUser = async (body: User) => {
+const addUser = async (body: Omit<User, 'id'>) => {
   const parsedData = await getDataFromDb();
   const newUser = new User(body);
   parsedData.users.push(newUser);
@@ -40,7 +40,7 @@ const addUser = async (body: User) => {
  * @param body - data to update user
  * @returns false if user not found or updated user
  */
-const updateUser = async (id: string, body: User) => {
+const updateUser = async (id: User['id'], body: User) => {
   const parsedData = await getDataFromDb();
   const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToUpdateIdx === -1) {
@@ -58,7 +58,7 @@ const updateUser = async (id: string, body: User) => {
  * @param id - user id
  * @returns false if user not found or true if user deleted
  */
-const deleteUser = async (id: string) => {
+const deleteUser = async (id: User['id']) => {
   const parsedData = await getDataFromDb();
   const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
   if (userToDeleteIdx === -1) {

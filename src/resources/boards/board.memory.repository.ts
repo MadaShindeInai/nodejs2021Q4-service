@@ -26,7 +26,7 @@ const getBoard = async (boardId: Board['id']) => {
  * @param body - an object with board data to create new board
  * @returns new created board
  */
-const addBoard = async ({ title, columns }: Board) => {
+const addBoard = async ({ title, columns }: Omit<Board, 'id'>) => {
   const parsedData = await getDataFromDb();
   const newColumns = columns.map((column) => new Column(column));
   const newBoard = new Board({ title, columns: newColumns });
@@ -47,12 +47,14 @@ const updateBoard = async (boardId: Board['id'], body: Board) => {
   const boardToUpdateIdx = parsedData.boards.findIndex(
     (board) => board.id === boardId
   );
+
   if (boardToUpdateIdx === -1) {
     return false;
   }
+  const qqq = parsedData.boards[boardToUpdateIdx];
 
   const updatedBoard = {
-    ...parsedData.boards.at(boardToUpdateIdx),
+    ...qqq,
     title: body.title,
     columns: body.columns,
   };
