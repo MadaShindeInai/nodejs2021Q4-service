@@ -2,3 +2,703 @@
 [2022-01-04 16:49:43.187] INFO (52136 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
 [2022-01-04 16:50:01.204] INFO (52170 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
 [2022-01-04 17:09:23.088] ERROR (52694 on 82-214-136-122.itsa.net.pl): listen EADDRINUSE: address already in use 127.0.0.1:4000
+[2022-01-05 17:31:01.499] INFO (62765 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
+[2022-01-05 17:31:29.503] INFO (62765 on 82-214-136-122.itsa.net.pl): incoming request
+    req: {
+      "method": "GET",
+      "url": "/users",
+      "path": "/users",
+      "parameters": {}
+    }
+    reqId: "req-1"
+[2022-01-05 17:31:29.506] INFO (62765 on 82-214-136-122.itsa.net.pl): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 2.606124997138977
+    reqId: "req-1"
+[2022-01-05 17:31:52.565] INFO (62872 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
+[2022-01-05 17:33:32.740] INFO (62968 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
+[2022-01-05 17:34:04.034] INFO (62968 on 82-214-136-122.itsa.net.pl): incoming request
+    req: {
+      "method": "GET",
+      "url": "/users",
+      "path": "/users",
+      "parameters": {}
+    }
+    reqId: "req-1"
+[2022-01-05 17:34:04.038] INFO (62968 on 82-214-136-122.itsa.net.pl): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 2.4287500381469727
+    reqId: "req-1"
+[2022-01-05 17:34:50.004] INFO (63031 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
+[2022-01-05 17:35:00.970] INFO (63031 on 82-214-136-122.itsa.net.pl): incoming request
+    req: {
+      "method": "GET",
+      "url": "/users",
+      "path": "/users",
+      "parameters": {}
+    }
+    reqId: "req-1"
+[2022-01-05 17:35:00.974] INFO (63031 on 82-214-136-122.itsa.net.pl): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 3.5395419597625732
+    reqId: "req-1"
+[2022-01-05 17:35:32.935] INFO (63104 on 82-214-136-122.itsa.net.pl): Server listening at http://127.0.0.1:4000
+[2022-01-05 17:35:40.711] INFO (63104 on 82-214-136-122.itsa.net.pl): incoming request
+    req: {
+      "method": "GET",
+      "url": "/users",
+      "path": "/users",
+      "parameters": {}
+    }
+    reqId: "req-1"
+[2022-01-05 17:35:40.716] INFO (63104 on 82-214-136-122.itsa.net.pl): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 3.3865000009536743
+    reqId: "req-1"
+[2022-01-05 20:06:04.614] INFO (67279 on sergeis-macbook-air.home): Server listening at http://0.0.0.0:4000
+[2022-01-05 20:06:27.717] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/users",
+      "path": "/users",
+      "parameters": {}
+    }
+    reqId: "req-1"
+[2022-01-05 20:06:27.726] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 5.035417079925537
+    reqId: "req-1"
+[2022-01-05 20:06:32.162] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc",
+      "path": "/doc",
+      "parameters": {}
+    }
+    reqId: "req-2"
+[2022-01-05 20:06:32.163] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 302
+    }
+    responseTime: 0.7291250228881836
+    reqId: "req-2"
+[2022-01-05 20:06:32.177] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/index.html",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "index.html"
+      }
+    }
+    reqId: "req-3"
+[2022-01-05 20:06:32.192] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 14.520624995231628
+    reqId: "req-3"
+[2022-01-05 20:06:32.201] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui.css",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui.css"
+      }
+    }
+    reqId: "req-4"
+[2022-01-05 20:06:32.203] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-bundle.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-bundle.js"
+      }
+    }
+    reqId: "req-5"
+[2022-01-05 20:06:32.206] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-standalone-preset.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-standalone-preset.js"
+      }
+    }
+    reqId: "req-6"
+[2022-01-05 20:06:32.210] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 7.487333059310913
+    reqId: "req-4"
+[2022-01-05 20:06:32.214] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 7.947582960128784
+    reqId: "req-6"
+[2022-01-05 20:06:32.217] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 13.359583020210266
+    reqId: "req-5"
+[2022-01-05 20:06:33.973] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/uiConfig",
+      "path": "/doc/uiConfig",
+      "parameters": {}
+    }
+    reqId: "req-7"
+[2022-01-05 20:06:33.974] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.6543329954147339
+    reqId: "req-7"
+[2022-01-05 20:06:33.976] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/favicon-32x32.png",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "favicon-32x32.png"
+      }
+    }
+    reqId: "req-8"
+[2022-01-05 20:06:33.978] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 1.872041940689087
+    reqId: "req-8"
+[2022-01-05 20:06:34.041] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/initOAuth",
+      "path": "/doc/initOAuth",
+      "parameters": {}
+    }
+    reqId: "req-9"
+[2022-01-05 20:06:34.042] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.7738749980926514
+    reqId: "req-9"
+[2022-01-05 20:06:34.043] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/json",
+      "path": "/doc/json",
+      "parameters": {}
+    }
+    reqId: "req-a"
+[2022-01-05 20:06:34.045] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 1.6431249380111694
+    reqId: "req-a"
+[2022-01-05 20:06:36.142] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/index.html",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "index.html"
+      }
+    }
+    reqId: "req-b"
+[2022-01-05 20:06:36.143] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.1303329467773438
+    reqId: "req-b"
+[2022-01-05 20:06:36.174] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui.css",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui.css"
+      }
+    }
+    reqId: "req-c"
+[2022-01-05 20:06:36.175] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 0.6264580488204956
+    reqId: "req-c"
+[2022-01-05 20:06:36.179] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-bundle.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-bundle.js"
+      }
+    }
+    reqId: "req-d"
+[2022-01-05 20:06:36.180] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-standalone-preset.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-standalone-preset.js"
+      }
+    }
+    reqId: "req-e"
+[2022-01-05 20:06:36.181] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.7064999341964722
+    reqId: "req-d"
+[2022-01-05 20:06:36.182] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.8741670846939087
+    reqId: "req-e"
+[2022-01-05 20:06:36.243] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/uiConfig",
+      "path": "/doc/uiConfig",
+      "parameters": {}
+    }
+    reqId: "req-f"
+[2022-01-05 20:06:36.244] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.8932080268859863
+    reqId: "req-f"
+[2022-01-05 20:06:36.244] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/favicon-32x32.png",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "favicon-32x32.png"
+      }
+    }
+    reqId: "req-g"
+[2022-01-05 20:06:36.246] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.166957974433899
+    reqId: "req-g"
+[2022-01-05 20:06:36.253] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/initOAuth",
+      "path": "/doc/initOAuth",
+      "parameters": {}
+    }
+    reqId: "req-h"
+[2022-01-05 20:06:36.254] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.4617919921875
+    reqId: "req-h"
+[2022-01-05 20:06:36.254] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/json",
+      "path": "/doc/json",
+      "parameters": {}
+    }
+    reqId: "req-i"
+[2022-01-05 20:06:36.256] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.8992919921875
+    reqId: "req-i"
+[2022-01-05 20:06:36.907] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/index.html",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "index.html"
+      }
+    }
+    reqId: "req-j"
+[2022-01-05 20:06:36.909] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.267167091369629
+    reqId: "req-j"
+[2022-01-05 20:06:36.940] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui.css",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui.css"
+      }
+    }
+    reqId: "req-k"
+[2022-01-05 20:06:36.941] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 0.7940840721130371
+    reqId: "req-k"
+[2022-01-05 20:06:36.945] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-bundle.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-bundle.js"
+      }
+    }
+    reqId: "req-l"
+[2022-01-05 20:06:36.946] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-standalone-preset.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-standalone-preset.js"
+      }
+    }
+    reqId: "req-m"
+[2022-01-05 20:06:36.947] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.599416971206665
+    reqId: "req-l"
+[2022-01-05 20:06:36.948] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.8592089414596558
+    reqId: "req-m"
+[2022-01-05 20:06:36.989] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/uiConfig",
+      "path": "/doc/uiConfig",
+      "parameters": {}
+    }
+    reqId: "req-n"
+[2022-01-05 20:06:36.990] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.27770793437957764
+    reqId: "req-n"
+[2022-01-05 20:06:36.991] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/favicon-32x32.png",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "favicon-32x32.png"
+      }
+    }
+    reqId: "req-o"
+[2022-01-05 20:06:36.992] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 0.6938749551773071
+    reqId: "req-o"
+[2022-01-05 20:06:36.999] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/initOAuth",
+      "path": "/doc/initOAuth",
+      "parameters": {}
+    }
+    reqId: "req-p"
+[2022-01-05 20:06:37.000] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.25633394718170166
+    reqId: "req-p"
+[2022-01-05 20:06:37.000] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/json",
+      "path": "/doc/json",
+      "parameters": {}
+    }
+    reqId: "req-q"
+[2022-01-05 20:06:37.001] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.839542031288147
+    reqId: "req-q"
+[2022-01-05 20:06:37.513] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/index.html",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "index.html"
+      }
+    }
+    reqId: "req-r"
+[2022-01-05 20:06:37.515] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.339792013168335
+    reqId: "req-r"
+[2022-01-05 20:06:37.546] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui.css",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui.css"
+      }
+    }
+    reqId: "req-s"
+[2022-01-05 20:06:37.547] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 0.782291054725647
+    reqId: "req-s"
+[2022-01-05 20:06:37.551] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-bundle.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-bundle.js"
+      }
+    }
+    reqId: "req-t"
+[2022-01-05 20:06:37.552] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-standalone-preset.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-standalone-preset.js"
+      }
+    }
+    reqId: "req-u"
+[2022-01-05 20:06:37.553] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.17958402633667
+    reqId: "req-t"
+[2022-01-05 20:06:37.553] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.0756670236587524
+    reqId: "req-u"
+[2022-01-05 20:06:37.591] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/uiConfig",
+      "path": "/doc/uiConfig",
+      "parameters": {}
+    }
+    reqId: "req-v"
+[2022-01-05 20:06:37.592] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.7135419845581055
+    reqId: "req-v"
+[2022-01-05 20:06:37.596] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/favicon-32x32.png",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "favicon-32x32.png"
+      }
+    }
+    reqId: "req-w"
+[2022-01-05 20:06:37.597] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 0.626459002494812
+    reqId: "req-w"
+[2022-01-05 20:06:37.603] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/initOAuth",
+      "path": "/doc/initOAuth",
+      "parameters": {}
+    }
+    reqId: "req-x"
+[2022-01-05 20:06:37.604] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.24074995517730713
+    reqId: "req-x"
+[2022-01-05 20:06:37.604] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/json",
+      "path": "/doc/json",
+      "parameters": {}
+    }
+    reqId: "req-y"
+[2022-01-05 20:06:37.605] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 1.1223340034484863
+    reqId: "req-y"
+[2022-01-05 20:06:38.791] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/index.html",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "index.html"
+      }
+    }
+    reqId: "req-z"
+[2022-01-05 20:06:38.792] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 0.8556249141693115
+    reqId: "req-z"
+[2022-01-05 20:06:38.840] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui.css",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui.css"
+      }
+    }
+    reqId: "req-10"
+[2022-01-05 20:06:38.841] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 0.8830000162124634
+    reqId: "req-10"
+[2022-01-05 20:06:38.844] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-bundle.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-bundle.js"
+      }
+    }
+    reqId: "req-11"
+[2022-01-05 20:06:38.845] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/swagger-ui-standalone-preset.js",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "swagger-ui-standalone-preset.js"
+      }
+    }
+    reqId: "req-12"
+[2022-01-05 20:06:38.846] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.1492079496383667
+    reqId: "req-11"
+[2022-01-05 20:06:38.846] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 0.9947909116744995
+    reqId: "req-12"
+[2022-01-05 20:06:38.890] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/uiConfig",
+      "path": "/doc/uiConfig",
+      "parameters": {}
+    }
+    reqId: "req-13"
+[2022-01-05 20:06:38.891] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.27870798110961914
+    reqId: "req-13"
+[2022-01-05 20:06:38.892] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/static/favicon-32x32.png",
+      "path": "/doc/static/*",
+      "parameters": {
+        "*": "favicon-32x32.png"
+      }
+    }
+    reqId: "req-14"
+[2022-01-05 20:06:38.897] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 304
+    }
+    responseTime: 1.5505410432815552
+    reqId: "req-14"
+[2022-01-05 20:06:38.925] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/initOAuth",
+      "path": "/doc/initOAuth",
+      "parameters": {}
+    }
+    reqId: "req-15"
+[2022-01-05 20:06:38.926] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.29649996757507324
+    reqId: "req-15"
+[2022-01-05 20:06:38.926] INFO (67279 on sergeis-macbook-air.home): incoming request
+    req: {
+      "method": "GET",
+      "url": "/doc/json",
+      "path": "/doc/json",
+      "parameters": {}
+    }
+    reqId: "req-16"
+[2022-01-05 20:06:38.927] INFO (67279 on sergeis-macbook-air.home): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 0.5166670083999634
+    reqId: "req-16"
