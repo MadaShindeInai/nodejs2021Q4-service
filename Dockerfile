@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install --production
+RUN npm install
 
 EXPOSE 4000
 
