@@ -3,14 +3,20 @@
 #
 # Made by Sergey Nepryahin
 #-------------------
-FROM node:latest
+FROM node:alpine
 
 WORKDIR /app
 
-COPY . .
+COPY package.json /app
 
 RUN npm install
 
-EXPOSE 4000
+COPY . .
+
+ENV PORT 4000
+
+VOLUME [ "/dist/logs.log" ]
+
+EXPOSE $PORT
 
 CMD ["npm","run","start"]

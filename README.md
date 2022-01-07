@@ -30,6 +30,13 @@ After starting the app on port 4000 you can open
 in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
 
+## Docker
+1) install 'make'
+2) make build (builds the docker image)
+3) make run-dev (runs container with image in --rm mode)
+4) you can make changes in dist folder and see them in app. As an example you can add some users to the database (dist/resources/utils.js) and get them with the following command in console: curl http://localhost:4000/users
+5) make stop (stops the docker container and removes it)
+
 ## Testing
 
 After application running open new terminal and enter:

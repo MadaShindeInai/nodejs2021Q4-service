@@ -41,7 +41,7 @@ app.register(tasks);
 const startServer = async () => {
   try {
     await app.listen(PORT, '0.0.0.0', (): void => {
-      process.stdout.write(`App is running on http://localhost:${PORT}`);
+      process.stdout.write(`App is running on http://localhost:${PORT}\n`);
     });
   } catch (err) {
     if (err instanceof Error) {
