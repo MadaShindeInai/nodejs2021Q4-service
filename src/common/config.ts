@@ -22,7 +22,7 @@ const isDevelopment = NODE_ENV === 'development';
 export const loggingConfig = {
   file: path.join(
     __dirname,
-    isDevelopment ? '../../src/logs.log' : '../logs.log'
+    isDevelopment ? '../../src/logs/logs.log' : '../logs/logs.log'
   ),
   prettyPrint: {
     translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',

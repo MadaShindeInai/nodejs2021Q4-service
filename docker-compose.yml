@@ -6,6 +6,7 @@ services:
       - type: bind
         source: .
         target: /app
+      - "logs:/app/dist/logs/"
     ports:
       - ${PORT}:${PORT}
     depends_on:
@@ -18,7 +19,7 @@ services:
   postrges:
     build: ./postgres/
     volumes:
-      - "dbdata:/app/postgres/"
+      - "dbdata:/var/lib/postgresql/data"
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
     networks: 
@@ -35,3 +36,4 @@ networks:
 
 volumes:
   dbdata:
+  logs:
