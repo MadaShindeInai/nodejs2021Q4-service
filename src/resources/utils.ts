@@ -1,7 +1,8 @@
 import { DB } from '../types';
 
 let data: DB = {
-  users: [{ name: 'lol', password: 'kek', id: '1', login: 'kp9' }],
+  // users: [{ name: 'lol', password: 'kek', id: '1', login: 'kp9' }],
+  users: [],
   boards: [],
   tasks: [],
 };

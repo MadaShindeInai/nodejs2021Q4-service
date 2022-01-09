@@ -7,15 +7,11 @@ FROM node:alpine
 
 WORKDIR /app
 
-COPY package.json /app
+COPY package*.json .
 
-RUN npm install
+RUN npm ci
 
 COPY . .
-
-ENV PORT 4000
-
-VOLUME [ "/dist/logs.log" ]
 
 EXPOSE $PORT
 
