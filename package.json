@@ -51,7 +51,8 @@
     "fastify": "^3.24.1",
     "fastify-swagger": "^4.12.6",
     "uuid": "8.3.2",
-    "yamljs": "0.3.0"
+    "yamljs": "0.3.0",
+    "typescript": "^4.5.2"
   },
   "devDependencies": {
     "@microsoft/tsdoc": "^0.13.2",
@@ -75,8 +76,6 @@
     "nodemon": "^2.0.15",
     "pino-pretty": "^7.3.0",
     "prettier": "2.4.1",
-    "supertest": "6.1.6",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.2"
+    "supertest": "6.1.6"
   }
 }

@@ -1,4 +1,4 @@
-run-dev:
+run:
 		docker run -p 4000:4000 --env-file ./.env --restart on-failure:10 --network user-defined -v "/Users/sergeinepryahin/Documents/Nodejs/nodejs2021Q4-service:/app" -v /app/node_modules --name trello-clone madashindeinai/trello-clone:latest
 stop:
 		docker stop trello-clone
