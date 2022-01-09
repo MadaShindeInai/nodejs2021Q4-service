@@ -2,6 +2,7 @@ version: '3.9'
 services:
   node:
     build: .
+    image: madashindeinai/nodejs2021q4-service:node
     volumes:
       - type: bind
         source: .
@@ -16,8 +17,9 @@ services:
     environment:
       PORT: ${PORT}
     restart: on-failure:10 
-  postrges:
+  postgres:
     build: ./postgres/
+    image: madashindeinai/nodejs2021q4-service:postgres
     volumes:
       - "dbdata:/var/lib/postgresql/data"
     ports:
