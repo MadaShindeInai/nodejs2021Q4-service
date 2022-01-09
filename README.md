@@ -10,7 +10,7 @@
 ```
 git clone git@github.com:MadaShindeInai/nodejs2021Q4-service.git
 cd ./nodejs2021Q4-service
-git checkout service
+git checkout docker
 ```
 
 ## Installing NPM modules
@@ -31,14 +31,9 @@ in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
 
 ## Docker
--1) Run docker desctop application
-0) in separate console run npx tsc -w
-1) install 'make'
-2) run 'make network' (creates user-defined brige network)
-2) run 'make build' (builds the docker image)
-3) run 'make run-dev' (runs container with image in --restart mode in user-defined network)
-4) you can make changes. As an example you can add some users to the database (src/resources/utils.js) and get them with the following command in console: curl http://localhost:4000/users
-5) make stop (stops the docker container)
+1) Run docker desktop application
+2) In separate terminal run npx tsc -w (if you have not already done so)
+3) In separate run docker-compose up
 
 ## Testing
 

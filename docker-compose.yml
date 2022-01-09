@@ -2,17 +2,36 @@ version: '3.9'
 services:
   node:
     build: .
+    volumes:
+      - type: bind
+        source: .
+        target: /app
     ports:
       - ${PORT}:${PORT}
     depends_on:
       - postgres
+    networks: 
+      - user-defined
     environment:
-      - PORT=${PORT}
+      PORT: ${PORT}
+    restart: on-failure:10 
   postrges:
     build: ./postgres/
+    volumes:
+      - "dbdata:/app/postgres/"
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    networks: 
+      - user-defined
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+    restart: on-failure:10 
+
+networks:
+  user-defined:
+    driver: bridge
+
+volumes:
+  dbdata:
