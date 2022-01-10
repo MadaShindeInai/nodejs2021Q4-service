@@ -22,7 +22,6 @@ npm install
 ## Running application
 Once the application is installed, you can run it by executing the following commands in different terminals:
 ```
-npx tsc -w
 npm run start
 ```
 
@@ -32,8 +31,7 @@ For more information about OpenAPI/Swagger please visit https://swagger.io/.
 
 ## Docker
 1) Run docker desktop application
-2) In separate terminal run npx tsc -w (if you have not already done so)
-3) In separate run docker-compose up
+3) Run "docker-compose up"
 4) When you run app you can check that it is restarting (10 times limit) by typing in one more separate terminal:
 ```docker ps``` to get the container id/name and then:
 ```docker exec <db_container_name> pkill -f postgres```

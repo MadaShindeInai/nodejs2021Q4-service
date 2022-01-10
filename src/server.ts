@@ -1,15 +1,12 @@
 import fastify from 'fastify';
 import fastifySwagger from 'fastify-swagger';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import path from 'path';
 import { PORT, loggingConfig } from './common/config';
 import users from './resources/users/user.router';
 import boards from './resources/boards/board.router';
 import tasks from './resources/tasks/task.router';
 import { Logger } from './common/logger';
 import { FastifyApp } from './types';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // LOGGING
 const app: FastifyApp = fastify({

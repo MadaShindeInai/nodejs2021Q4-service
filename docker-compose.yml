@@ -7,7 +7,7 @@ services:
       - type: bind
         source: .
         target: /app
-      - "logs:/app/dist/logs/"
+      - "logs:/app/logs/"
     ports:
       - ${PORT}:${PORT}
     depends_on:

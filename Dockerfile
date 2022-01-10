@@ -15,4 +15,4 @@ COPY . .
 
 EXPOSE $PORT
 
-CMD ["npm","run","start"]
+CMD ["npm","start"]
