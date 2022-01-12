@@ -1,15 +1,13 @@
 #-------------------
 # Dockerfile to build Docker Image of Trello-clone application
-#
-# Made by Sergey Nepryahin
 #-------------------
-FROM node:alpine
+FROM node:16.13-alpine3.15
 
 WORKDIR /app
 
-COPY package*.json .
+COPY package*.json ./
 
-RUN npm install --production
+RUN npm install --production && npm cache clean --force
 
 COPY . .
 

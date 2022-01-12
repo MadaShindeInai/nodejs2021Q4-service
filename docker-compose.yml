@@ -5,9 +5,10 @@ services:
     image: madashindeinai/nodejs2021q4-service:node
     volumes:
       - type: bind
-        source: .
-        target: /app
+        source: ./src
+        target: /app/src
       - "logs:/app/logs/"
+      - "node_modules:/app/node_modules"
     ports:
       - ${PORT}:${PORT}
     depends_on:
@@ -39,3 +40,4 @@ networks:
 volumes:
   dbdata:
   logs:
+  node_modules:
