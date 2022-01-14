@@ -5,10 +5,13 @@
       "module": "commonjs",
       "outDir": "dist",
       "esModuleInterop": true,
+      "lib": ["es6"],
       "moduleResolution": "node",
       "strict": true, 
       "noEmitOnError": true,
       "noImplicitAny": true,
+      "experimentalDecorators": true, // for typeorm
+      "emitDecoratorMetadata": true // for typeorm
     },
   "include": ["./src"],
   "exclude": ["node_modules"],

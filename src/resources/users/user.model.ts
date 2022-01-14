@@ -1,15 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
-/**
- * User model
- */
+@Entity()
 class User {
+  @PrimaryColumn()
   readonly id: string;
 
+  @Column()
   name: string;
 
+  @Column()
   login: string;
 
+  @Column()
   password: string;
 
   constructor({
