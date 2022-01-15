@@ -28,7 +28,7 @@ const getBoard = async (boardId: Board['id']) => {
  */
 const addBoard = async ({ title, columns }: Omit<Board, 'id'>) => {
   const parsedData = await getDataFromDb();
-  const newColumns = columns.map((column) => new Column(column));
+  const newColumns = columns?.map((column) => new Column(column));
   const newBoard = new Board({ title, columns: newColumns });
   parsedData.boards.push(newBoard);
 

@@ -1,9 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { defaultUser } from '../constants';
 
 @Entity()
 class User {
-  @PrimaryColumn()
+  @PrimaryColumn({ type: 'uuid', unique: true })
   readonly id: string;
 
   @Column()
@@ -15,15 +16,11 @@ class User {
   @Column()
   password: string;
 
-  constructor({
-    name = 'USER',
-    login = 'user',
-    password = 'P@55w0rd',
-  }: Omit<User, 'id'>) {
+  constructor(props: Omit<User, 'id'> = defaultUser) {
     this.id = uuidv4();
-    this.name = name;
-    this.login = login;
-    this.password = password;
+    this.name = props.name;
+    this.login = props.login;
+    this.password = props.password;
   }
 
   /**
