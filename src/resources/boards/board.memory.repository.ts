@@ -1,4 +1,3 @@
-import { addToDB, getDataFromDb } from '../utils';
 import Board from './board.model';
 import Column from '../columns/column.model';
 import { getRepository } from 'typeorm';
@@ -33,10 +32,11 @@ const addBoard = async ({ title, columns }: Omit<Board, 'id'>) => {
   const newBoard = new Board({ title });
   const newColumns =
     columns?.map((column) => new Column(column, newBoard.id)) || [];
-  newBoard.columns = newColumns;
+  // newBoard.columns = newColumns;
   await boardsRepo.save(newBoard);
   await columnsRepo.save(newColumns);
-  return newBoard;
+  const boardWithColumns = await boardsRepo.findOne(newBoard.id);
+  return boardWithColumns;
 };
 
 /**

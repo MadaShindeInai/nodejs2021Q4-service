@@ -1,11 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import {
-  Entity,
-  Column as ORMColumn,
-  PrimaryColumn,
-  ManyToOne,
-  JoinColumn,
-} from 'typeorm';
+import { Entity, Column as ORMColumn, PrimaryColumn, ManyToOne } from 'typeorm';
 import { defaultTask } from '../constants';
 import User from '../users/user.model';
 import Board from '../boards/board.model';
@@ -25,17 +19,32 @@ class Task {
   @ORMColumn('text')
   description: string;
 
-  @ManyToOne(() => User, { onDelete: 'SET NULL' })
-  @JoinColumn({ name: 'userId' })
+  @ORMColumn({
+    type: 'uuid',
+    nullable: true,
+  })
   userId: string | null;
 
-  @ManyToOne(() => Board, { onDelete: 'SET NULL' })
-  @JoinColumn({ name: 'boardId' })
+  @ORMColumn({
+    type: 'uuid',
+    nullable: true,
+  })
   boardId: string | null;
 
-  @ManyToOne(() => Column, { onDelete: 'SET NULL' })
-  @JoinColumn({ name: 'columnId' })
+  @ORMColumn({
+    type: 'uuid',
+    nullable: true,
+  })
   columnId: string | null;
+
+  @ManyToOne(() => User, { onDelete: 'SET NULL' })
+  user?: User;
+
+  @ManyToOne(() => Board, { onDelete: 'CASCADE' })
+  board?: Board;
+
+  @ManyToOne(() => Column)
+  column?: Column;
 
   constructor(props: Omit<Task, 'id'> = defaultTask) {
     this.id = uuidv4();

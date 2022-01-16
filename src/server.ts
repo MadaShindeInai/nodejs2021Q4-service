@@ -10,10 +10,6 @@ import { Logger } from './common/logger';
 import { FastifyApp } from './types';
 import ormConfig from './common/ormconfig';
 import { stderr, stdout } from 'process';
-import User from './resources/users/user.model';
-import Board from './resources/boards/board.model';
-import { defaultTask } from './resources/constants';
-import Task from './resources/tasks/task.model';
 
 // LOGGING
 const app: FastifyApp = fastify({
@@ -27,29 +23,12 @@ const logger = new Logger({ app });
     ...ormConfig,
     host: 'postgres',
   } as ConnectionOptions)
-    .then(async (connection) => {
-      // stdout.write('Inserting a new user into the database...');
-      // const user = new User({ name: 'hh', login: '11', password: 'qq' });
-      // await connection.manager.save(user);
-      // stdout.write('Loading users from the database...');
-      // const usersDB = await connection.manager.find(User);
-      // console.log('🚀 ~ file: server.ts ~ line 32 ~ .then ~ users', usersDB);
-      // stdout.write('Inserting a new board into the database...');
-      // const board = new Board({ title: 'test' });
-      // await connection.manager.save(board);
-      // stdout.write('Loading users from the database...');
-      // const boadrsDB = await connection.manager.find(Board);
-      // console.log('🚀 ~ file: server.ts ~ line 32 ~ .then ~ users', boadrsDB);
-      // stdout.write('Inserting a new task into the database...');
-      // const task = new Task({
-      //   ...defaultTask,
-      //   userId: '7631b223-9bac-45e2-a41f-6a723b32e3e3',
-      //   boardId: 'bae273f6-b71e-4459-bcd2-0cb6eef20ea8',
-      // });
-      // await connection.manager.save(task);
-      // stdout.write('Loading users from the database...');
-      // const tasksDB = await connection.manager.find(Task);
-      // console.log('🚀 ~ file: server.ts ~ line 32 ~ .then ~ users', tasksDB);
+    .then(async () => {
+      stdout.write(
+        'If it is the first run:\nrun `npm run migration:generate` and `npm run migration:run` to make initial tables\n'
+      );
+      stdout.write('They you can run `npm run test`\n');
+      stdout.write('Swagger available on `localhost:4000/doc`\n');
     })
     .catch((error) => stderr.write(error));
 })();

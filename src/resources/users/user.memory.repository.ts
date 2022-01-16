@@ -62,15 +62,6 @@ const deleteUser = async (id: User['id']) => {
   }
   await userRepo.remove(targetUser);
   return true;
-
-  // const tasksWithRemovedUser = parsedData.tasks.map((task) => {
-  //   if (task.userId === id) {
-  //     return { ...task, userId: null };
-  //   }
-  //   return task;
-  // });
-
-  // parsedData.tasks = tasksWithRemovedUser;
 };
 
 export default { getAll, deleteUser, getUser, addUser, updateUser };
