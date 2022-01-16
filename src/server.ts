@@ -9,7 +9,11 @@ import tasks from './resources/tasks/task.router';
 import { Logger } from './common/logger';
 import { FastifyApp } from './types';
 import ormConfig from './common/ormconfig';
-import { stderr } from 'process';
+import { stderr, stdout } from 'process';
+import User from './resources/users/user.model';
+import Board from './resources/boards/board.model';
+import { defaultTask } from './resources/constants';
+import Task from './resources/tasks/task.model';
 
 // LOGGING
 const app: FastifyApp = fastify({
@@ -39,12 +43,12 @@ const logger = new Logger({ app });
       // stdout.write('Inserting a new task into the database...');
       // const task = new Task({
       //   ...defaultTask,
-      //   userId: 'b20f4349-e710-48b7-afd0-06dd05746998',
-      //   boardId: 'c0315fea-0750-4c0b-aaf4-f950e370fd9b',
+      //   userId: '7631b223-9bac-45e2-a41f-6a723b32e3e3',
+      //   boardId: 'bae273f6-b71e-4459-bcd2-0cb6eef20ea8',
       // });
       // await connection.manager.save(task);
       // stdout.write('Loading users from the database...');
-      // const tasksDB = await connection.manager.find(User);
+      // const tasksDB = await connection.manager.find(Task);
       // console.log('🚀 ~ file: server.ts ~ line 32 ~ .then ~ users', tasksDB);
     })
     .catch((error) => stderr.write(error));

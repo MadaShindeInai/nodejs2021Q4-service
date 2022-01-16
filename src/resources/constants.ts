@@ -19,7 +19,11 @@ export const defaultUser = {
   password: 'P@55w0rd',
 } as const;
 
-export const defaultColumn = { title: 'Column1', order: 0 } as const;
+export const defaultColumn = {
+  title: 'Column1',
+  order: 0,
+  boardId: null,
+} as const;
 
 export const defaultTask = {
   title: 'New Task',

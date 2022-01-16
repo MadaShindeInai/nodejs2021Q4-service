@@ -1,11 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import {
-  Entity,
-  Column as ORMColumn,
-  PrimaryColumn,
-  OneToMany,
-  JoinTable,
-} from 'typeorm';
+import { Entity, Column as ORMColumn, PrimaryColumn, OneToMany } from 'typeorm';
 import Column from '../columns/column.model';
 
 @Entity()
@@ -17,7 +11,6 @@ class Board {
   title: string;
 
   @OneToMany(() => Column, (column) => column.boardId)
-  @JoinTable()
   columns?: Column[];
 
   constructor(props: Omit<Board, 'id'> = { title: 'Board1' }) {

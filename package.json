@@ -9,7 +9,7 @@
   "description": "REST service starter for RS School",
   "main": "src/server.ts",
   "scripts": {
-    "start": "nodemon --exitcrash src/server.ts",
+    "start": "nodemon src/server.ts",
     "migration:generate": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:generate --config src/common/ormconfig.ts -n kk",
     "migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run --config src/common/ormconfig.ts",
     "build": "tsc",

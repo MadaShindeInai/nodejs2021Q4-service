@@ -25,15 +25,15 @@ class Task {
   @ORMColumn('text')
   description: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { onDelete: 'SET NULL' })
   @JoinColumn({ name: 'userId' })
   userId: string | null;
 
-  @ManyToOne(() => Board)
+  @ManyToOne(() => Board, { onDelete: 'SET NULL' })
   @JoinColumn({ name: 'boardId' })
   boardId: string | null;
 
-  @ManyToOne(() => Column)
+  @ManyToOne(() => Column, { onDelete: 'SET NULL' })
   @JoinColumn({ name: 'columnId' })
   columnId: string | null;
 
