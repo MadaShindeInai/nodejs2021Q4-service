@@ -1,6 +1,6 @@
+import { getRepository } from 'typeorm';
 import Board from './board.model';
 import Column from '../columns/column.model';
-import { getRepository } from 'typeorm';
 
 /**
  * Getting all boards from DB

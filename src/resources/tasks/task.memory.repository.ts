@@ -1,6 +1,6 @@
+import { getRepository } from 'typeorm';
 import Board from '../boards/board.model';
 import Task from './task.model';
-import { getRepository } from 'typeorm';
 
 /**
  * Get all tasks from a board by boardId
