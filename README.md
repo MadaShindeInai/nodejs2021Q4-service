@@ -10,7 +10,7 @@
 ```
 git clone git@github.com:MadaShindeInai/nodejs2021Q4-service.git
 cd ./nodejs2021Q4-service
-git checkout service
+git checkout docker
 ```
 
 ## Installing NPM modules
@@ -30,6 +30,14 @@ After starting the app on port 4000 you can open
 in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
 
+## Docker
+1) Run docker desktop application
+2) In separate terminal run npx tsc -w (if you have not already done so)
+3) In separate run docker-compose up
+4) When you run app you can check that it is restarting (10 times limit) by typing in one more separate terminal:
+```docker ps``` to get the container id/name and then:
+```docker exec <db_container_name> pkill -f postgres```
+```docker exec <app_container_name> pkill -f nodemon```
 ## Testing
 
 After application running open new terminal and enter:

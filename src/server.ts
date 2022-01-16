@@ -1,7 +1,5 @@
 import fastify from 'fastify';
-import helmet from 'fastify-helmet';
 import fastifySwagger from 'fastify-swagger';
-import fastifyFormbody from 'fastify-formbody';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { PORT, loggingConfig } from './common/config';
@@ -29,8 +27,6 @@ app.register(fastifySwagger, {
   exposeRoute: true,
   routePrefix: '/doc',
 });
-app.register(helmet, { contentSecurityPolicy: false });
-app.register(fastifyFormbody);
 
 app.ready((err) => {
   if (err) throw err;
@@ -44,7 +40,9 @@ app.register(tasks);
 
 const startServer = async () => {
   try {
-    await app.listen(PORT);
+    await app.listen(PORT, '0.0.0.0', (): void => {
+      process.stdout.write(`App is running on http://localhost:${PORT}\n`);
+    });
   } catch (err) {
     if (err instanceof Error) {
       logger.error(err.message);
