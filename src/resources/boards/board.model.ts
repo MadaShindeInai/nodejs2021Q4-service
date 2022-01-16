@@ -10,7 +10,7 @@ class Board {
   @ORMColumn()
   title: string;
 
-  @OneToMany(() => Column, (column) => column.boardId)
+  @OneToMany(() => Column, (column) => column.boardId, { eager: true })
   columns?: Column[];
 
   constructor(props: Omit<Board, 'id'> = { title: 'Board1' }) {

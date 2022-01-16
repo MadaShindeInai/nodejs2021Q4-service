@@ -1,14 +1,15 @@
 import { addToDB, getDataFromDb } from '../utils';
 import Board from './board.model';
 import Column from '../columns/column.model';
+import { getRepository } from 'typeorm';
 
 /**
  * Getting all boards from DB
  * @returns array of boards
  */
 const getAllBoards = async () => {
-  const parsedData = await getDataFromDb();
-  return parsedData.boards;
+  const boardsRepo = await getRepository(Board);
+  return boardsRepo.find();
 };
 
 /**
@@ -17,8 +18,8 @@ const getAllBoards = async () => {
  * @returns board or undefined
  */
 const getBoard = async (boardId: Board['id']) => {
-  const boards = await getAllBoards();
-  return boards.find((board) => board.id === boardId);
+  const boardsRepo = await getRepository(Board);
+  return boardsRepo.findOne(boardId);
 };
 
 /**
@@ -27,12 +28,14 @@ const getBoard = async (boardId: Board['id']) => {
  * @returns new created board
  */
 const addBoard = async ({ title, columns }: Omit<Board, 'id'>) => {
-  const parsedData = await getDataFromDb();
-  const newColumns = columns?.map((column) => new Column(column));
-  const newBoard = new Board({ title, columns: newColumns });
-  parsedData.boards.push(newBoard);
-
-  addToDB(parsedData);
+  const boardsRepo = await getRepository(Board);
+  const columnsRepo = await getRepository(Column);
+  const newBoard = new Board({ title });
+  const newColumns =
+    columns?.map((column) => new Column(column, newBoard.id)) || [];
+  newBoard.columns = newColumns;
+  await boardsRepo.save(newBoard);
+  await columnsRepo.save(newColumns);
   return newBoard;
 };
 
@@ -43,25 +46,17 @@ const addBoard = async ({ title, columns }: Omit<Board, 'id'>) => {
  * @returns false if board not found or updated board
  */
 const updateBoard = async (boardId: Board['id'], body: Board) => {
-  const parsedData = await getDataFromDb();
-  const boardToUpdateIdx = parsedData.boards.findIndex(
-    (board) => board.id === boardId
-  );
-
-  if (boardToUpdateIdx === -1) {
+  const boardsRepo = await getRepository(Board);
+  const targetBoard = await boardsRepo.findOne(boardId);
+  if (!targetBoard) {
     return false;
   }
-  const qqq = parsedData.boards[boardToUpdateIdx];
-
   const updatedBoard = {
-    ...qqq,
+    ...targetBoard,
     title: body.title,
     columns: body.columns,
   };
-
-  parsedData.boards.splice(boardToUpdateIdx, 1, updatedBoard);
-
-  addToDB(parsedData);
+  await boardsRepo.save(updatedBoard);
   return updatedBoard;
 };
 
@@ -71,20 +66,12 @@ const updateBoard = async (boardId: Board['id'], body: Board) => {
  * @returns false if board not found, true if board was deleted
  */
 const deleteBoard = async (boardId: Board['id']) => {
-  const parsedData = await getDataFromDb();
-  const boardToDeleteIdx = parsedData.boards.findIndex(
-    (board) => board.id === boardId
-  );
-  if (boardToDeleteIdx === -1) {
+  const boardsRepo = await getRepository(Board);
+  const targetBoard = await boardsRepo.findOne(boardId);
+  if (!targetBoard) {
     return false;
   }
-  const tasksFilteredByBoardId = parsedData.tasks.filter(
-    (task) => task.boardId !== boardId
-  );
-
-  parsedData.tasks = tasksFilteredByBoardId;
-  parsedData.boards.splice(boardToDeleteIdx, 1);
-  addToDB(parsedData);
+  await boardsRepo.remove(targetBoard);
   return true;
 };
 

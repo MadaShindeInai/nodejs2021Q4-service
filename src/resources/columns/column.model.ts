@@ -20,15 +20,18 @@ class Column {
   @TypeORMColumn()
   order: number;
 
-  @ManyToOne(() => Board, (board) => board.id, { onDelete: 'SET NULL' })
+  @ManyToOne(() => Board, (board) => board.id, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'boardId' })
   boardId: string | null;
 
-  constructor(props: Omit<Column, 'id'> = defaultColumn) {
+  constructor(
+    props: Omit<Column, 'id'> = defaultColumn,
+    boardId: Column['boardId'] = null
+  ) {
     this.id = uuidv4();
     this.title = props.title;
     this.order = props.order;
-    this.boardId = props.boardId;
+    this.boardId = boardId;
   }
 }
 

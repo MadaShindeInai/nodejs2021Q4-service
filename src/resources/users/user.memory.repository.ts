@@ -1,4 +1,3 @@
-import { addToDB, getDataFromDb } from '../utils';
 import { getRepository } from 'typeorm';
 import User from './user.model';
 
@@ -8,7 +7,7 @@ import User from './user.model';
  */
 const getAll = async () => {
   const userRepo = await getRepository(User);
-  return await userRepo.find();
+  return userRepo.find();
 };
 
 /**
