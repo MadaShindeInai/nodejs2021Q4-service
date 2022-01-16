@@ -10,6 +10,8 @@
   "main": "src/server.ts",
   "scripts": {
     "start": "nodemon --exitcrash src/server.ts",
+    "migration:generate": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:generate --config src/common/ormconfig.ts -n kk",
+    "migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run --config src/common/ormconfig.ts",
     "build": "tsc",
     "lint": "eslint --ext .mjs,.ts --fix src/",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",

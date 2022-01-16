@@ -13,4 +13,4 @@ build-db:
 compose:
 		docker-compose up
 
-# docker run --name madashindeinai/trello-clone:latest
+

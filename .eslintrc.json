@@ -26,10 +26,8 @@
     },
     "parser": "@typescript-eslint/parser",
     "extends": [
-      "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:node/recommended",
-      "airbnb-base",
       "plugin:import/errors",
       "plugin:import/warnings",
       "plugin:import/typescript",
@@ -45,6 +43,7 @@
       "tsdoc/syntax": "warn",
       "import/extensions": "off",
       "linebreak-style": "off",
+      "no-process-exit": "off",
       "node/no-unsupported-features/es-syntax": "off",
       "no-underscore-dangle": "off",
       "import/prefer-default-export": "off",

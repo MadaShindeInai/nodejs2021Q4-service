@@ -36,6 +36,10 @@ For more information about OpenAPI/Swagger please visit https://swagger.io/.
 ```docker ps``` to get the container id/name and then:
 ```docker exec <db_container_name> pkill -f postgres```
 ```docker exec <app_container_name> pkill -f nodemon```
+## Postgres initial migrations
+1) Run 'npm run migration:generate'
+2) Run 'npm run migration:run'
+
 ## Testing
 
 After application running open new terminal and enter:

@@ -8,6 +8,7 @@
       "lib": ["es6"],
       "moduleResolution": "node",
       "strict": true, 
+      "baseUrl": "./",
       "noEmitOnError": true,
       "noImplicitAny": true,
       "experimentalDecorators": true, // for typeorm

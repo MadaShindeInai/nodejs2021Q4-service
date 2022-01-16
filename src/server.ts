@@ -8,7 +8,8 @@ import boards from './resources/boards/board.router';
 import tasks from './resources/tasks/task.router';
 import { Logger } from './common/logger';
 import { FastifyApp } from './types';
-import { ormConfig } from './common/ormconfig';
+import ormConfig from './common/ormconfig';
+import { stderr } from 'process';
 
 // LOGGING
 const app: FastifyApp = fastify({
@@ -18,8 +19,11 @@ const logger = new Logger({ app });
 
 // creating DB
 (async () => {
-  await createConnection(ormConfig as ConnectionOptions)
-    .then(async () => {
+  await createConnection({
+    ...ormConfig,
+    host: 'postgres',
+  } as ConnectionOptions)
+    .then(async (connection) => {
       // stdout.write('Inserting a new user into the database...');
       // const user = new User({ name: 'hh', login: '11', password: 'qq' });
       // await connection.manager.save(user);
@@ -43,7 +47,7 @@ const logger = new Logger({ app });
       // const tasksDB = await connection.manager.find(User);
       // console.log('🚀 ~ file: server.ts ~ line 32 ~ .then ~ users', tasksDB);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => stderr.write(error));
 })();
 
 // SWAGGER
