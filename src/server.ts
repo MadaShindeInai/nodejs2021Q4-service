@@ -2,6 +2,7 @@ import fastify from 'fastify';
 import fastifySwagger from 'fastify-swagger';
 import path from 'path';
 import { ConnectionOptions, createConnection } from 'typeorm';
+import { stderr, stdout } from 'process';
 import { PORT, loggingConfig } from './common/config';
 import users from './resources/users/user.router';
 import boards from './resources/boards/board.router';
@@ -9,7 +10,6 @@ import tasks from './resources/tasks/task.router';
 import { Logger } from './common/logger';
 import { FastifyApp } from './types';
 import ormConfig from './common/ormconfig';
-import { stderr, stdout } from 'process';
 
 // LOGGING
 const app: FastifyApp = fastify({

@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Entity, Column as ORMColumn, PrimaryColumn, OneToMany } from 'typeorm';
+// eslint-disable-next-line import/no-cycle
 import Column from '../columns/column.model';
 
 @Entity()

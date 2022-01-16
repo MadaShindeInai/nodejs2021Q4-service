@@ -7,6 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { defaultColumn } from '../constants';
+// eslint-disable-next-line import/no-cycle
 import Board from '../boards/board.model';
 
 @Entity()
