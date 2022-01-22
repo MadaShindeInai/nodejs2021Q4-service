@@ -13,19 +13,20 @@ cd ./nodejs2021Q4-service
 git checkout login
 npm install
 ```
-## Docker
+## Run in Docker
 1) Run docker desktop application
 3) Run "docker-compose up"
 4) When you run app you can check that it is restarting (10 times limit) by typing in one more separate terminal:
 ```docker ps``` to get the container id/name and then:
 ```docker exec <db_container_name> pkill -f postgres```
 ```docker exec <app_container_name> pkill -f nodemon```
+5) You will see instructions how to run migrations and tests in terminal! <----------!!!!!
 After starting the app on port 4000 you can open
 in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
 ## Postgres initial migrations
-1) Run 'npm run migration:generate'
-2) Run 'npm run migration:run'
+1) Run 'npm run migration:generate' - generates migration files
+2) Run 'npm run migration:run' - runs migration files
 
 ## Testing
 
