@@ -5,30 +5,14 @@
 - Git - [Download & Install Git](https://git-scm.com/downloads).
 - Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
 
-## Downloading
+## Downloading and installing
 
 ```
 git clone git@github.com:MadaShindeInai/nodejs2021Q4-service.git
 cd ./nodejs2021Q4-service
 git checkout login
-```
-
-## Installing NPM modules
-
-```
 npm install
 ```
-
-## Running application
-Once the application is installed, you can run it by executing the following commands in different terminals:
-```
-npm run start
-```
-
-After starting the app on port 4000 you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
-
 ## Docker
 1) Run docker desktop application
 3) Run "docker-compose up"
@@ -36,6 +20,9 @@ For more information about OpenAPI/Swagger please visit https://swagger.io/.
 ```docker ps``` to get the container id/name and then:
 ```docker exec <db_container_name> pkill -f postgres```
 ```docker exec <app_container_name> pkill -f nodemon```
+After starting the app on port 4000 you can open
+in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
+For more information about OpenAPI/Swagger please visit https://swagger.io/.
 ## Postgres initial migrations
 1) Run 'npm run migration:generate'
 2) Run 'npm run migration:run'
