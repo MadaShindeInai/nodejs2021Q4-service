@@ -10,7 +10,7 @@
 ```
 git clone git@github.com:MadaShindeInai/nodejs2021Q4-service.git
 cd ./nodejs2021Q4-service
-git checkout docker
+git checkout login
 ```
 
 ## Installing NPM modules
