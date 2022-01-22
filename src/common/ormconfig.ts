@@ -15,7 +15,7 @@ const ormConfig = {
   synchronize: false,
   logging: false,
   cache: false,
-  migrationsRun: true,
+  migrationsRun: false,
   entities: ['src/resources/**/*.model.ts'],
   migrations: ['src/common/migrations/*.ts'],
   cli: {

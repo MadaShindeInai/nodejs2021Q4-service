@@ -26,11 +26,11 @@ const logger = new Logger({ app });
     host: 'postgres',
   } as ConnectionOptions)
     .then(async () => {
+      stdout.write('Swagger available on http://localhost:4000/doc\n');
       stdout.write(
-        'If it is the first run:\nrun `npm run migration:generate` and `npm run migration:run` to make initial tables\n'
+        'If it is first launch of the application \nopen second terminal and run: `npm run migration:run`\nto make initial tables and add `admin` user\n'
       );
-      stdout.write('They you can run `npm run test`\n');
-      stdout.write('Swagger available on `localhost:4000/doc`\n');
+      stdout.write('Then you can run `npm run test:auth`\n');
     })
     .catch((error) => stderr.write(error));
 })();
