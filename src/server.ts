@@ -1,15 +1,17 @@
-import fastify from 'fastify';
+import fastify, { FastifyReply, FastifyRequest } from 'fastify';
 import fastifySwagger from 'fastify-swagger';
 import path from 'path';
+import fastifyJWT from 'fastify-jwt';
 import { ConnectionOptions, createConnection } from 'typeorm';
 import { stderr, stdout } from 'process';
-import { PORT, loggingConfig } from './common/config';
+import { PORT, loggingConfig, JWT_SECRET_KEY } from './common/config';
 import users from './resources/users/user.router';
 import boards from './resources/boards/board.router';
 import tasks from './resources/tasks/task.router';
 import { Logger } from './common/logger';
 import { FastifyApp } from './types';
 import ormConfig from './common/ormconfig';
+import { loginRoutes } from './resources/login/login.router';
 
 // LOGGING
 const app: FastifyApp = fastify({
@@ -33,6 +35,24 @@ const logger = new Logger({ app });
     .catch((error) => stderr.write(error));
 })();
 
+// adding JWT plugin
+
+if (!JWT_SECRET_KEY) throw Error('JWT key not found!');
+app.register(fastifyJWT, {
+  secret: JWT_SECRET_KEY,
+});
+
+app.decorate(
+  'authenticate',
+  async (request: FastifyRequest, reply: FastifyReply) => {
+    try {
+      await request.jwtVerify();
+    } catch (err) {
+      reply.send(err);
+    }
+  }
+);
+
 // SWAGGER
 app.register(fastifySwagger, {
   mode: 'static',
@@ -50,6 +70,7 @@ app.ready((err) => {
 });
 
 // ROUTES
+app.register(loginRoutes);
 app.register(users);
 app.register(boards);
 app.register(tasks);

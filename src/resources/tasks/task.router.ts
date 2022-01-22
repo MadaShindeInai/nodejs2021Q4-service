@@ -1,4 +1,5 @@
 import { FastifyPluginCallback } from 'fastify';
+import { EnhancedFastifyApp } from '../../types';
 import {
   getTasksByBoardIdSchema,
   getTaskByBoardAndTaskIdSchema,
@@ -6,6 +7,7 @@ import {
   updateTaskSchema,
   deleteTaskSchema,
 } from './schemas';
+import { addAuthToOpts } from '../utils';
 import {
   getTasksByBoardId,
   getTaskByBoardAndTaskId,
@@ -46,11 +48,26 @@ const deleteTaskOpts = {
  * @param done - callback
  */
 const tasksRoutes: FastifyPluginCallback = (fastify, _, done) => {
-  fastify.get('/boards/:boardId/tasks', getTasksByBoardIdOpts);
-  fastify.get('/boards/:boardId/tasks/:taskId', getTaskByBoardAndTaskIdOpts);
-  fastify.post('/boards/:boardId/tasks', addTaskOpts);
-  fastify.put('/boards/:boardId/tasks/:taskId', updateTaskOpts);
-  fastify.delete('/boards/:boardId/tasks/:taskId', deleteTaskOpts);
+  fastify.get(
+    '/boards/:boardId/tasks',
+    addAuthToOpts(fastify as EnhancedFastifyApp, getTasksByBoardIdOpts)
+  );
+  fastify.get(
+    '/boards/:boardId/tasks/:taskId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, getTaskByBoardAndTaskIdOpts)
+  );
+  fastify.post(
+    '/boards/:boardId/tasks',
+    addAuthToOpts(fastify as EnhancedFastifyApp, addTaskOpts)
+  );
+  fastify.put(
+    '/boards/:boardId/tasks/:taskId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, updateTaskOpts)
+  );
+  fastify.delete(
+    '/boards/:boardId/tasks/:taskId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, deleteTaskOpts)
+  );
   done();
 };
 

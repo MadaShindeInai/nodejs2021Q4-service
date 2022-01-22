@@ -1,4 +1,6 @@
 import { FastifyPluginCallback } from 'fastify';
+import { EnhancedFastifyApp } from '../../types';
+import { addAuthToOpts } from '../utils';
 import {
   getAllUsersSchema,
   getUserSchema,
@@ -46,11 +48,26 @@ const deleteUserOpts = {
  * @param done - callback function
  */
 const usersRoutes: FastifyPluginCallback = (fastify, _, done) => {
-  fastify.get('/users', getAllUsersOpts);
-  fastify.get('/users/:userId', getUserOpts);
-  fastify.post('/users', addUserOpts);
-  fastify.put('/users/:userId', updateUserOpts);
-  fastify.delete('/users/:userId', deleteUserOpts);
+  fastify.get(
+    '/users',
+    addAuthToOpts(fastify as EnhancedFastifyApp, getAllUsersOpts)
+  );
+  fastify.get(
+    '/users/:userId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, getUserOpts)
+  );
+  fastify.post(
+    '/users',
+    addAuthToOpts(fastify as EnhancedFastifyApp, addUserOpts)
+  );
+  fastify.put(
+    '/users/:userId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, updateUserOpts)
+  );
+  fastify.delete(
+    '/users/:userId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, deleteUserOpts)
+  );
   done();
 };
 

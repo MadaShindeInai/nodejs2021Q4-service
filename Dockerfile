@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --production && npm rebuild bcrypt --build-from-source && npm cache clean --force
+RUN npm install && npm rebuild bcrypt --build-from-source && npm cache clean --force
 
 COPY . .
 
