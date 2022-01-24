@@ -1,20 +1,23 @@
 import { v4 as uuidv4 } from 'uuid';
+import { Entity, Column as ORMColumn, PrimaryColumn, OneToMany } from 'typeorm';
+// eslint-disable-next-line import/no-cycle
 import Column from '../columns/column.model';
 
-/**
- * Board model
- */
+@Entity()
 class Board {
+  @PrimaryColumn({ type: 'uuid', unique: true })
   readonly id: string;
 
+  @ORMColumn()
   title: string;
 
-  columns: Column[];
+  @OneToMany(() => Column, (column) => column.boardId, { eager: true })
+  columns?: Column[];
 
-  constructor({ title = 'Board1', columns }: Omit<Board, 'id'>) {
+  constructor(props: Omit<Board, 'id'> = { title: 'Board1' }) {
     this.id = uuidv4();
-    this.title = title;
-    this.columns = columns;
+    this.title = props.title;
+    this.columns = props.columns;
   }
 }
 

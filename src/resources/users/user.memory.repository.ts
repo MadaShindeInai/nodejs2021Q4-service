@@ -1,4 +1,4 @@
-import { addToDB, getDataFromDb } from '../utils';
+import { getRepository } from 'typeorm';
 import User from './user.model';
 
 /**
@@ -6,8 +6,8 @@ import User from './user.model';
  * @returns User[]
  */
 const getAll = async () => {
-  const parsedData = await getDataFromDb();
-  return parsedData.users;
+  const userRepo = await getRepository(User);
+  return userRepo.find();
 };
 
 /**
@@ -16,8 +16,8 @@ const getAll = async () => {
  * @returns User or undefined
  */
 const getUser = async (id: User['id']) => {
-  const users = await getAll();
-  return users.find((user) => user.id === id);
+  const userRepo = await getRepository(User);
+  return userRepo.findOne(id);
 };
 
 /**
@@ -26,11 +26,9 @@ const getUser = async (id: User['id']) => {
  * @returns new created user
  */
 const addUser = async (body: Omit<User, 'id'>) => {
-  const parsedData = await getDataFromDb();
+  const userRepo = await getRepository(User);
   const newUser = new User(body);
-  parsedData.users.push(newUser);
-
-  addToDB(parsedData);
+  await userRepo.save(newUser);
   return newUser;
 };
 
@@ -41,15 +39,13 @@ const addUser = async (body: Omit<User, 'id'>) => {
  * @returns false if user not found or updated user
  */
 const updateUser = async (id: User['id'], body: User) => {
-  const parsedData = await getDataFromDb();
-  const userToUpdateIdx = parsedData.users.findIndex((user) => user.id === id);
-  if (userToUpdateIdx === -1) {
+  const userRepo = await getRepository(User);
+  const targetUser = await userRepo.findOne(id);
+  if (!targetUser) {
     return false;
   }
-  const updatedUser = { ...parsedData.users.at(userToUpdateIdx), ...body };
-  parsedData.users.splice(userToUpdateIdx, 1, updatedUser);
-
-  addToDB(parsedData);
+  const updatedUser = { ...targetUser, ...body };
+  await userRepo.save(updatedUser);
   return updatedUser;
 };
 
@@ -59,22 +55,12 @@ const updateUser = async (id: User['id'], body: User) => {
  * @returns false if user not found or true if user deleted
  */
 const deleteUser = async (id: User['id']) => {
-  const parsedData = await getDataFromDb();
-  const userToDeleteIdx = parsedData.users.findIndex((user) => user.id === id);
-  if (userToDeleteIdx === -1) {
+  const userRepo = await getRepository(User);
+  const targetUser = await userRepo.findOne(id);
+  if (!targetUser) {
     return false;
   }
-
-  const tasksWithRemovedUser = parsedData.tasks.map((task) => {
-    if (task.userId === id) {
-      return { ...task, userId: null };
-    }
-    return task;
-  });
-
-  parsedData.tasks = tasksWithRemovedUser;
-  parsedData.users.splice(userToDeleteIdx, 1);
-  addToDB(parsedData);
+  await userRepo.remove(targetUser);
   return true;
 };
 

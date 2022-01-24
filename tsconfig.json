@@ -1,14 +1,18 @@
 {
   "compilerOptions":
     {
-      "target": "es2018",
-      "module": "es2020",
+      "target": "es6",
+      "module": "commonjs",
       "outDir": "dist",
       "esModuleInterop": true,
+      "lib": ["es6"],
       "moduleResolution": "node",
       "strict": true, 
+      "baseUrl": "./",
       "noEmitOnError": true,
       "noImplicitAny": true,
+      "experimentalDecorators": true, // for typeorm
+      "emitDecoratorMetadata": true // for typeorm
     },
   "include": ["./src"],
   "exclude": ["node_modules"],

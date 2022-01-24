@@ -1,21 +1,37 @@
 import fastify from 'fastify';
 import fastifySwagger from 'fastify-swagger';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import path from 'path';
+import { ConnectionOptions, createConnection } from 'typeorm';
+import { stderr, stdout } from 'process';
 import { PORT, loggingConfig } from './common/config';
 import users from './resources/users/user.router';
 import boards from './resources/boards/board.router';
 import tasks from './resources/tasks/task.router';
 import { Logger } from './common/logger';
 import { FastifyApp } from './types';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import ormConfig from './common/ormconfig';
 
 // LOGGING
 const app: FastifyApp = fastify({
   logger: loggingConfig,
 });
 const logger = new Logger({ app });
+
+// creating DB
+(async () => {
+  await createConnection({
+    ...ormConfig,
+    host: 'postgres',
+  } as ConnectionOptions)
+    .then(async () => {
+      stdout.write(
+        'If it is the first run:\nrun `npm run migration:generate` and `npm run migration:run` to make initial tables\n'
+      );
+      stdout.write('They you can run `npm run test`\n');
+      stdout.write('Swagger available on `localhost:4000/doc`\n');
+    })
+    .catch((error) => stderr.write(error));
+})();
 
 // SWAGGER
 app.register(fastifySwagger, {

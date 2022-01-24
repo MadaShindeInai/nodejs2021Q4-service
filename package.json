@@ -5,12 +5,13 @@
     "type": "git",
     "url": ""
   },
-  "type": "module",
+  "type": "commonjs",
   "description": "REST service starter for RS School",
-  "main": "src/server.js",
+  "main": "src/server.ts",
   "scripts": {
-    "start": "tsc && NODE_ENV=production nodemon --es-module-specifier-resolution=node dist/server.js",
-    "dev": "tsc && NODE_ENV=development nodemon --es-module-specifier-resolution=node dist/server.js",
+    "start": "nodemon src/server.ts",
+    "migration:generate": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:generate --config src/common/ormconfig.ts -n addTables",
+    "migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run --config src/common/ormconfig.ts",
     "build": "tsc",
     "lint": "eslint --ext .mjs,.ts --fix src/",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
@@ -46,18 +47,23 @@
     ]
   },
   "dependencies": {
+    "@types/uuid": "^8.3.4",
     "cross-env": "7.0.3",
     "dotenv": "10.0.0",
     "fastify": "^3.24.1",
     "fastify-swagger": "^4.12.6",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1",
+    "pino-pretty": "^7.3.0",
+    "ts-node": "^10.4.0",
+    "typeorm": "^0.2.41",
+    "typescript": "^4.5.2",
     "uuid": "8.3.2",
-    "yamljs": "0.3.0",
-    "typescript": "^4.5.2"
+    "yamljs": "0.3.0"
   },
   "devDependencies": {
     "@microsoft/tsdoc": "^0.13.2",
     "@types/node": "^16.11.12",
-    "@types/uuid": "^8.3.3",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "chai": "4.3.4",
@@ -73,8 +79,6 @@
     "husky": "^4.3.8",
     "jest": "27.3.1",
     "lint-staged": "12.0.3",
-    "nodemon": "^2.0.15",
-    "pino-pretty": "^7.3.0",
     "prettier": "2.4.1",
     "supertest": "6.1.6"
   }
