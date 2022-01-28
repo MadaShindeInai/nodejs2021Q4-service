@@ -12,7 +12,7 @@ const simpleColumnDesc = {
   allowNull: false,
 };
 
-@Table({ tableName: 'users' })
+@Table({ tableName: 'users', createdAt: false, updatedAt: false })
 export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({
     example: 'b052e834-060b-4a33-b11c-8d431864ea32',
