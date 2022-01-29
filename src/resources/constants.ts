@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+
 export const typeString = { type: 'string' } as const;
 export const typeStringUUID = { type: 'string', format: 'uuid' } as const;
 export const typeNumber = { type: 'number' } as const;
@@ -33,3 +35,5 @@ export const defaultTask = {
   boardId: null,
   columnId: null,
 } as const;
+
+export const SALT = bcrypt.genSaltSync(10);

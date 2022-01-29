@@ -1,5 +1,7 @@
 import { getRepository } from 'typeorm';
+import bcrypt from 'bcrypt';
 import User from './user.model';
+import { SALT } from '../constants';
 
 /**
  * Get all users function
@@ -27,7 +29,10 @@ const getUser = async (id: User['id']) => {
  */
 const addUser = async (body: Omit<User, 'id'>) => {
   const userRepo = await getRepository(User);
-  const newUser = new User(body);
+  const newUser = new User({
+    ...body,
+    password: bcrypt.hashSync(body.password, SALT),
+  });
   await userRepo.save(newUser);
   return newUser;
 };
@@ -44,7 +49,10 @@ const updateUser = async (id: User['id'], body: User) => {
   if (!targetUser) {
     return false;
   }
-  const updatedUser = { ...targetUser, ...body };
+  const bodyWithHashedPassword = body.password
+    ? { ...body, password: bcrypt.hashSync(body.password, SALT) }
+    : body;
+  const updatedUser = { ...targetUser, ...bodyWithHashedPassword };
   await userRepo.save(updatedUser);
   return updatedUser;
 };

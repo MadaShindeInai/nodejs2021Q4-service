@@ -13,6 +13,8 @@ import {
   updateBoard,
   deleteBoard,
 } from './board.service';
+import { EnhancedFastifyApp } from '../../types';
+import { addAuthToOpts } from '../utils';
 
 const getAllBoardsOpts = {
   method: 'GET',
@@ -56,11 +58,26 @@ const deleteBoardOpts = {
  * @param done - callback
  */
 const boardRoutes: FastifyPluginCallback = (fastify, _, done) => {
-  fastify.get('/boards', getAllBoardsOpts);
-  fastify.get('/boards/:boardId', getBoardOpts);
-  fastify.post('/boards', addBoardOpts);
-  fastify.put('/boards/:boardId', updateBoardOpts);
-  fastify.delete('/boards/:boardId', deleteBoardOpts);
+  fastify.get(
+    '/boards',
+    addAuthToOpts(fastify as EnhancedFastifyApp, getAllBoardsOpts)
+  );
+  fastify.get(
+    '/boards/:boardId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, getBoardOpts)
+  );
+  fastify.post(
+    '/boards',
+    addAuthToOpts(fastify as EnhancedFastifyApp, addBoardOpts)
+  );
+  fastify.put(
+    '/boards/:boardId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, updateBoardOpts)
+  );
+  fastify.delete(
+    '/boards/:boardId',
+    addAuthToOpts(fastify as EnhancedFastifyApp, deleteBoardOpts)
+  );
   done();
 };
 
