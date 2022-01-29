@@ -1,13 +1,24 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
+import bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User) private userRepository: typeof User) {}
   async createUser(dto: CreateUserDto) {
-    const user = await this.userRepository.create(dto);
+    const isUserAlreadyExists = await this.getUserByLogin(dto.login);
+    if (isUserAlreadyExists)
+      throw new HttpException(
+        'User with such login already exists',
+        HttpStatus.BAD_REQUEST
+      );
+    const hashPassword = await bcrypt.hash(dto.password, 10);
+    const user = await this.userRepository.create({
+      ...dto,
+      password: hashPassword,
+    });
     return User.toResponse(user);
   }
 
@@ -19,7 +30,7 @@ export class UsersService {
   async getUserById(id: string) {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
-      throw new Error('No user found');
+      throw new HttpException('No user found', HttpStatus.BAD_REQUEST);
     }
     return User.toResponse(user);
   }
@@ -27,14 +38,23 @@ export class UsersService {
   async updateUser(id: string, dto: CreateUserDto) {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
-      throw new Error('No user found');
+      throw new HttpException('No user found', HttpStatus.BAD_REQUEST);
     }
-    const updatedUser = await user.update(dto);
+    const hashPassword = await bcrypt.hash(dto.password, 10);
+    const updatedUser = await user.update({
+      ...dto,
+      password: hashPassword,
+    });
     return User.toResponse(updatedUser);
   }
 
   async deleteUser(id: string) {
     const user = await this.userRepository.destroy({ where: { id } });
+    return user;
+  }
+
+  async getUserByLogin(login: string) {
+    const user = await this.userRepository.findOne({ where: { login } });
     return user;
   }
 }

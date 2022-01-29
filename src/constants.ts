@@ -7,7 +7,7 @@
 //   path: path.join(__dirname, `../.${process.env.NODE_ENV}.env`),
 // });
 
-export const PORT = process.env.PORT || 3333;
+// export const PORT = process.env.PORT || 3333;
 // export const {
 //   POSTGRES_PORT = 5432,
 //   POSTGRES_USER = 'postgres',
