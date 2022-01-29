@@ -49,7 +49,10 @@ const updateUser = async (id: User['id'], body: User) => {
   if (!targetUser) {
     return false;
   }
-  const updatedUser = { ...targetUser, ...body };
+  const bodyWithHashedPassword = body.password
+    ? { ...body, password: bcrypt.hashSync(body.password, SALT) }
+    : body;
+  const updatedUser = { ...targetUser, ...bodyWithHashedPassword };
   await userRepo.save(updatedUser);
   return updatedUser;
 };
