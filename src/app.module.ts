@@ -2,9 +2,12 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AppController } from './app.controller';
-import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/entities/auth.entity';
+import { BoardsModule } from './boards/boards.module';
+import { User } from './users/entities/user.entity';
+import { Board } from './boards/entities/board.entity';
+import { Column } from './boards/entities/column.entity';
 
 @Module({
   imports: [
@@ -16,11 +19,12 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User],
+      models: [User, Column, Board],
       autoLoadModels: true,
     }),
     UsersModule,
     AuthModule,
+    BoardsModule,
   ],
   controllers: [AppController],
   providers: [],

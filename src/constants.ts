@@ -1,5 +1,10 @@
-//
+import { DataType } from 'sequelize-typescript';
 
+//
+export const simpleColumnDesc = {
+  type: DataType.STRING,
+  allowNull: false,
+};
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */

@@ -1,16 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Model, Table, Column, DataType } from 'sequelize-typescript';
+import { simpleColumnDesc } from 'src/constants';
 
 interface UserCreationAttrs {
   name: string;
   login: string;
   password: string;
 }
-
-const simpleColumnDesc = {
-  type: DataType.STRING,
-  allowNull: false,
-};
 
 @Table({ tableName: 'users', createdAt: false, updatedAt: false })
 export class User extends Model<User, UserCreationAttrs> {
@@ -30,7 +26,7 @@ export class User extends Model<User, UserCreationAttrs> {
     example: 'admin',
     description: 'User`s login',
   })
-  @Column({ ...simpleColumnDesc, unique: true, defaultValue: DataType.UUIDV4 })
+  @Column({ ...simpleColumnDesc, unique: true })
   login: string;
 
   @Column(simpleColumnDesc)
