@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/users/users.model';
 import { UsersService } from 'src/users/users.service';
@@ -24,17 +24,19 @@ export class AuthService {
   private async validateUser(loginDto: LoginDto) {
     const user = await this.usersService.getUserByLogin(loginDto.login);
     if (!user) {
-      throw new UnauthorizedException({
-        message: 'Incorrect pair login/password',
-      });
+      throw new HttpException(
+        'Incorrect pair login/password',
+        HttpStatus.FORBIDDEN
+      );
     }
     const passwordEquals = await bcrypt.compare(
       loginDto.password,
       user.password
     );
     if (passwordEquals) return user;
-    throw new UnauthorizedException({
-      message: 'Incorrect pair login/password',
-    });
+    throw new HttpException(
+      'Incorrect pair login/password',
+      HttpStatus.FORBIDDEN
+    );
   }
 }
