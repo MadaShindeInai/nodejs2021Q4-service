@@ -4,7 +4,7 @@ import { BoardsController } from './boards.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Board } from './entities/board.entity';
 import { Column } from './entities/column.entity';
-import { AuthModule } from 'src/auth/entities/auth.entity';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [BoardsController],
@@ -13,6 +13,6 @@ import { AuthModule } from 'src/auth/entities/auth.entity';
     SequelizeModule.forFeature([Board, Column]),
     forwardRef(() => AuthModule),
   ],
-  // exports: [BoardsService],
+  exports: [BoardsService],
 })
 export class BoardsModule {}

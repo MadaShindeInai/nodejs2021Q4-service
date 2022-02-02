@@ -7,11 +7,12 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { simpleColumnDesc } from 'src/constants';
+import { CreateColumnDto } from '../dto/create-column.dto';
 import { Column } from './column.entity';
 
 interface BoardCreationAttrs {
   title: string;
-  columns: Column[];
+  columns: CreateColumnDto[];
 }
 
 @Table({ tableName: 'boards', createdAt: false, updatedAt: false })
@@ -39,6 +40,6 @@ export class Board extends Model<Board, BoardCreationAttrs> {
     example: [],
     description: 'Array of connected columns',
   })
-  @HasMany(() => Column)
+  @HasMany(() => Column, 'boardId')
   columns: Column[];
 }

@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AppController } from './app.controller';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/entities/auth.entity';
+import { AuthModule } from './auth/auth.module';
 import { BoardsModule } from './boards/boards.module';
 import { User } from './users/entities/user.entity';
 import { Board } from './boards/entities/board.entity';

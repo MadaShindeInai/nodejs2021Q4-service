@@ -5,11 +5,12 @@ import {
   Table,
   Column as ColumnORM,
   ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { simpleColumnDesc } from 'src/constants';
 import { Board } from './board.entity';
 
-interface ColumnCreationAttrs {
+export interface ColumnCreationAttrs {
   title: string;
   order: number;
   boardId: string | null;
@@ -36,13 +37,20 @@ export class Column extends Model<Column, ColumnCreationAttrs> {
   @ColumnORM(simpleColumnDesc)
   title: string;
 
-  // @BelongsTo(() => Board)
-  // board: Board;
+  @ApiProperty({
+    example: 1,
+    description: 'Column`s order',
+  })
+  @ColumnORM({ type: DataType.INTEGER, allowNull: false })
+  order: number;
+
+  @BelongsTo(() => Board, 'boardId')
+  board: Board;
+
   @ApiProperty({
     example: null,
     description: 'Board`s id',
   })
   @ForeignKey(() => Board)
-  @ColumnORM({ type: DataType.UUID })
   boardId: string | null;
 }

@@ -1,26 +1,53 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
+import { Board } from './entities/board.entity';
+import { Column } from './entities/column.entity';
 
 @Injectable()
 export class BoardsService {
-  create(createBoardDto: CreateBoardDto) {
-    return 'This action adds a new board';
+  constructor(
+    @InjectModel(Board) private boardRepository: typeof Board,
+    @InjectModel(Column) private columnRepository: typeof Column
+  ) {}
+
+  async create(createBoardDto: CreateBoardDto) {
+    const board = await this.boardRepository.create(createBoardDto);
+    await Promise.all(
+      createBoardDto.columns.map((column) =>
+        this.columnRepository.create({ ...column, boardId: board.id })
+      )
+    );
+    const boardWithColumns = await this.boardRepository.findOne({
+      where: { id: board.id },
+      include: Column,
+    });
+    return boardWithColumns;
   }
 
-  findAll() {
-    return `This action returns all boards`;
+  async findAll() {
+    return await this.boardRepository.findAll({
+      include: Column,
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} board`;
+  async findOne(id: string) {
+    const board = await this.boardRepository.findOne({
+      where: { id },
+      include: Column,
+    });
+    if (!board) {
+      throw new HttpException('No board found', HttpStatus.BAD_REQUEST);
+    }
+    return board;
   }
 
-  update(id: number, updateBoardDto: UpdateBoardDto) {
+  async update(id: string, updateBoardDto: UpdateBoardDto) {
     return `This action updates a #${id} board`;
   }
 
-  remove(id: number) {
+  async remove(id: string) {
     return `This action removes a #${id} board`;
   }
 }

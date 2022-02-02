@@ -7,6 +7,7 @@ import bcrypt from 'bcryptjs';
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User) private userRepository: typeof User) {}
+
   async createUser(dto: CreateUserDto) {
     const isUserAlreadyExists = await this.getUserByLogin(dto.login);
     if (isUserAlreadyExists)
