@@ -20,9 +20,10 @@ const findConstraints = (item) => {
 export class ValidationPipe implements PipeTransform<any> {
   async transform(value: any, metadata: ArgumentMetadata) {
     const obj = plainToClass(metadata.metatype, value);
-    obj.columns?.map((column) =>
-      validate(plainToClass(CreateColumnDto, column))
-    );
+    Array.isArray(obj.columns) &&
+      obj.columns.map((column) =>
+        validate(plainToClass(CreateColumnDto, column))
+      );
     const errors = await validate(obj, {
       whitelist: true,
       forbidNonWhitelisted: true,

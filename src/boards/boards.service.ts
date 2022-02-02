@@ -48,6 +48,7 @@ export class BoardsService {
   }
 
   async remove(id: string) {
-    return `This action removes a #${id} board`;
+    const board = await this.boardRepository.destroy({ where: { id } });
+    return board;
   }
 }
