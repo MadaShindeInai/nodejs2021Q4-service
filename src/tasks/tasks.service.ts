@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
@@ -16,19 +16,37 @@ export class TasksService {
     return task;
   }
 
-  findAll() {
-    return `This action returns all tasks`;
+  async findAll(boardId: string) {
+    return await this.taskRepository.findAll({
+      where: { boardId },
+    });
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} task`;
+  async findOne(taskId: string, boardId: string) {
+    const task = await this.taskRepository.findOne({
+      where: { boardId, id: taskId },
+    });
+    if (!task) throw new NotFoundException('No task found');
+    return task;
   }
 
-  update(id: string, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+  async update(taskId: string, boardId: string, updateTaskDto: UpdateTaskDto) {
+    const task = await this.taskRepository.findOne({
+      where: { boardId, id: taskId },
+    });
+    if (!task) throw new NotFoundException('No task found');
+    const updatedTask = await task.update({
+      ...updateTaskDto,
+      boardId,
+      id: taskId,
+    });
+    return updatedTask;
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} task`;
+  async remove(taskId: string, boardId: string) {
+    const user = await this.taskRepository.destroy({
+      where: { id: taskId, boardId },
+    });
+    return user;
   }
 }

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  BelongsTo,
   Column as ColumnORM,
   DataType,
   ForeignKey,
@@ -55,8 +56,8 @@ export class Task extends Model<Task, TaskCreationAttrs> {
   @ColumnORM(simpleColumnDesc)
   description: string;
 
-  // @BelongsTo(() => Board, 'boardId')
-  // board: Board;
+  @BelongsTo(() => Board, { foreignKey: 'boardId', onDelete: 'CASCADE' })
+  board: Board;
 
   @ApiProperty({
     example: null,
@@ -66,9 +67,6 @@ export class Task extends Model<Task, TaskCreationAttrs> {
   @ColumnORM({ type: DataType.UUID, allowNull: true })
   boardId: string | null;
 
-  // @BelongsTo(() => Column, 'columnId')
-  // column: Column;
-
   @ApiProperty({
     example: null,
     description: 'Column`s id',
@@ -77,8 +75,8 @@ export class Task extends Model<Task, TaskCreationAttrs> {
   @ColumnORM({ type: DataType.UUID, allowNull: true })
   columnId: string | null;
 
-  // @BelongsTo(() => User, 'userId')
-  // user: User;
+  @BelongsTo(() => User, { foreignKey: 'userId', onDelete: 'SET NULL' })
+  user: User;
 
   @ApiProperty({
     example: null,

@@ -38,14 +38,14 @@ export class BoardsService {
       where: { id },
       include: Column,
     });
-    if (!board) throw new NotFoundException(['No board found']);
+    if (!board) throw new NotFoundException('No board found');
     return board;
   }
 
   // TODO: refactor, to make it more understandable
   async update(id: string, updateBoardDto: UpdateBoardDto) {
     const board = await this.boardRepository.findOne({ where: { id } });
-    if (!board) throw new ValidationException(['No board found']);
+    if (!board) throw new NotFoundException('No board found');
     const updatedBoard = await board.update({ title: updateBoardDto.title });
     const updatedColumns = await Promise.all(
       updateBoardDto.columns.map(async (column) => {
@@ -80,7 +80,10 @@ export class BoardsService {
   }
 
   async remove(id: string) {
-    const board = await this.boardRepository.destroy({ where: { id } });
+    const board = await this.boardRepository.destroy({
+      where: { id },
+      cascade: true,
+    });
     return board;
   }
 }

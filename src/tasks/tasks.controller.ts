@@ -3,11 +3,11 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   UseGuards,
   HttpCode,
+  Put,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -36,32 +36,36 @@ export class TasksController {
   @ApiResponse({ status: 200, type: [Task] })
   @UseGuards(AuthGuard)
   @Get(':boardId/tasks')
-  findAll() {
-    return this.tasksService.findAll();
+  findAll(@Param('boardId') boardId: string) {
+    return this.tasksService.findAll(boardId);
   }
 
   @ApiOperation({ summary: 'Get task by id' })
   @ApiResponse({ status: 200, type: Task })
   @UseGuards(AuthGuard)
-  @Get(':boardId/tasks/:id')
-  findOne(@Param('id') id: string) {
-    return this.tasksService.findOne(id);
+  @Get(':boardId/tasks/:taskId')
+  findOne(@Param('taskId') taskId: string, @Param('boardId') boardId: string) {
+    return this.tasksService.findOne(taskId, boardId);
   }
 
   @ApiOperation({ summary: 'Update task' })
   @ApiResponse({ status: 200, type: Task })
   @UseGuards(AuthGuard)
-  @Patch(':boardId/tasks/:id')
-  update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-    return this.tasksService.update(id, updateTaskDto);
+  @Put(':boardId/tasks/:taskId')
+  update(
+    @Param('taskId') taskId: string,
+    @Param('boardId') boardId: string,
+    @Body() updateTaskDto: UpdateTaskDto
+  ) {
+    return this.tasksService.update(taskId, boardId, updateTaskDto);
   }
 
   @ApiOperation({ summary: 'Delete board' })
   @ApiResponse({ status: 204, type: Task })
   @UseGuards(AuthGuard)
-  @Delete(':boardId/tasks/:id')
+  @Delete(':boardId/tasks/:taskId')
   @HttpCode(204)
-  remove(@Param('id') id: string) {
-    return this.tasksService.remove(id);
+  remove(@Param('taskId') taskId: string, @Param('boardId') boardId: string) {
+    return this.tasksService.remove(taskId, boardId);
   }
 }
