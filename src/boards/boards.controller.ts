@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  HttpCode,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth.guard';
@@ -49,7 +50,11 @@ export class BoardsController {
     return this.boardsService.update(id, updateBoardDto);
   }
 
+  @ApiOperation({ summary: 'Delete board' })
+  @ApiResponse({ status: 204, type: Board })
+  @UseGuards(AuthGuard)
   @Delete(':id')
+  @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.boardsService.remove(id);
   }
