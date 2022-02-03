@@ -50,20 +50,30 @@ export class BoardsService {
     const updatedBoard = await board.update({
       title: updateBoardDto.title,
     });
-    await Promise.all(
+    const updatedColumns = await Promise.all(
       updateBoardDto.columns.map(async (column) => {
         if (!column.id) {
-          this.columnRepository.create({ ...column, boardId: board.id });
+          return this.columnRepository.create({
+            ...column,
+            boardId: board.id,
+          });
         } else {
           const columnToUpdate = await this.columnRepository.findOne({
             where: { id: column.id },
           });
           if (!columnToUpdate)
             throw new ValidationException(['No column found']);
-          columnToUpdate.update({ ...columnToUpdate, ...column });
+          return columnToUpdate.update({ ...columnToUpdate, ...column });
         }
       })
     );
+    const columnIds = updatedColumns.map((column) => column.id);
+
+    const allColumns = await this.columnRepository.findAll({
+      where: { boardId: id },
+    });
+    const columnsToDelete = allColumns.filter((c) => !columnIds.includes(c.id));
+    await Promise.all(columnsToDelete.map((item) => item.destroy()));
     const updatedBoardWithColumns = await this.boardRepository.findOne({
       where: { id: updatedBoard.id },
       include: Column,
