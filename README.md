@@ -10,17 +10,13 @@
 ```
 git clone git@github.com:MadaShindeInai/nodejs2021Q4-service.git
 cd ./nodejs2021Q4-service
-git checkout login
+git checkout nestjs
 npm install
 ```
 ## Run in Docker
 1) Run docker desktop application
-3) Run "docker-compose up"
-4) When you run app you can check that it is restarting (10 times limit) by typing in one more separate terminal:
-```docker ps``` to get the container id/name and then:
-```docker exec <db_container_name> pkill -f postgres```
-```docker exec <app_container_name> pkill -f nodemon```
-5) You will see instructions how to run migrations and tests in terminal! <----------!!!!!
+2) Run "make up"  
+
 After starting the app on port 4000 you can open
 in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
