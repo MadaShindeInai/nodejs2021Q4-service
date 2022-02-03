@@ -1,7 +1,8 @@
 import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
-import { CreateColumnDto } from 'src/boards/dto/create-column.dto';
+// import { CreateColumnDto } from 'src/boards/dto/create-column.dto';s
+import { UpdateColumnDto } from 'src/boards/dto/update-board.dto';
 import { ValidationException } from 'src/exceptions/validation.exception';
 
 const findConstraints = (item) => {
@@ -20,12 +21,14 @@ const findConstraints = (item) => {
 export class ValidationPipe implements PipeTransform<any> {
   async transform(value: any, metadata: ArgumentMetadata) {
     const obj = plainToClass(metadata.metatype, value);
+    console.log(metadata.metatype);
     Array.isArray(obj.columns) &&
       obj.columns.map((column) =>
-        validate(plainToClass(CreateColumnDto, column))
+        validate(plainToClass(UpdateColumnDto, column))
       );
     const errors = await validate(obj, {
       whitelist: true,
+      forbidUnknownValues: true,
       forbidNonWhitelisted: true,
     });
 

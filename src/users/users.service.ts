@@ -1,8 +1,10 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import bcrypt from 'bcryptjs';
+import { ValidationException } from 'src/exceptions/validation.exception';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -11,10 +13,7 @@ export class UsersService {
   async createUser(dto: CreateUserDto) {
     const isUserAlreadyExists = await this.getUserByLogin(dto.login);
     if (isUserAlreadyExists)
-      throw new HttpException(
-        'User with such login already exists',
-        HttpStatus.BAD_REQUEST
-      );
+      throw new ValidationException(['User with such login already exists']);
     const hashPassword = await bcrypt.hash(dto.password, 10);
     const user = await this.userRepository.create({
       ...dto,
@@ -30,17 +29,13 @@ export class UsersService {
 
   async getUserById(id: string) {
     const user = await this.userRepository.findOne({ where: { id } });
-    if (!user) {
-      throw new HttpException('No user found', HttpStatus.BAD_REQUEST);
-    }
+    if (!user) throw new NotFoundException(['No user found']);
     return User.toResponse(user);
   }
 
-  async updateUser(id: string, dto: CreateUserDto) {
+  async updateUser(id: string, dto: UpdateUserDto) {
     const user = await this.userRepository.findOne({ where: { id } });
-    if (!user) {
-      throw new HttpException('No user found', HttpStatus.BAD_REQUEST);
-    }
+    if (!user) throw new NotFoundException(['No user found']);
     const hashPassword = await bcrypt.hash(dto.password, 10);
     const updatedUser = await user.update({
       ...dto,

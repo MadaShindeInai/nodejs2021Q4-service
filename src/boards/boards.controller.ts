@@ -45,6 +45,9 @@ export class BoardsController {
     return this.boardsService.findOne(id);
   }
 
+  @ApiOperation({ summary: 'Update board' })
+  @ApiResponse({ status: 200, type: Board })
+  @UseGuards(AuthGuard)
   @Put(':id')
   update(@Param('id') id: string, @Body() updateBoardDto: UpdateBoardDto) {
     return this.boardsService.update(id, updateBoardDto);

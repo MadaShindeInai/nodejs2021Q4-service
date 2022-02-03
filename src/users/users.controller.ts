@@ -12,6 +12,7 @@ import {
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
@@ -48,7 +49,7 @@ export class UsersController {
   @ApiResponse({ status: 200, type: User })
   @UseGuards(AuthGuard)
   @Put(':id')
-  update(@Param('id') id: string, @Body() userDto: CreateUserDto) {
+  update(@Param('id') id: string, @Body() userDto: UpdateUserDto) {
     return this.userService.updateUser(id, userDto);
   }
 
