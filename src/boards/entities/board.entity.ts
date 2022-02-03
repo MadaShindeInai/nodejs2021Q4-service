@@ -40,6 +40,6 @@ export class Board extends Model<Board, BoardCreationAttrs> {
     example: [],
     description: 'Array of connected columns',
   })
-  @HasMany(() => Column, 'boardId')
+  @HasMany(() => Column, { foreignKey: 'boardId', onDelete: 'CASCADE' })
   columns: Column[];
 }
