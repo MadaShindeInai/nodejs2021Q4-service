@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsOptional, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { CreateColumnDto } from './create-column.dto';
 
 export class UpdateColumnDto extends CreateColumnDto {
@@ -8,6 +8,7 @@ export class UpdateColumnDto extends CreateColumnDto {
     example: 'a688a05a-eb21-4955-8190-639c4a210afb',
     description: 'Id of connected board',
   })
+  @IsUUID('4')
   @IsOptional()
   readonly id?: string;
 
@@ -21,9 +22,9 @@ export class UpdateColumnDto extends CreateColumnDto {
 export class UpdateBoardDto {
   @ApiProperty({
     example: 'a688a05a-eb21-4955-8190-639c4a210afb',
-    description: 'Id of connected board',
+    description: 'Board id',
   })
-  @IsString({ message: 'Should be a string' })
+  @IsUUID('4')
   readonly id: string;
 
   @ApiProperty({

@@ -8,6 +8,7 @@ import { BoardsModule } from './boards/boards.module';
 import { User } from './users/entities/user.entity';
 import { Board } from './boards/entities/board.entity';
 import { Column } from './boards/entities/column.entity';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { Column } from './boards/entities/column.entity';
     UsersModule,
     AuthModule,
     BoardsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [],

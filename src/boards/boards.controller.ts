@@ -29,6 +29,7 @@ export class BoardsController {
     const test = await this.boardsService.create(createBoardDto);
     return test;
   }
+
   @ApiOperation({ summary: 'Get all boards' })
   @ApiResponse({ status: 200, type: [Board] })
   @UseGuards(AuthGuard)
