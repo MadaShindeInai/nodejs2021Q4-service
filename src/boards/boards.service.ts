@@ -42,14 +42,11 @@ export class BoardsService {
     return board;
   }
 
-  // TODO: refacror, to make it more understandable
-  // TODO: if column exists in base but do not exist in UpdateBoardDto it should be removed from DB
+  // TODO: refactor, to make it more understandable
   async update(id: string, updateBoardDto: UpdateBoardDto) {
     const board = await this.boardRepository.findOne({ where: { id } });
     if (!board) throw new ValidationException(['No board found']);
-    const updatedBoard = await board.update({
-      title: updateBoardDto.title,
-    });
+    const updatedBoard = await board.update({ title: updateBoardDto.title });
     const updatedColumns = await Promise.all(
       updateBoardDto.columns.map(async (column) => {
         if (!column.id) {
@@ -67,13 +64,14 @@ export class BoardsService {
         }
       })
     );
-    const columnIds = updatedColumns.map((column) => column.id);
-
-    const allColumns = await this.columnRepository.findAll({
+    const updatedColumnsIds = updatedColumns.map((column) => column.id);
+    const allColumnsFromDBbyBoardId = await this.columnRepository.findAll({
       where: { boardId: id },
     });
-    const columnsToDelete = allColumns.filter((c) => !columnIds.includes(c.id));
-    await Promise.all(columnsToDelete.map((item) => item.destroy()));
+    const columnsToDeleteFromDB = allColumnsFromDBbyBoardId.filter(
+      (c) => !updatedColumnsIds.includes(c.id)
+    );
+    await Promise.all(columnsToDeleteFromDB.map((item) => item.destroy()));
     const updatedBoardWithColumns = await this.boardRepository.findOne({
       where: { id: updatedBoard.id },
       include: Column,
