@@ -1,6 +1,7 @@
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './exceptions/filterAll.exception';
 import { ValidationPipe } from './pipes/validation.pipes';
 
 async function bootstrap() {
@@ -14,7 +15,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/doc', app, document);
+  const httpAdapterHost = app.get(HttpAdapterHost);
   app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
   await app.listen(process.env.PORT || 3333, () =>
     console.log(`Server started on port ${process.env.PORT || 3333}`)
   );

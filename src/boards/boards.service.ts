@@ -24,6 +24,7 @@ export class BoardsService {
       where: { id: board.id },
       include: Column,
     });
+    boardWithColumns.columns.sort((a, b) => a.order - b.order);
     return boardWithColumns;
   }
 
@@ -76,6 +77,7 @@ export class BoardsService {
       where: { id: updatedBoard.id },
       include: Column,
     });
+    board.columns.sort((a, b) => a.order - b.order);
     return updatedBoardWithColumns;
   }
 
