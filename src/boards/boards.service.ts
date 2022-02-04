@@ -77,7 +77,7 @@ export class BoardsService {
       where: { id: updatedBoard.id },
       include: Column,
     });
-    board.columns.sort((a, b) => a.order - b.order);
+    updatedBoardWithColumns.columns.sort((a, b) => a.order - b.order);
     return updatedBoardWithColumns;
   }
 
