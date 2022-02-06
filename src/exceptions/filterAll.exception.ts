@@ -26,24 +26,18 @@ export class AllExceptionsFilter implements ExceptionFilter {
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
+    const errorMsg = (exception as { message: string }).message;
+    const errorMsgs = (exception as { messages: string[] }).messages;
     const responseBody = {
       statusCode: httpStatus,
       timestamp: new Date().toISOString(),
       path: httpAdapter.getRequestUrl(ctx.getRequest()),
       msg:
-        httpStatus !== HttpStatus.INTERNAL_SERVER_ERROR
-          ? (exception as { message: string }).message
-          : undefined,
+        httpStatus !== HttpStatus.INTERNAL_SERVER_ERROR ? errorMsg : undefined,
       msgs:
-        httpStatus !== HttpStatus.INTERNAL_SERVER_ERROR
-          ? (exception as { messages: string[] }).messages
-          : undefined,
+        httpStatus !== HttpStatus.INTERNAL_SERVER_ERROR ? errorMsgs : undefined,
     };
-    const logError = `${(exception as { message: string }).message}${
-      (exception as { messages: string[] }).messages
-        ? ': ' + (exception as { messages: string[] }).messages
-        : ''
-    }\n`;
+    const logError = `${errorMsg}${errorMsgs ? ': ' + errorMsgs : ''}\n`;
     this.logger.error(logError);
     wrireStream.write(`${new Date().toUTCString()}: ${logError}`);
     httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
