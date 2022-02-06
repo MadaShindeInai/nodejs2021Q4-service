@@ -15,14 +15,12 @@ npm install
 ```
 ## Run in Docker
 1) Run docker desktop application
-2) Run "make up"  
+2) Run "make up" or "docker-compose --env-file .express.env up"
+3) To create initial admin-user run "make admin-user" or "npx sequelize-cli db:migrate"  
 
 After starting the app on port 4000 you can open
 in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 For more information about OpenAPI/Swagger please visit https://swagger.io/.
-## Postgres initial migrations
-1) Run 'npm run migration:generate' - generates migration files
-2) Run 'npm run migration:run' - runs migration files
 
 ## Testing
 

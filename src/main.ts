@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
@@ -18,6 +19,7 @@ async function bootstrap() {
   const httpAdapterHost = app.get(HttpAdapterHost);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
+  app.useLogger(new Logger());
   await app.listen(process.env.PORT || 3333, () =>
     console.log(`Server started on port ${process.env.PORT || 3333}`)
   );
