@@ -4,12 +4,16 @@ import {
   ArgumentsHost,
   HttpException,
   HttpStatus,
+  Logger,
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
+  constructor(
+    private readonly httpAdapterHost: HttpAdapterHost,
+    private logger = new Logger('HTTP')
+  ) {}
 
   catch(exception: unknown, host: ArgumentsHost): void {
     // In certain situations `httpAdapter` might not be available in the
@@ -35,7 +39,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
           ? (exception as { messages: string[] }).messages
           : undefined,
     };
-
+    this.logger.error(
+      `${responseBody.msg}${responseBody.msgs ? ': ' + responseBody.msgs : ''}`
+    );
     httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
   }
 }

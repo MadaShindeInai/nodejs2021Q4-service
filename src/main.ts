@@ -21,7 +21,11 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
   app.useLogger(new Logger());
   await app.listen(process.env.PORT || 3333, () =>
-    console.log(`Server started on port ${process.env.PORT || 3333}`)
+    console.log(
+      `Server started on port ${
+        process.env.PORT || 3333
+      }\nTo create initial admin-user run "make admin-user" or "npx sequelize-cli db:migrate"`
+    )
   );
 }
 bootstrap();
