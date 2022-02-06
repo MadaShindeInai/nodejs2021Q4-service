@@ -25,6 +25,7 @@ export class UpdateBoardDto {
     description: 'Board id',
   })
   @IsUUID('4')
+  @IsOptional()
   readonly id: string;
 
   @ApiProperty({

@@ -1,5 +1,6 @@
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import { wrireStream } from 'src/constants';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
@@ -7,18 +8,17 @@ export class LoggerMiddleware implements NestMiddleware {
 
   use(request: Request, response: Response, next: NextFunction): void {
     const { ip, method, originalUrl } = request;
+
     const userAgent = request.get('user-agent') || '';
 
     response.on('finish', () => {
       const { statusCode } = response;
-      const contentLength = response.get('content-length');
-
-      this.logger.debug(
-        `${method} ${originalUrl} ${statusCode} ${contentLength} - ${userAgent} ${ip}`
-      );
-      if (method !== 'GET') {
-        this.logger.debug(`Body:${JSON.stringify(request.body)}`);
-      }
+      const commonInfo = `${method} ${originalUrl} ${statusCode} - ${userAgent} ${ip}`;
+      const parsedBody = `Body:${JSON.stringify(request.body)}`;
+      const dateNow = new Date().toUTCString();
+      this.logger.debug(commonInfo);
+      if (method !== 'GET') this.logger.debug(parsedBody);
+      wrireStream.write(`${dateNow}: ${commonInfo}\n${parsedBody}\n`);
     });
 
     next();

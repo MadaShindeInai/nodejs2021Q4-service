@@ -7,6 +7,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
+import { wrireStream } from 'src/constants';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -19,7 +20,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
     // In certain situations `httpAdapter` might not be available in the
     // constructor method, thus we should resolve it here.
     const { httpAdapter } = this.httpAdapterHost;
-
     const ctx = host.switchToHttp();
 
     const httpStatus =
@@ -39,9 +39,13 @@ export class AllExceptionsFilter implements ExceptionFilter {
           ? (exception as { messages: string[] }).messages
           : undefined,
     };
-    this.logger.error(
-      `${responseBody.msg}${responseBody.msgs ? ': ' + responseBody.msgs : ''}`
-    );
+    const logError = `${(exception as { message: string }).message}${
+      (exception as { messages: string[] }).messages
+        ? ': ' + (exception as { messages: string[] }).messages
+        : ''
+    }\n`;
+    this.logger.error(logError);
+    wrireStream.write(`${new Date().toUTCString()}: ${logError}`);
     httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
   }
 }
