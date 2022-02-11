@@ -1,4 +1,6 @@
 # RS School REST service
+THIS IS NEST APPLICATION.
+THE SAME FASTIFY APPLICATION STORED IN 'login' BRANCH.
 
 ## Prerequisites
 
